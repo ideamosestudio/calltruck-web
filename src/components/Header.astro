@@ -1,0 +1,38 @@
+---
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
+const relativePath = Astro.url.pathname.startsWith(base) ? Astro.url.pathname.slice(base.length) : Astro.url.pathname.replace(/^\//, '');
+const path = `/${relativePath}`;
+const nav = [
+  ['Inicio', '.'],
+  ['La empresa', 'la-empresa/'],
+  ['Soluciones', 'soluciones/'],
+  ['Contacto', 'contacto/']
+];
+const services = [
+  ['Transporte para vos', 'transporte-particulares/'],
+  ['Logística para empresas', 'logistica-empresas/'],
+  ['Almacenamiento logístico', 'almacenamiento-logistico/']
+];
+const whatsapp = 'https://wa.me/541137874158?text=Hola%2C%20quiero%20pedir%20un%20presupuesto';
+---
+<header class="site-header" data-header>
+  <a class="brand" href="." aria-label="Calltruck, inicio">
+    <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span>CALL<span>TRUCK</span></span>
+  </a>
+  <button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="site-nav">
+    <span></span><span></span><span></span><b class="sr-only">Abrir menú</b>
+  </button>
+  <nav id="site-nav" class="site-nav" data-menu>
+    {nav.map(([label, href]) => label === 'Soluciones' ? (
+      <div class="nav-dropdown">
+        <a href={href} class:list={{active: path.startsWith('/soluciones') || services.some(([, url]) => path.startsWith(`/${url.replace(/\/$/, '')}`))}}>{label}<span>⌄</span></a>
+        <div class="dropdown-panel">
+          {services.map(([name, url], i) => <a href={url}><em>0{i + 1}</em>{name}<span>↗</span></a>)}
+        </div>
+      </div>
+    ) : <a href={href} class:list={{active: href === '.' ? path === '/' : path.startsWith(`/${href.replace(/\/$/, '')}`)}}>{label}</a>)}
+  </nav>
+  <a class="header-cta" href={whatsapp} target="_blank" rel="noreferrer">Pedir presupuesto <span>↗</span></a>
+</header>

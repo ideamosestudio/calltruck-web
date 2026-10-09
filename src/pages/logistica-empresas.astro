@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+const services=[
+  ['01','Transporte nacional','Cobertura para cargas y recorridos de corta, media y larga distancia.'],
+  ['02','Distribución','Recursos de transporte y logística para operaciones de distribución.'],
+  ['03','Contenedores y cargas generales','Operaciones vinculadas con contenedores y distintos tipos de cargas.'],
+  ['04','Logística inversa','Soluciones para los flujos de retorno dentro de una operación logística.'],
+  ['05','Comercio exterior y aduana','Operaciones vinculadas con importación, exportación y servicio aduanero (ATA).'],
+  ['06','Operaciones IMO','Capacidad declarada por la empresa. Las categorías y el alcance se confirman en cada consulta.']
+];
+---
+<BaseLayout title="Logística y transporte para empresas | Calltruck" description="Transporte nacional, distribución, contenedores, cargas generales y operaciones logísticas para empresas. Consultá a Calltruck.">
+  <section class="hero hero--service" style="background-image:linear-gradient(90deg,rgba(10,12,11,.96),rgba(10,12,11,.66) 48%,rgba(10,12,11,.08)),url('images/fleet/calltruck-semirremolque.webp')"><div class="hero-grid"></div><span class="hero-index">B2B · OPERACIÓN NACIONAL</span><div class="hero-content"><span class="eyebrow">Soluciones para empresas</span><h1>Tu negocio se mueve.<br><em>Nuestra logística</em><br>lo acompaña.</h1><p class="hero-lead">Transporte nacional, distribución y soluciones logísticas para empresas que necesitan mover sus cargas con recursos adecuados, cobertura y seguimiento operativo.</p><div class="hero-actions"><a class="button" href="https://wa.me/541137874158?text=Hola%2C%20quiero%20consultar%20por%20una%20soluci%C3%B3n%20log%C3%ADstica%20para%20mi%20empresa" target="_blank" rel="noreferrer">Solicitar una propuesta <span>↗</span></a></div></div></section>
+  <section class="section reveal"><div class="section-inner editorial"><aside>01 / Propuesta de valor</aside><article><h2>Un aliado para cada desafío logístico.</h2><p>Acompañamos operaciones empresariales de corta, media y larga distancia.</p><p>Combinamos flota propia, unidades tercerizadas, infraestructura y seguimiento para adaptarnos a diferentes requerimientos.</p></article></div></section>
+  <section class="section section--dark reveal"><div class="section-inner"><div class="section-head"><div><span class="eyebrow">Servicios empresariales</span><h2>Soluciones que acompañan toda la operación.</h2></div></div><div class="capability-list">{services.map(([no,title,text])=><div class="capability"><span>{no}</span><h3>{title}</h3><p>{text}</p></div>)}</div></div></section>
+  <section class="split reveal"><div class="split-media"><img src="images/fleet/portacontenedor.webp" alt="Transporte de contenedores en playa logística" loading="lazy"/><span class="image-tag">Respaldo operativo</span></div><div class="split-copy"><span class="eyebrow">Infraestructura y control</span><h2>Flota, seguimiento e infraestructura.</h2><p>Trabajamos con unidades propias y tercerizadas, monitoreo satelital en tiempo real y un depósito de más de 1.000 m² en Paso del Rey.</p><a class="button button--dark" href="https://wa.me/541137874158?text=Hola%2C%20quiero%20consultar%20por%20una%20soluci%C3%B3n%20log%C3%ADstica%20para%20mi%20empresa" target="_blank" rel="noreferrer">Consultar una operación <span>↗</span></a></div></section>
+  <CTA title="Una solución logística empieza por entender tu negocio." text="Compartinos qué necesitás transportar, el tipo de carga y el recorrido. Hablemos de una propuesta para tu empresa." label="Pedir presupuesto" message="Hola, quiero consultar por una solución logística para mi empresa" />
+</BaseLayout>

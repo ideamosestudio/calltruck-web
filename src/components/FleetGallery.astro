@@ -1,0 +1,23 @@
+---
+const items = [
+  { src: 'images/fleet/chasis-cortina-frente.webp', alt: 'Unidad de carga con lona azul vista de frente', label: 'Chasis y carga general', wide: true },
+  { src: 'images/fleet/chasis-liviano-01.webp', alt: 'Camión de carga liviana dentro de un centro logístico', label: 'Operaciones urbanas' },
+  { src: 'images/fleet/semirremolque-negro.webp', alt: 'Semirremolque de gran porte en nave logística', label: 'Larga distancia', wide: true },
+  { src: 'images/fleet/portacontenedor.webp', alt: 'Transporte de contenedor en playa logística', label: 'Contenedores' },
+  { src: 'images/fleet/tractor-semirremolque.webp', alt: 'Camión con semirremolque en plataforma logística', label: 'Equipos especiales' },
+  { src: 'images/fleet/calltruck-semirremolque.webp', alt: 'Unidad Calltruck con semirremolque', label: 'Capacidad operativa', wide: true },
+  { src: 'images/fleet/operacion-ruta.webp', alt: 'Unidad de transporte durante una operación en ruta', label: 'Distribución nacional', wide: true },
+  { src: 'images/fleet/chasis-liviano-02.webp', alt: 'Camión mediano con caja de cortina', label: 'Cargas generales' },
+  { src: 'images/fleet/chasis-cortina-posterior.webp', alt: 'Vista posterior de unidad con plataforma hidráulica', label: 'Equipamiento' },
+];
+const { compact = false } = Astro.props;
+---
+
+<div class:list={['fleet-gallery', { 'fleet-gallery--compact': compact }]}>
+  {items.map((item, index) => (
+    <figure class:list={['fleet-shot', { 'fleet-shot--wide': item.wide }]}>
+      <img src={item.src} alt={item.alt} loading="lazy" />
+      <figcaption><span>0{index + 1}</span>{item.label}</figcaption>
+    </figure>
+  ))}
+</div>
