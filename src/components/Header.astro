@@ -10,16 +10,15 @@ const nav = [
   ['Contacto', 'contacto/']
 ];
 const services = [
-  ['Transporte para vos', 'transporte-particulares/'],
-  ['Logística para empresas', 'logistica-empresas/'],
-  ['Almacenamiento logístico', 'almacenamiento-logistico/']
+  ['Transporte para vos', 'transporte-particulares/', 'images/fleet/chasis-liviano-01.webp', 'Traslados a medida'],
+  ['Logística para empresas', 'logistica-empresas/', 'images/fleet/calltruck-semirremolque.webp', 'Operación nacional'],
+  ['Almacenamiento logístico', 'almacenamiento-logistico/', 'images/warehouse.png', 'Paso del Rey']
 ];
 const whatsapp = 'https://wa.me/541137874158?text=Hola%2C%20quiero%20pedir%20un%20presupuesto';
 ---
 <header class="site-header" data-header>
   <a class="brand" href="." aria-label="Calltruck, inicio">
-    <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
-    <span>CALL<span>TRUCK</span></span>
+    <img class="brand-logo" src="images/calltruck-logo.webp" width="900" height="300" alt="CALLTRUCK" fetchpriority="high" />
   </a>
   <button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="site-nav">
     <span></span><span></span><span></span><b class="sr-only">Abrir menú</b>
@@ -29,7 +28,8 @@ const whatsapp = 'https://wa.me/541137874158?text=Hola%2C%20quiero%20pedir%20un%
       <div class="nav-dropdown">
         <a href={href} class:list={{active: path.startsWith('/soluciones') || services.some(([, url]) => path.startsWith(`/${url.replace(/\/$/, '')}`))}}>{label}<span>⌄</span></a>
         <div class="dropdown-panel">
-          {services.map(([name, url], i) => <a href={url}><em>0{i + 1}</em>{name}<span>↗</span></a>)}
+          <div class="dropdown-head"><span>SOLUCIONES</span><small>Elegí el punto de partida</small></div>
+          {services.map(([name, url, image, meta], i) => <a class="dropdown-service" href={url}><span class="dropdown-thumb"><img src={image} alt="" loading="lazy" /></span><span class="dropdown-copy"><em>0{i + 1}</em><b>{name}</b><small>{meta}</small></span><span class="dropdown-arrow">↗</span></a>)}
         </div>
       </div>
     ) : <a href={href} class:list={{active: href === '.' ? path === '/' : path.startsWith(`/${href.replace(/\/$/, '')}`)}}>{label}</a>)}

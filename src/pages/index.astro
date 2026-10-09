@@ -8,21 +8,23 @@ const services = [
   ['03','Almacenamiento logístico','Más de 1.000 m² de depósito en Paso del Rey, con ubicación estratégica y conexión a las principales vías de acceso.','Conocer el depósito','almacenamiento-logistico/']
 ];
 const metrics = [
-  ['↗','Cobertura nacional','Operaciones de corta, media y larga distancia para distintas necesidades de transporte.'],
-  ['◫','Flota versátil','Unidades propias y tercerizadas, desde utilitarios hasta semirremolques y equipos especiales.'],
-  ['◎','Seguimiento operativo','Monitoreo satelital y seguimiento de las operaciones en tiempo real.'],
-  ['▦','Infraestructura logística','Más de 1.000 m² de capacidad de depósito para acompañar almacenamiento y distribución.']
+  ['route','Cobertura nacional','Operaciones de corta, media y larga distancia para distintas necesidades de transporte.'],
+  ['fleet','Flota versátil','Unidades propias y tercerizadas, desde utilitarios hasta semirremolques y equipos especiales.'],
+  ['track','Seguimiento operativo','Monitoreo satelital y seguimiento de las operaciones en tiempo real.'],
+  ['storage','Infraestructura logística','Más de 1.000 m² de capacidad de depósito para acompañar almacenamiento y distribución.']
 ];
 ---
 <BaseLayout title="Calltruck | Transporte, logística y almacenamiento" description="Transporte para particulares y empresas, distribución nacional y almacenamiento logístico. Conocé las soluciones de Calltruck.">
-  <section class="hero hero--home">
+  <section class="hero hero--home" style="background-image:linear-gradient(90deg,rgba(10,12,11,.95) 0%,rgba(10,12,11,.73) 42%,rgba(10,12,11,.04) 77%),url('images/fleet/calltruck-semirremolque.webp')">
     <div class="hero-grid"></div><span class="hero-index">ARGENTINA · 34°36′S</span>
     <div class="hero-content">
       <span class="eyebrow">Transporte · Logística · Almacenamiento</span>
-      <h1>Movemos tu carga.<br><em>Hacemos avanzar</em><br>tus proyectos.</h1>
+      <h1 class="hero-title"><span>Movemos tu carga.</span><span><em>Hacemos avanzar</em></span><span>tus proyectos.</span></h1>
       <p class="hero-lead">Soluciones de transporte para particulares y empresas, distribución nacional y almacenamiento logístico. Flota, infraestructura y seguimiento operativo para acompañar cada movimiento.</p>
       <div class="hero-actions"><a class="button" href="https://wa.me/541137874158?text=Hola%2C%20quiero%20pedir%20un%20presupuesto" target="_blank" rel="noreferrer">Pedir presupuesto <span>↗</span></a><a class="button button--outline" href="#soluciones">Explorar soluciones <span>↓</span></a></div>
     </div>
+    <div class="hero-rail" aria-hidden="true"><span>COBERTURA NACIONAL</span><i></i><span>SEGUIMIENTO OPERATIVO</span><i></i><span>INFRAESTRUCTURA LOGÍSTICA</span></div>
+    <a class="scroll-cue" href="#soluciones" aria-label="Ir a soluciones"><span></span><small>DESCUBRIR</small></a>
   </section>
 
   <section id="soluciones" class="section reveal">
@@ -33,14 +35,23 @@ const metrics = [
   </section>
 
   <section class="section section--dark reveal">
-    <div class="section-inner"><div class="section-head"><div><span class="eyebrow">Capacidad para responder</span><h2>La logística necesita mucho más que llegar.</h2></div><p>Recursos concretos, seguimiento y una red operativa preparada para acompañar movimientos de distinta escala.</p></div><div class="metrics-grid">{metrics.map(([icon,title,text]) => <article class="metric"><span class="metric-icon">{icon}</span><h3>{title}</h3><p>{text}</p></article>)}</div></div>
+    <div class="section-inner"><div class="section-head"><div><span class="eyebrow">Capacidad para responder</span><h2>La logística necesita mucho más que llegar.</h2></div><p>Recursos concretos, seguimiento y una red operativa preparada para acompañar movimientos de distinta escala.</p></div><div class="metrics-grid">{metrics.map(([icon,title,text]) => <article class="metric"><span class:list={['metric-icon',`metric-icon--${icon}`]} aria-hidden="true"><i></i></span><h3>{title}</h3><p>{text}</p></article>)}</div></div>
+  </section>
+
+  <section class="operation-story reveal">
+    <div class="story-sticky"><span class="eyebrow">Una operación, de punta a punta</span><h2>Movemos con método.</h2><p>Cada necesidad empieza por entender la carga, el recorrido y el alcance operativo.</p><span class="outline-word" aria-hidden="true">RUTA</span></div>
+    <div class="story-rows">
+      <article class="story-row"><span>01</span><div><h3>Escuchamos</h3><p>Conocemos qué necesitás mover, desde dónde y hacia dónde.</p></div><i>↘</i></article>
+      <article class="story-row"><span>02</span><div><h3>Coordinamos</h3><p>Conectamos la necesidad con los recursos adecuados para la operación.</p></div><i>↘</i></article>
+      <article class="story-row"><span>03</span><div><h3>Seguimos</h3><p>Acompañamos el movimiento con seguimiento operativo en tiempo real.</p></div><i>↘</i></article>
+    </div>
   </section>
 
   <section class="split reveal"><div class="split-copy"><span class="eyebrow">Somos Calltruck</span><h2>Un equipo que entiende de movimiento.</h2><p>Trabajamos para simplificar los desafíos del transporte y la logística con experiencia operativa, recursos adaptables y compromiso con cada entrega.</p><a class="button button--dark" href="la-empresa/">Conocé Calltruck <span>↗</span></a></div><div class="split-media"><img src="images/fleet/operacion-ruta.webp" alt="Unidad de transporte de larga distancia" loading="lazy" /><span class="image-tag">Capacidad en movimiento</span></div></section>
 
-  <div class="band"><span class="band-label">Nuestros recursos</span><div class="band-content"><span>Utilitarios</span><span>Chasis 8–14 pallets</span><span>Semirremolques</span></div></div>
+  <div class="band band--marquee"><span class="band-label">Nuestros recursos</span><div class="band-viewport"><div class="band-content"><span>Utilitarios</span><i>✦</i><span>Chasis 8–14 pallets</span><i>✦</i><span>Semirremolques</span><i>✦</i><span>Equipos especiales</span><i>✦</i><span aria-hidden="true">Utilitarios</span><i aria-hidden="true">✦</i><span aria-hidden="true">Chasis 8–14 pallets</span><i aria-hidden="true">✦</i></div></div></div>
 
-  <section class="section section--fleet reveal"><div class="section-inner"><div class="section-head"><div><span class="eyebrow">Nuestra flota</span><h2>El vehículo adecuado para cada operación.</h2></div><p>Utilitarios, chasis con capacidad de 8 a 14 pallets, unidades con pala hidráulica, semirremolques y equipos especiales.</p></div><FleetGallery compact /></div></section>
+  <section class="section section--fleet reveal"><span class="fleet-outline" aria-hidden="true">MOVIMIENTO</span><div class="section-inner"><div class="section-head"><div><span class="eyebrow">Nuestra flota</span><h2>El vehículo adecuado para cada operación.</h2></div><p>Utilitarios, chasis con capacidad de 8 a 14 pallets, unidades con pala hidráulica, semirremolques y equipos especiales.</p></div><FleetGallery compact /></div></section>
 
   <section class="split reveal"><div class="split-media"><img src="images/warehouse.png" alt="Interior de un depósito logístico" loading="lazy" /><span class="image-tag">Paso del Rey</span></div><div class="split-copy"><span class="eyebrow">Almacenamiento y distribución</span><h2>Espacio para que tu operación siga avanzando.</h2><p>Más de 1.000 m² de depósito en Paso del Rey, con acceso inmediato a Acceso Oeste y Camino del Buen Ayre.</p><a class="button button--dark" href="almacenamiento-logistico/">Ver almacenamiento <span>↗</span></a></div></section>
 

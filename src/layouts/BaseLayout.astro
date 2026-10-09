@@ -1,6 +1,14 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import '@fontsource/barlow-condensed/500.css';
+import '@fontsource/barlow-condensed/600.css';
+import '@fontsource/barlow-condensed/700.css';
+import '@fontsource/barlow-condensed/800.css';
+import '@fontsource/barlow-condensed/900.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
 import '../styles/global.css';
 const { title, description } = Astro.props;
 const rawBase = import.meta.env.BASE_URL;
@@ -16,8 +24,19 @@ const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
     <base href={base} />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2210%22 fill=%22%23ff5c00%22/><path d=%22M13 16h38v9H22v14h29v9H13z%22 fill=%22%23101211%22/></svg>" />
     <title>{title}</title>
+    <script is:inline>
+      document.documentElement.classList.add('js');
+      try {
+        if (sessionStorage.getItem('calltruck-visited')) document.documentElement.classList.add('skip-loader');
+        sessionStorage.setItem('calltruck-visited', '1');
+      } catch {}
+    </script>
   </head>
-  <body>
+  <body data-page={Astro.url.pathname}>
+    <div class="page-loader" aria-hidden="true"><img src="images/calltruck-logo.webp" alt="" width="900" height="300" /><span></span></div>
+    <div class="page-transition" aria-hidden="true"><span>CALLTRUCK</span></div>
+    <div class="scroll-progress" aria-hidden="true"><i></i></div>
+    <div class="cursor" aria-hidden="true"><span></span></div>
     <Header />
     <main><slot /></main>
     <Footer />
@@ -26,17 +45,61 @@ const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
       const header = document.querySelector('[data-header]');
       const toggle = document.querySelector('[data-menu-toggle]');
       const menu = document.querySelector('[data-menu]');
+      const progress = document.querySelector('.scroll-progress i');
+      const cursor = document.querySelector('.cursor');
+      const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      requestAnimationFrame(() => setTimeout(() => document.body.classList.add('is-loaded'), reduceMotion ? 0 : 180));
+
       toggle?.addEventListener('click', () => {
         const open = toggle.getAttribute('aria-expanded') === 'true';
         toggle.setAttribute('aria-expanded', String(!open));
         menu?.classList.toggle('is-open');
         document.body.classList.toggle('menu-open');
       });
-      addEventListener('scroll', () => header?.classList.toggle('is-scrolled', scrollY > 24), {passive:true});
+
+      const updateScroll = () => {
+        header?.classList.toggle('is-scrolled', scrollY > 24);
+        const available = document.documentElement.scrollHeight - innerHeight;
+        if (progress) progress.style.transform = `scaleX(${available > 0 ? scrollY / available : 0})`;
+        if (!reduceMotion) document.documentElement.style.setProperty('--scroll-y', `${Math.min(scrollY * .08, 72)}px`);
+      };
+      addEventListener('scroll', updateScroll, {passive:true});
+      updateScroll();
+
       const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
         if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
-      }), {threshold: .12});
-      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+      }), {threshold: .1, rootMargin: '0px 0px -5%'});
+      document.querySelectorAll('.reveal,.split-media,.fleet-shot,.metric,.capability,.process-card,.story-row').forEach((el) => observer.observe(el));
+
+      if (matchMedia('(pointer:fine)').matches && cursor) {
+        let x = innerWidth / 2, y = innerHeight / 2, cx = x, cy = y;
+        addEventListener('mousemove', (event) => { x = event.clientX; y = event.clientY; cursor.classList.add('is-visible'); }, {passive:true});
+        addEventListener('mouseout', (event) => { if (!event.relatedTarget) cursor.classList.remove('is-visible'); });
+        const renderCursor = () => { cx += (x-cx)*.18; cy += (y-cy)*.18; cursor.style.transform = `translate3d(${cx}px,${cy}px,0)`; requestAnimationFrame(renderCursor); };
+        renderCursor();
+        document.querySelectorAll('a,button,input,select,textarea,.fleet-shot').forEach((el) => {
+          el.addEventListener('mouseenter', () => cursor.classList.add('is-active'));
+          el.addEventListener('mouseleave', () => cursor.classList.remove('is-active'));
+        });
+        document.querySelectorAll('.button').forEach((button) => {
+          button.addEventListener('mousemove', (event) => {
+            const box = button.getBoundingClientRect();
+            button.style.transform = `translate(${(event.clientX-box.left-box.width/2)*.055}px,${(event.clientY-box.top-box.height/2)*.08}px)`;
+          });
+          button.addEventListener('mouseleave', () => button.style.transform = '');
+        });
+      }
+
+      document.querySelectorAll('a[href]').forEach((link) => link.addEventListener('click', (event) => {
+        const href = link.getAttribute('href');
+        if (!href || href.startsWith('#') || link.target === '_blank' || event.metaKey || event.ctrlKey || event.shiftKey || reduceMotion) return;
+        const destination = new URL(link.href, location.href);
+        if (destination.origin !== location.origin || destination.pathname === location.pathname) return;
+        event.preventDefault();
+        document.body.classList.add('is-leaving');
+        setTimeout(() => { location.href = destination.href; }, 460);
+      }));
     </script>
   </body>
 </html>
