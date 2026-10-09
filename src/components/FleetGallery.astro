@@ -1,8 +1,8 @@
 ---
 const items = [
-  { src: 'images/fleet/chasis-cortina-frente.webp', alt: 'Unidad de carga con lona azul vista de frente', label: 'Chasis y carga general', wide: true },
-  { src: 'images/fleet/chasis-liviano-01.webp', alt: 'Camión de carga liviana dentro de un centro logístico', label: 'Operaciones urbanas' },
-  { src: 'images/fleet/semirremolque-negro.webp', alt: 'Semirremolque de gran porte en nave logística', label: 'Larga distancia', wide: true },
+  { src: 'images/editorial/fleet-brand.webp', alt: 'Unidad Calltruck con semirremolque en plataforma logística', label: 'Capacidad operativa', meta: 'Larga distancia', wide: true },
+  { src: 'images/editorial/fleet-urban.webp', alt: 'Camión de carga liviana dentro de un centro logístico', label: 'Operaciones urbanas', meta: 'Carga general' },
+  { src: 'images/editorial/fleet-longhaul.webp', alt: 'Semirremolque de gran porte en playa logística', label: 'Larga distancia', meta: 'Cobertura nacional', wide: true },
   { src: 'images/fleet/portacontenedor.webp', alt: 'Transporte de contenedor en playa logística', label: 'Contenedores' },
   { src: 'images/fleet/tractor-semirremolque.webp', alt: 'Camión con semirremolque en plataforma logística', label: 'Equipos especiales' },
   { src: 'images/fleet/calltruck-semirremolque.webp', alt: 'Unidad Calltruck con semirremolque', label: 'Capacidad operativa', wide: true },
@@ -17,7 +17,8 @@ const { compact = false } = Astro.props;
   {items.map((item, index) => (
     <figure class:list={['fleet-shot', { 'fleet-shot--wide': item.wide }]}>
       <img src={item.src} alt={item.alt} loading="lazy" />
-      <figcaption><span>0{index + 1}</span>{item.label}</figcaption>
+      <span class="fleet-shot__frame" aria-hidden="true"></span>
+      <figcaption><span>0{index + 1}</span><strong>{item.label}</strong>{item.meta && <small>{item.meta}</small>}</figcaption>
     </figure>
   ))}
 </div>

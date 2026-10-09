@@ -51,11 +51,21 @@ const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
 
       requestAnimationFrame(() => setTimeout(() => document.body.classList.add('is-loaded'), reduceMotion ? 0 : 180));
 
-      toggle?.addEventListener('click', () => {
-        const open = toggle.getAttribute('aria-expanded') === 'true';
-        toggle.setAttribute('aria-expanded', String(!open));
-        menu?.classList.toggle('is-open');
-        document.body.classList.toggle('menu-open');
+      const setMenu = (open) => {
+        toggle?.setAttribute('aria-expanded', String(open));
+        toggle?.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+        menu?.classList.toggle('is-open', open);
+        document.body.classList.toggle('menu-open', open);
+      };
+      toggle?.addEventListener('click', () => setMenu(toggle.getAttribute('aria-expanded') !== 'true'));
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenu(false)));
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') { setMenu(false); toggle.focus(); }
+        if (event.key !== 'Tab' || toggle?.getAttribute('aria-expanded') !== 'true' || innerWidth > 980) return;
+        const focusable = [toggle, ...menu.querySelectorAll('a,button')];
+        const first = focusable[0], last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
       });
 
       const updateScroll = () => {

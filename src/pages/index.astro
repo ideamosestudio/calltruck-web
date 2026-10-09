@@ -2,10 +2,11 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from '../components/CTA.astro';
 import FleetGallery from '../components/FleetGallery.astro';
+import TechnicalIcon from '../components/TechnicalIcon.astro';
 const services = [
-  ['01','Transporte para vos','¿Necesitás trasladar una carga? Contanos qué necesitás mover y a dónde. Te ayudamos a encontrar una solución para tu traslado.','Consultar por un traslado','transporte-particulares/'],
-  ['02','Logística para empresas','Transporte nacional, distribución y operaciones logísticas para acompañar el movimiento de tu negocio.','Ver soluciones para empresas','logistica-empresas/'],
-  ['03','Almacenamiento logístico','Más de 1.000 m² de depósito en Paso del Rey, con ubicación estratégica y conexión a las principales vías de acceso.','Conocer el depósito','almacenamiento-logistico/']
+  ['01','Transporte para vos','¿Necesitás trasladar una carga? Contanos qué necesitás mover y a dónde. Te ayudamos a encontrar una solución para tu traslado.','Consultar por un traslado','transporte-particulares/','images/editorial/fleet-urban.webp'],
+  ['02','Logística para empresas','Transporte nacional, distribución y operaciones logísticas para acompañar el movimiento de tu negocio.','Ver soluciones para empresas','logistica-empresas/','images/editorial/fleet-brand.webp'],
+  ['03','Almacenamiento logístico','Más de 1.000 m² de depósito en Paso del Rey, con ubicación estratégica y conexión a las principales vías de acceso.','Conocer el depósito','almacenamiento-logistico/','images/editorial/hero-personal.webp']
 ];
 const metrics = [
   ['route','Cobertura nacional','Operaciones de corta, media y larga distancia para distintas necesidades de transporte.'],
@@ -15,7 +16,7 @@ const metrics = [
 ];
 ---
 <BaseLayout title="Calltruck | Transporte, logística y almacenamiento" description="Transporte para particulares y empresas, distribución nacional y almacenamiento logístico. Conocé las soluciones de Calltruck.">
-  <section class="hero hero--home" style="background-image:linear-gradient(90deg,rgba(10,12,11,.95) 0%,rgba(10,12,11,.73) 42%,rgba(10,12,11,.04) 77%),url('images/fleet/calltruck-semirremolque.webp')">
+  <section class="hero hero--home" style="background-image:linear-gradient(90deg,rgba(10,12,11,.95) 0%,rgba(10,12,11,.72) 40%,rgba(10,12,11,.05) 76%),url('images/editorial/hero-home.webp')">
     <div class="hero-grid"></div><span class="hero-index">ARGENTINA · 34°36′S</span>
     <div class="hero-content">
       <span class="eyebrow">Transporte · Logística · Almacenamiento</span>
@@ -30,12 +31,12 @@ const metrics = [
   <section id="soluciones" class="section reveal">
     <div class="section-inner">
       <div class="section-head"><div><span class="eyebrow">Lo que hacemos</span><h2>Una solución para cada necesidad.</h2></div><p>Desde un traslado puntual hasta una operación logística empresarial, conectamos tu necesidad con el servicio adecuado.</p></div>
-      <div class="services-grid">{services.map(([no,title,text,label,url]) => <a class="service-card" href={url}><span class="card-no">{no} / SOLUCIÓN</span><h3>{title}</h3><p>{text}</p><span class="text-link">{label}<b>↗</b></span></a>)}</div>
+      <div class="services-grid">{services.map(([no,title,text,label,url,image]) => <a class="service-card" href={url}><span class="service-card__visual"><img src={image} alt="" loading="lazy" /></span><span class="card-no">{no} / SOLUCIÓN</span><h3>{title}</h3><p>{text}</p><span class="text-link">{label}<b>↗</b></span></a>)}</div>
     </div>
   </section>
 
   <section class="section section--dark reveal">
-    <div class="section-inner"><div class="section-head"><div><span class="eyebrow">Capacidad para responder</span><h2>La logística necesita mucho más que llegar.</h2></div><p>Recursos concretos, seguimiento y una red operativa preparada para acompañar movimientos de distinta escala.</p></div><div class="metrics-grid">{metrics.map(([icon,title,text]) => <article class="metric"><span class:list={['metric-icon',`metric-icon--${icon}`]} aria-hidden="true"><i></i></span><h3>{title}</h3><p>{text}</p></article>)}</div></div>
+    <div class="section-inner"><div class="section-head"><div><span class="eyebrow">Capacidad para responder</span><h2>La logística necesita mucho más que llegar.</h2></div><p>Recursos concretos, seguimiento y una red operativa preparada para acompañar movimientos de distinta escala.</p></div><div class="metrics-grid">{metrics.map(([icon,title,text]) => <article class="metric"><TechnicalIcon name={icon} /><h3>{title}</h3><p>{text}</p></article>)}</div></div>
   </section>
 
   <section class="operation-story reveal">
@@ -47,13 +48,13 @@ const metrics = [
     </div>
   </section>
 
-  <section class="split reveal"><div class="split-copy"><span class="eyebrow">Somos Calltruck</span><h2>Un equipo que entiende de movimiento.</h2><p>Trabajamos para simplificar los desafíos del transporte y la logística con experiencia operativa, recursos adaptables y compromiso con cada entrega.</p><a class="button button--dark" href="la-empresa/">Conocé Calltruck <span>↗</span></a></div><div class="split-media"><img src="images/fleet/operacion-ruta.webp" alt="Unidad de transporte de larga distancia" loading="lazy" /><span class="image-tag">Capacidad en movimiento</span></div></section>
+  <section class="split split--copy-led reveal"><div class="split-copy"><span class="eyebrow">Somos Calltruck</span><h2>Un equipo que entiende de movimiento.</h2><p>Trabajamos para simplificar los desafíos del transporte y la logística con experiencia operativa, recursos adaptables y compromiso con cada entrega.</p><a class="button button--dark" href="la-empresa/">Conocé Calltruck <span>↗</span></a></div><div class="split-media"><img src="images/editorial/fleet-longhaul.webp" alt="Unidad de transporte de larga distancia" loading="lazy" /><span class="image-tag">Capacidad en movimiento</span></div></section>
 
   <div class="band band--marquee"><span class="band-label">Nuestros recursos</span><div class="band-viewport"><div class="band-content"><span>Utilitarios</span><i>✦</i><span>Chasis 8–14 pallets</span><i>✦</i><span>Semirremolques</span><i>✦</i><span>Equipos especiales</span><i>✦</i><span aria-hidden="true">Utilitarios</span><i aria-hidden="true">✦</i><span aria-hidden="true">Chasis 8–14 pallets</span><i aria-hidden="true">✦</i></div></div></div>
 
   <section class="section section--fleet reveal"><span class="fleet-outline" aria-hidden="true">MOVIMIENTO</span><div class="section-inner"><div class="section-head"><div><span class="eyebrow">Nuestra flota</span><h2>El vehículo adecuado para cada operación.</h2></div><p>Utilitarios, chasis con capacidad de 8 a 14 pallets, unidades con pala hidráulica, semirremolques y equipos especiales.</p></div><FleetGallery compact /></div></section>
 
-  <section class="split reveal"><div class="split-media"><img src="images/warehouse.png" alt="Interior de un depósito logístico" loading="lazy" /><span class="image-tag">Paso del Rey</span></div><div class="split-copy"><span class="eyebrow">Almacenamiento y distribución</span><h2>Espacio para que tu operación siga avanzando.</h2><p>Más de 1.000 m² de depósito en Paso del Rey, con acceso inmediato a Acceso Oeste y Camino del Buen Ayre.</p><a class="button button--dark" href="almacenamiento-logistico/">Ver almacenamiento <span>↗</span></a></div></section>
+  <section class="split split--media-led reveal"><div class="split-media"><img src="images/editorial/hero-personal.webp" alt="Unidad de carga dentro de un centro logístico" loading="lazy" /><span class="image-tag">Paso del Rey</span></div><div class="split-copy"><span class="eyebrow">Almacenamiento y distribución</span><h2>Espacio para que tu operación siga avanzando.</h2><p>Más de 1.000 m² de depósito en Paso del Rey, con acceso inmediato a Acceso Oeste y Camino del Buen Ayre.</p><a class="button button--dark" href="almacenamiento-logistico/">Ver almacenamiento <span>↗</span></a></div></section>
 
   <CTA title="Contanos qué necesitás mover." text="Ya sea un traslado puntual o una operación logística para tu empresa, conversemos sobre la solución que necesitás." />
 </BaseLayout>
