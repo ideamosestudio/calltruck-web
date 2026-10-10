@@ -97,7 +97,7 @@ const metrics = [
       const stop = () => { if (timer) window.clearInterval(timer); timer = undefined; };
       const start = () => {
         stop();
-        if (!paused && !document.hidden) timer = window.setInterval(() => showSlide(active + 1, false), 6500);
+        if (!paused && !document.hidden) timer = window.setInterval(() => showSlide(active + 1, false), 1500);
       };
 
       dots.forEach((dot) => dot.addEventListener('click', () => {
