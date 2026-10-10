@@ -80,7 +80,7 @@ const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
       const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
         if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
       }), {threshold: .1, rootMargin: '0px 0px -5%'});
-      document.querySelectorAll('.reveal,.split-media,.fleet-shot,.metric,.capability,.process-card,.story-row').forEach((el) => observer.observe(el));
+      document.querySelectorAll('.reveal,.split-media,.fleet-shot,.metric,.capability,.process-card,.story-row,.report-shot,.warehouse-shot,.logistics-strip figure').forEach((el) => observer.observe(el));
 
       if (matchMedia('(pointer:fine)').matches && cursor) {
         let x = innerWidth / 2, y = innerHeight / 2, cx = x, cy = y;

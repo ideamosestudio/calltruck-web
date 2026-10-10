@@ -267,3 +267,72 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 @media(prefers-reduced-motion:reduce){
   .hero-slide{transform:none;transition:none}
 }
+
+/* Image-led editorial expansion */
+.story-row--visual{grid-template-columns:42px minmax(0,1fr) 172px;align-items:center}
+.story-row--visual figure{width:172px;height:126px;margin:0;overflow:hidden;background:var(--ink)}
+.story-row--visual figure img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease-expo)}
+.story-row--visual:hover figure img{transform:scale(1.06)}
+
+.field-report{background:var(--paper-2)}
+.report-grid{display:grid;grid-template-columns:1.2fr .8fr 1fr;grid-auto-rows:clamp(250px,25vw,390px);gap:clamp(.65rem,1.15vw,1rem)}
+.report-shot{position:relative;margin:0;overflow:hidden;background:var(--ink);transition:opacity .7s var(--ease-expo),transform .7s var(--ease-expo)}
+.report-shot--hero{grid-column:span 2;grid-row:span 2}
+.report-shot--portrait{grid-row:span 2}
+.report-shot--wide{grid-column:span 2}
+.report-shot img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease-expo),filter .45s}
+.report-shot:hover img{transform:scale(1.035);filter:contrast(1.04)}
+.report-shot:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 52%,rgba(0,0,0,.82));pointer-events:none}
+.report-shot figcaption{position:absolute;z-index:2;left:1.2rem;right:1.2rem;bottom:1rem;display:grid;grid-template-columns:34px 1fr auto;align-items:end;gap:.8rem;color:white;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;letter-spacing:.025em}
+.report-shot figcaption span{color:var(--orange);font:600 .62rem ui-monospace,monospace;letter-spacing:.12em}
+.report-shot figcaption small{font:500 .56rem ui-monospace,monospace;letter-spacing:.12em;color:#d0d2ce}
+.js .report-shot,.js .warehouse-shot,.js .logistics-strip figure{opacity:0;transform:translateY(22px)}
+.report-shot.is-visible,.warehouse-shot.is-visible,.logistics-strip figure.is-visible{opacity:1;transform:none}
+.report-shot:nth-child(2),.warehouse-shot:nth-child(2),.logistics-strip figure:nth-child(2){transition-delay:.08s}
+.report-shot:nth-child(3),.warehouse-shot:nth-child(3),.logistics-strip figure:nth-child(3){transition-delay:.16s}
+.report-shot:nth-child(4),.warehouse-shot:nth-child(4){transition-delay:.24s}
+
+.access-section{background:var(--paper-2)}
+.access-grid{display:grid;grid-template-columns:minmax(280px,.72fr) minmax(420px,1.28fr);gap:clamp(3rem,8vw,8rem);align-items:center}
+.access-grid>div:first-child p{margin-top:1.8rem;color:#5b5e58;max-width:540px}
+.access-diagram{position:relative;background:var(--ink);padding:clamp(1rem,2vw,2rem);box-shadow:0 30px 70px rgba(17,19,18,.13)}
+.access-diagram svg{display:block;width:100%;height:auto}
+.access-route{fill:none;stroke:#666b67;stroke-width:3;stroke-dasharray:8 10}.access-route--main{stroke:var(--orange);stroke-width:5;stroke-dasharray:none}.access-route--minor{stroke:#444945;stroke-width:2}
+.access-hub{fill:var(--orange)}.access-ring{fill:none;stroke:rgba(255,92,0,.38);stroke-width:2}
+.access-diagram text{fill:white;font:700 16px 'Barlow Condensed',sans-serif;letter-spacing:.08em}.access-diagram .access-code{fill:#777c77;font:500 10px ui-monospace,monospace;letter-spacing:.12em}
+
+.warehouse-portfolio .section-head p{color:#b5b6b1}
+.warehouse-grid{display:grid;grid-template-columns:1.2fr .8fr 1fr;grid-auto-rows:clamp(250px,25vw,390px);gap:clamp(.65rem,1.15vw,1rem)}
+.warehouse-shot{position:relative;margin:0;overflow:hidden;background:#080909;transition:opacity .7s var(--ease-expo),transform .7s var(--ease-expo)}
+.warehouse-shot--wide{grid-column:span 2}
+.warehouse-shot img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease-expo)}
+.warehouse-shot:hover img{transform:scale(1.04)}
+.warehouse-shot figcaption{position:absolute;left:0;right:0;bottom:0;padding:2.8rem 1rem 1rem;background:linear-gradient(transparent,rgba(0,0,0,.86));color:white;font:600 .65rem ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase}
+
+.logistics-strip{display:grid;grid-template-columns:1.15fr .85fr 1fr;min-height:520px;background:var(--ink);gap:1px}
+.logistics-strip figure{position:relative;min-height:520px;margin:0;overflow:hidden;background:#080909;transition:opacity .7s var(--ease-expo),transform .7s var(--ease-expo)}
+.logistics-strip img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease-expo),filter .4s}
+.logistics-strip figure:hover img{transform:scale(1.045);filter:contrast(1.05)}
+.logistics-strip figcaption{position:absolute;left:1rem;bottom:1rem;background:var(--orange);color:var(--ink);padding:.65rem .85rem;font:700 .62rem ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase}
+
+@media(max-width:980px){
+  .report-grid,.warehouse-grid{grid-template-columns:1fr 1fr;grid-auto-rows:300px}
+  .report-shot--hero,.report-shot--portrait,.report-shot--wide,.warehouse-shot--wide{grid-column:span 1;grid-row:span 1}
+  .report-shot--hero,.warehouse-shot:first-child{grid-column:1/-1}
+  .access-grid{grid-template-columns:1fr}.access-diagram{max-width:760px;width:100%}
+  .logistics-strip{grid-template-columns:1fr 1fr;min-height:0}.logistics-strip figure{min-height:420px}.logistics-strip figure:first-child{grid-column:1/-1}
+}
+
+@media(max-width:650px){
+  .hero-slider-dots{gap:.12rem}.hero-slider-dots button{width:27px}
+  .story-row--visual{grid-template-columns:34px 1fr}.story-row--visual figure{grid-column:2;width:100%;height:190px;margin-top:1rem}
+  .report-grid,.warehouse-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:.75rem;margin-inline:calc(var(--pad) * -1);padding:0 var(--pad) 1rem;scrollbar-width:none}
+  .report-shot,.report-shot--hero,.report-shot--portrait,.report-shot--wide,.warehouse-shot,.warehouse-shot--wide{flex:0 0 84vw;height:430px;scroll-snap-align:start}
+  .report-shot figcaption{grid-template-columns:30px 1fr}.report-shot figcaption small{display:none}
+  .access-diagram{padding:.5rem}.access-diagram text{font-size:13px}.access-diagram .access-code{font-size:8px}
+  .logistics-strip{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:1px}.logistics-strip figure,.logistics-strip figure:first-child{flex:0 0 86vw;min-height:460px;grid-column:auto;scroll-snap-align:start}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .js .report-shot,.js .warehouse-shot,.js .logistics-strip figure{opacity:1;transform:none}
+}
