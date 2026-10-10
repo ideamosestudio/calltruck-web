@@ -16,13 +16,27 @@ const metrics = [
 ];
 ---
 <BaseLayout title="Calltruck | Transporte, logística y almacenamiento" description="Transporte para particulares y empresas, distribución nacional y almacenamiento logístico. Conocé las soluciones de Calltruck.">
-  <section class="hero hero--home" style="background-image:linear-gradient(90deg,rgba(10,12,11,.95) 0%,rgba(10,12,11,.72) 40%,rgba(10,12,11,.05) 76%),url('images/editorial/hero-cover.webp')">
+  <section class="hero hero--home" data-hero-slider>
+    <div class="hero-slides" aria-hidden="true">
+      <img class="hero-slide is-active" src="images/editorial/hero-slide-01.webp" alt="" fetchpriority="high" />
+      <img class="hero-slide" src="images/editorial/hero-slide-02.webp" alt="" loading="lazy" />
+      <img class="hero-slide" src="images/editorial/hero-slide-03.webp" alt="" loading="lazy" />
+    </div>
     <div class="hero-grid"></div><span class="hero-index">ARGENTINA · 34°36′S</span>
     <div class="hero-content">
       <span class="eyebrow">Transporte · Logística · Almacenamiento</span>
       <h1 class="hero-title"><span>Movemos tu carga.</span><span><em>Hacemos avanzar</em></span><span>tus proyectos.</span></h1>
       <p class="hero-lead">Soluciones de transporte para particulares y empresas, distribución nacional y almacenamiento logístico. Flota, infraestructura y seguimiento operativo para acompañar cada movimiento.</p>
       <div class="hero-actions"><a class="button" href="https://wa.me/541137874158?text=Hola%2C%20quiero%20pedir%20un%20presupuesto" target="_blank" rel="noreferrer">Pedir presupuesto <span>↗</span></a><a class="button button--outline" href="#soluciones">Explorar soluciones <span>↓</span></a></div>
+    </div>
+    <div class="hero-slider-controls" aria-label="Imágenes de portada">
+      <div class="hero-slider-dots" role="group" aria-label="Seleccionar imagen">
+        <button class="is-active" type="button" data-slide="0" aria-label="Ver imagen 1" aria-current="true"><span></span></button>
+        <button type="button" data-slide="1" aria-label="Ver imagen 2"><span></span></button>
+        <button type="button" data-slide="2" aria-label="Ver imagen 3"><span></span></button>
+      </div>
+      <button class="hero-slider-toggle" type="button" data-slider-toggle aria-label="Pausar slider" aria-pressed="false">II</button>
+      <span class="sr-only" data-slider-status aria-live="polite">Imagen 1 de 3</span>
     </div>
     <div class="hero-rail" aria-hidden="true"><span>COBERTURA NACIONAL</span><i></i><span>SEGUIMIENTO OPERATIVO</span><i></i><span>INFRAESTRUCTURA LOGÍSTICA</span></div>
     <a class="scroll-cue" href="#soluciones" aria-label="Ir a soluciones"><span></span><small>DESCUBRIR</small></a>
@@ -57,4 +71,51 @@ const metrics = [
   <section class="split split--media-led reveal"><div class="split-media"><img src="images/editorial/hero-personal.webp" alt="Unidad de carga dentro de un centro logístico" loading="lazy" /><span class="image-tag">Paso del Rey</span></div><div class="split-copy"><span class="eyebrow">Almacenamiento y distribución</span><h2>Espacio para que tu operación siga avanzando.</h2><p>Más de 1.000 m² de depósito en Paso del Rey, con acceso inmediato a Acceso Oeste y Camino del Buen Ayre.</p><a class="button button--dark" href="almacenamiento-logistico/">Ver almacenamiento <span>↗</span></a></div></section>
 
   <CTA title="Contanos qué necesitás mover." text="Ya sea un traslado puntual o una operación logística para tu empresa, conversemos sobre la solución que necesitás." />
+
+  <script>
+    const slider = document.querySelector('[data-hero-slider]');
+    if (slider) {
+      const slides = [...slider.querySelectorAll('.hero-slide')];
+      const dots = [...slider.querySelectorAll('[data-slide]')];
+      const toggle = slider.querySelector('[data-slider-toggle]');
+      const status = slider.querySelector('[data-slider-status]');
+      const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let active = 0;
+      let paused = reduceMotion;
+      let timer;
+
+      const showSlide = (next, announce = true) => {
+        active = (next + slides.length) % slides.length;
+        slides.forEach((slide, index) => slide.classList.toggle('is-active', index === active));
+        dots.forEach((dot, index) => {
+          dot.classList.toggle('is-active', index === active);
+          index === active ? dot.setAttribute('aria-current', 'true') : dot.removeAttribute('aria-current');
+        });
+        if (announce && status) status.textContent = `Imagen ${active + 1} de ${slides.length}`;
+      };
+
+      const stop = () => { if (timer) window.clearInterval(timer); timer = undefined; };
+      const start = () => {
+        stop();
+        if (!paused && !document.hidden) timer = window.setInterval(() => showSlide(active + 1, false), 6500);
+      };
+
+      dots.forEach((dot) => dot.addEventListener('click', () => {
+        showSlide(Number(dot.dataset.slide));
+        start();
+      }));
+
+      const updateToggle = () => {
+        if (!toggle) return;
+        toggle.textContent = paused ? '▶' : 'II';
+        toggle.setAttribute('aria-label', paused ? 'Reproducir slider' : 'Pausar slider');
+        toggle.setAttribute('aria-pressed', String(paused));
+      };
+
+      toggle?.addEventListener('click', () => { paused = !paused; updateToggle(); start(); });
+      document.addEventListener('visibilitychange', start);
+      updateToggle();
+      start();
+    }
+  </script>
 </BaseLayout>
