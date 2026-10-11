@@ -1,57 +1,44 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+const mapQuery = 'La Santa María 728, Paso del Rey, Moreno, Buenos Aires';
+const mapEmbed = `https://www.google.com/maps?q=${encodeURIComponent(mapQuery)}&output=embed`;
+const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}`;
 ---
 <BaseLayout title="Contacto y presupuestos | Calltruck" description="Consultá a Calltruck por transporte particular, logística empresarial o almacenamiento. Contactanos por teléfono, email o WhatsApp.">
-  <section class="hero hero--service hero--contact" style="background-image:linear-gradient(90deg,rgba(10,12,11,.97),rgba(10,12,11,.72) 48%,rgba(10,12,11,.14)),url('images/editorial/hero-company.webp')"><div class="hero-grid"></div><span class="hero-index">CONTACTO · RESPUESTA DIRECTA</span><div class="hero-content"><span class="eyebrow">Hablemos</span><h1>Tu próximo<br><em>movimiento</em><br>empieza acá.</h1><p class="hero-lead">¿Necesitás transportar una carga, resolver la logística de tu empresa o consultar por almacenamiento? Contanos qué necesitás y conversemos.</p><div class="hero-actions"><a class="button" href="https://wa.me/541137874158?text=Hola%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noreferrer">Escribir por WhatsApp <span>↗</span></a></div></div></section>
-  <section class="section reveal"><div class="section-inner contact-grid">
-    <div><span class="eyebrow">Canales directos</span><h2>Estamos para escucharte.</h2><div class="contact-details" style="margin-top:3rem"><div class="contact-row"><span>Teléfono</span><a href="tel:+541137797864">+54 11 3779-7864</a></div><div class="contact-row"><span>WhatsApp</span><a href="https://wa.me/541137874158?text=Hola%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noreferrer">+54 11 3787-4158 ↗</a></div><div class="contact-row"><span>Email</span><a href="mailto:transporte.calltruck@hotmail.com">transporte.calltruck<br/>@hotmail.com</a></div><div class="contact-row"><span>Depósito</span><strong>Paso del Rey,<br/>Buenos Aires</strong></div></div></div>
-    <form class="contact-form contact-wizard" data-contact-form>
-      <div class="wizard-top"><span class="eyebrow">Contanos tu necesidad</span><div class="wizard-progress"><span data-step-label>01 / 02</span><i><b data-progress></b></i></div></div>
-      <fieldset class="wizard-step is-active" data-step="1">
-        <legend>¿Qué necesitás resolver?</legend>
-        <p class="wizard-intro">Elegí una opción para orientar la consulta desde el primer mensaje.</p>
-        <div class="service-options">
-          <label><input type="radio" name="service" value="Transporte particular" required /><span><em>01</em><b>Transporte para vos</b><small>Un traslado puntual</small></span></label>
-          <label><input type="radio" name="service" value="Logística para empresas" /><span><em>02</em><b>Logística para empresas</b><small>Una operación empresarial</small></span></label>
-          <label><input type="radio" name="service" value="Almacenamiento logístico" /><span><em>03</em><b>Almacenamiento</b><small>Espacio para mercadería</small></span></label>
-          <label><input type="radio" name="service" value="Otra consulta" /><span><em>04</em><b>Otra consulta</b><small>Conversemos</small></span></label>
+  <section class="hero hero--service hero--contact" style="background-image:linear-gradient(90deg,rgba(10,12,11,.97),rgba(10,12,11,.72) 48%,rgba(10,12,11,.14)),url('images/editorial/hero-company.webp')"><div class="hero-grid"></div><span class="hero-index">CONTACTO · RESPUESTA DIRECTA</span><div class="hero-content"><span class="eyebrow">Hablemos</span><h1>Tu próximo<br><em>movimiento</em><br>empieza acá.</h1><p class="hero-lead">¿Necesitás transportar una carga, resolver la logística de tu empresa o consultar por almacenamiento? Contanos qué necesitás y conversemos.</p><div class="hero-actions"><a class="button" href="#consulta">Enviar una consulta <span>↓</span></a><a class="button button--outline" href="https://wa.me/541137874158?text=Hola%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noreferrer">Abrir WhatsApp <span>↗</span></a></div></div></section>
+
+  <section class="section contact-location reveal">
+    <div class="section-inner contact-location__grid">
+      <div class="contact-location__copy">
+        <span class="eyebrow">Información de contacto</span>
+        <h2>Estamos cerca.</h2>
+        <div class="contact-details">
+          <div class="contact-row"><span>Teléfono</span><a href="tel:+541137997864">+54 11 3799-7864</a></div>
+          <div class="contact-row"><span>WhatsApp</span><a href="https://wa.me/541137874158?text=Hola%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noreferrer">+54 11 3787-4158 ↗</a></div>
+          <div class="contact-row"><span>Email</span><a href="mailto:transporte.calltruck@hotmail.com">Transporte.calltruck@hotmail.com</a></div>
+          <div class="contact-row"><span>Dirección</span><a href={mapLink} target="_blank" rel="noreferrer">La Santa María 728<br />Paso del Rey, Moreno ↗</a></div>
+          <div class="contact-row"><span>Redes</span><div class="contact-socials"><a href="https://www.instagram.com/transporte.calltruck/" target="_blank" rel="noreferrer">Instagram: @transporte.calltruck ↗</a><a href="https://www.linkedin.com/search/results/companies/?keywords=Transporte%20y%20logistica%20Calltruck%20SRL" target="_blank" rel="noreferrer">LinkedIn: Transporte y logística Calltruck SRL ↗</a></div></div>
         </div>
-        <p class="wizard-error" data-wizard-error aria-live="polite"></p>
-        <button class="button wizard-next" type="button" data-next>Continuar <span>→</span></button>
-      </fieldset>
-      <fieldset class="wizard-step" data-step="2" hidden>
-        <legend>Ahora, contanos los detalles.</legend>
-        <div class="form-grid"><div class="field"><label for="name">Nombre y apellido</label><input id="name" name="name" autocomplete="name" required /></div><div class="field"><label for="company">Empresa (opcional)</label><input id="company" name="company" autocomplete="organization" /></div><div class="field"><label for="phone">Teléfono / WhatsApp</label><input id="phone" name="phone" autocomplete="tel" required /></div><div class="field"><label for="email">Correo electrónico</label><input id="email" name="email" type="email" autocomplete="email" required /></div><div class="field field--full"><label for="message">Contanos brevemente qué necesitás</label><textarea id="message" name="message" required></textarea></div></div>
-        <div class="wizard-actions"><button class="wizard-back" type="button" data-back>← Volver</button><button class="button" type="submit">Abrir consulta <span>↗</span></button></div>
-        <p class="form-note">Al finalizar, se abrirá WhatsApp con los datos de tu consulta.</p>
-      </fieldset>
-    </form>
-  </div></section>
-  <section class="final-cta reveal"><div class="cta-track" aria-hidden="true">CONVERSEMOS · CONVERSEMOS ·</div><div class="final-cta__inner"><div><span class="eyebrow eyebrow--dark">Contacto directo</span><h2>¿Preferís hablar directamente?</h2><p>Escribinos por WhatsApp y contanos tu necesidad.</p></div><a class="button button--dark button--large" href="https://wa.me/541137874158?text=Hola%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noreferrer">Abrir WhatsApp <span>↗</span></a></div></section>
+      </div>
+      <div class="map-card">
+        <iframe title="Ubicación de Calltruck en La Santa María 728, Paso del Rey" src={mapEmbed} loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="map-card__caption"><span>Base operativa</span><strong>La Santa María 728, Paso del Rey, Moreno</strong><a href={mapLink} target="_blank" rel="noreferrer">Abrir en Google Maps ↗</a></div>
+      </div>
+    </div>
+  </section>
+
   <script>
-    const contactForm = document.querySelector('[data-contact-form]');
-    const steps = contactForm?.querySelectorAll('[data-step]');
-    const progress = contactForm?.querySelector('[data-progress]');
-    const stepLabel = contactForm?.querySelector('[data-step-label]');
-    const wizardError = contactForm?.querySelector('[data-wizard-error]');
-    const showStep = (number) => {
-      steps?.forEach((step) => { const active = step.dataset.step === String(number); step.hidden = !active; step.classList.toggle('is-active', active); });
-      if (progress) progress.style.transform = `scaleX(${number / 2})`;
-      if (stepLabel) stepLabel.textContent = `0${number} / 02`;
-    };
-    contactForm?.querySelector('[data-next]')?.addEventListener('click', () => {
-      const choice = contactForm.querySelector('input[name="service"]:checked');
-      if (!choice) { if (wizardError) wizardError.textContent = 'Elegí una opción para continuar.'; return; }
-      if (wizardError) wizardError.textContent = '';
-      showStep(2);
-      contactForm.querySelector('#name')?.focus();
-    });
-    contactForm?.querySelector('[data-back]')?.addEventListener('click', () => showStep(1));
-    contactForm?.addEventListener('submit',(event)=>{
-      event.preventDefault();
-      const form=new FormData(event.currentTarget);
-      const text=[`Hola, soy ${form.get('name')}.`,`Servicio: ${form.get('service')}.`,`Empresa: ${form.get('company') || 'No indicada'}.`,`Teléfono: ${form.get('phone')}.`,`Email: ${form.get('email')}.`,`Consulta: ${form.get('message')}`].join('\n');
-      window.open(`https://wa.me/541137874158?text=${encodeURIComponent(text)}`,'_blank','noopener,noreferrer');
-    });
+    if (new URLSearchParams(location.search).get('enviado') === '1') {
+      const target = document.querySelector('#consulta');
+      const form = target?.querySelector('form');
+      if (form) {
+        const notice = document.createElement('div');
+        notice.className = 'form-success';
+        notice.setAttribute('role', 'status');
+        notice.innerHTML = '<strong>Consulta enviada.</strong><span>Gracias por escribirnos. El equipo de Calltruck recibió tu mensaje.</span>';
+        form.prepend(notice);
+      }
+      setTimeout(() => target?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 250);
+    }
   </script>
 </BaseLayout>

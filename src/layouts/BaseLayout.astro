@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import ContactForm from '../components/ContactForm.astro';
 import '@fontsource/barlow-condensed/500.css';
 import '@fontsource/barlow-condensed/600.css';
 import '@fontsource/barlow-condensed/700.css';
@@ -10,9 +11,12 @@ import '@fontsource/inter/400.css';
 import '@fontsource/inter/500.css';
 import '@fontsource/inter/600.css';
 import '../styles/global.css';
-const { title, description } = Astro.props;
+const { title, description, showContactForm } = Astro.props;
 const rawBase = import.meta.env.BASE_URL;
 const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
+const path = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const isHome = path === base;
+const shouldShowContactForm = showContactForm ?? !isHome;
 ---
 <!doctype html>
 <html lang="es">
@@ -38,7 +42,7 @@ const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
     <div class="scroll-progress" aria-hidden="true"><i></i></div>
     <div class="cursor" aria-hidden="true"><span></span></div>
     <Header />
-    <main><slot /></main>
+    <main><slot />{shouldShowContactForm && <ContactForm />}</main>
     <Footer />
     <a class="floating-wa" href="https://wa.me/541137874158?text=Hola%2C%20quiero%20pedir%20un%20presupuesto" target="_blank" rel="noreferrer" aria-label="Escribir por WhatsApp"><span>WA</span><b>Consulta directa</b></a>
     <script>

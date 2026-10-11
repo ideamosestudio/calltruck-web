@@ -1,0 +1,36 @@
+---
+const formEndpoint = 'https://formsubmit.co/transporte.calltruck@hotmail.com';
+const successUrl = 'https://ideamosestudio.github.io/calltruck-web/contacto/?enviado=1';
+---
+<section class="section contact-panel reveal" id="consulta">
+  <div class="section-inner contact-panel__grid">
+    <div class="contact-panel__intro">
+      <span class="eyebrow">Contacto</span>
+      <h2>Contanos qué necesitás mover.</h2>
+      <p>Completá el formulario y la consulta llegará directamente a nuestro equipo. También podés escribirnos por WhatsApp para una respuesta inmediata.</p>
+      <div class="contact-panel__quick">
+        <a href="tel:+541137997864"><span>Teléfono</span><strong>+54 11 3799-7864</strong></a>
+        <a href="https://wa.me/541137874158?text=Hola%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noreferrer"><span>WhatsApp</span><strong>+54 11 3787-4158 ↗</strong></a>
+        <a href="mailto:transporte.calltruck@hotmail.com"><span>Email</span><strong>Transporte.calltruck@hotmail.com</strong></a>
+      </div>
+    </div>
+    <form class="contact-form contact-form--shared" action={formEndpoint} method="POST" accept-charset="UTF-8">
+      <input type="hidden" name="_subject" value="Nueva consulta desde la web de Calltruck" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_next" value={successUrl} />
+      <input class="form-honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <div class="form-heading"><span class="eyebrow">Solicitar presupuesto</span><h3>Datos de la consulta</h3></div>
+      <div class="form-grid">
+        <div class="field"><label for="contact-name">Nombre y apellido</label><input id="contact-name" name="Nombre y apellido" autocomplete="name" required /></div>
+        <div class="field"><label for="contact-company">Empresa (opcional)</label><input id="contact-company" name="Empresa" autocomplete="organization" /></div>
+        <div class="field"><label for="contact-phone">Teléfono / WhatsApp</label><input id="contact-phone" name="Teléfono" type="tel" autocomplete="tel" required /></div>
+        <div class="field"><label for="contact-email">Correo electrónico</label><input id="contact-email" name="email" type="email" autocomplete="email" required /></div>
+        <div class="field field--full"><label for="contact-service">Servicio</label><select id="contact-service" name="Servicio" required><option value="">Seleccioná una opción</option><option>Transporte para particulares</option><option>Logística para empresas</option><option>Almacenamiento logístico</option><option>Otra consulta</option></select></div>
+        <div class="field field--full"><label for="contact-message">¿Qué necesitás resolver?</label><textarea id="contact-message" name="Mensaje" required></textarea></div>
+      </div>
+      <button class="button" type="submit">Enviar consulta <span>↗</span></button>
+      <p class="form-note">La consulta se enviará a Transporte.calltruck@hotmail.com.</p>
+    </form>
+  </div>
+</section>
