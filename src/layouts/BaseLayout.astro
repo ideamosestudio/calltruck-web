@@ -30,14 +30,18 @@ const shouldShowContactForm = showContactForm ?? !isHome;
     <title>{title}</title>
     <script is:inline>
       document.documentElement.classList.add('js');
-      try {
-        if (sessionStorage.getItem('calltruck-visited')) document.documentElement.classList.add('skip-loader');
-        sessionStorage.setItem('calltruck-visited', '1');
-      } catch {}
     </script>
   </head>
   <body data-page={Astro.url.pathname}>
-    <div class="page-loader" aria-hidden="true"><img src="images/calltruck-logo.webp" alt="" width="900" height="300" /><span></span></div>
+    <div class="page-loader" role="status" aria-live="polite" aria-label="Cargando sitio">
+      <div class="page-loader__glow page-loader__glow--one" aria-hidden="true"></div>
+      <div class="page-loader__glow page-loader__glow--two" aria-hidden="true"></div>
+      <div class="page-loader__content">
+        <img src="images/calltruck-loader-logo.webp" alt="Calltruck Transporte" width="1100" height="374" />
+        <div class="page-loader__meta"><span>Cargando</span><strong data-loader-percent>0%</strong></div>
+        <div class="page-loader__track" aria-hidden="true"><i data-loader-progress></i></div>
+      </div>
+    </div>
     <div class="page-transition" aria-hidden="true"><span>CALLTRUCK</span></div>
     <div class="scroll-progress" aria-hidden="true"><i></i></div>
     <div class="cursor" aria-hidden="true"><span></span></div>
@@ -53,7 +57,39 @@ const shouldShowContactForm = showContactForm ?? !isHome;
       const cursor = document.querySelector('.cursor');
       const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      requestAnimationFrame(() => setTimeout(() => document.body.classList.add('is-loaded'), reduceMotion ? 0 : 180));
+      const loaderBar = document.querySelector('[data-loader-progress]');
+      const loaderPercent = document.querySelector('[data-loader-percent]');
+      const loaderStartedAt = performance.now();
+      let loaderValue = 0;
+      let loaderTarget = 12;
+      let loaderFinished = false;
+
+      const renderLoader = () => {
+        const easing = loaderTarget === 100 ? .16 : .085;
+        loaderValue += (loaderTarget - loaderValue) * (reduceMotion ? 1 : easing);
+        if (loaderTarget < 100) loaderTarget = Math.min(92, loaderTarget + 1.15);
+        if (loaderTarget === 100 && loaderValue > 99.4) loaderValue = 100;
+        const rounded = Math.round(loaderValue);
+        loaderBar?.style.setProperty('--loader-progress', `${loaderValue / 100}`);
+        if (loaderPercent) loaderPercent.textContent = `${rounded}%`;
+        if (!loaderFinished || loaderValue < 100) requestAnimationFrame(renderLoader);
+      };
+
+      const finishLoader = () => {
+        if (loaderFinished) return;
+        loaderFinished = true;
+        const minimumDisplay = reduceMotion ? 0 : 780;
+        const wait = Math.max(0, minimumDisplay - (performance.now() - loaderStartedAt));
+        window.setTimeout(() => {
+          loaderTarget = 100;
+          window.setTimeout(() => document.body.classList.add('is-loaded'), reduceMotion ? 0 : 560);
+        }, wait);
+      };
+
+      requestAnimationFrame(renderLoader);
+      if (document.readyState === 'complete') finishLoader();
+      else window.addEventListener('load', finishLoader, { once: true });
+      window.setTimeout(finishLoader, 8000);
 
       const setMenu = (open) => {
         toggle?.setAttribute('aria-expanded', String(open));
