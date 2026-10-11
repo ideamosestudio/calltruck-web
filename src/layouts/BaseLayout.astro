@@ -53,28 +53,6 @@ const shouldShowContactForm = showContactForm ?? !isHome;
       const cursor = document.querySelector('.cursor');
       const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      if (!reduceMotion && matchMedia('(pointer:fine)').matches) {
-        document.querySelectorAll('.hero').forEach((hero) => {
-          let targetX = 0, targetY = 0, currentX = 0, currentY = 0, motionFrame = 0;
-          const renderHeroMotion = () => {
-            currentX += (targetX - currentX) * .075;
-            currentY += (targetY - currentY) * .075;
-            hero.style.setProperty('--hero-mouse-x', `${currentX.toFixed(2)}px`);
-            hero.style.setProperty('--hero-mouse-y', `${currentY.toFixed(2)}px`);
-            if (Math.abs(targetX - currentX) > .03 || Math.abs(targetY - currentY) > .03) motionFrame = requestAnimationFrame(renderHeroMotion);
-            else motionFrame = 0;
-          };
-          const startHeroMotion = () => { if (!motionFrame) motionFrame = requestAnimationFrame(renderHeroMotion); };
-          hero.addEventListener('pointermove', (event) => {
-            const box = hero.getBoundingClientRect();
-            targetX = ((event.clientX - box.left) / box.width - .5) * -18;
-            targetY = ((event.clientY - box.top) / box.height - .5) * -12;
-            startHeroMotion();
-          }, {passive:true});
-          hero.addEventListener('pointerleave', () => { targetX = 0; targetY = 0; startHeroMotion(); });
-        });
-      }
-
       requestAnimationFrame(() => setTimeout(() => document.body.classList.add('is-loaded'), reduceMotion ? 0 : 180));
 
       const setMenu = (open) => {
