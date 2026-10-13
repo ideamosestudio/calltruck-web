@@ -457,3 +457,16 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 }
 @media(max-width:650px){.hero{--hero-base-x:62%}.hero--service{animation-duration:16s}.hero-slides{animation-duration:18s}}
 @media(prefers-reduced-motion:reduce){.hero--service,.hero-slides,.hero-grid{animation:none!important}.hero-slides{inset:0;transform:none!important}}
+
+/* Floating contact: compact capsule with a clear icon and two-level label. */
+.floating-wa{height:66px;gap:12px;padding:8px 18px 8px 9px;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:#ff650b;box-shadow:0 8px 28px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.2);text-transform:none;letter-spacing:0;transition:background .2s,box-shadow .2s,transform .2s}
+.floating-wa .floating-wa__icon{width:46px;height:46px;flex-basis:46px;box-shadow:0 2px 7px rgba(90,32,0,.1)}
+.floating-wa__icon svg{width:27px;height:27px}
+.floating-wa .floating-wa__copy{display:flex;flex-direction:column;align-items:flex-start;gap:3px;line-height:1.2}
+.floating-wa__copy small{font-size:10px;font-weight:500;letter-spacing:.025em;color:#542400}
+.floating-wa__copy b{display:block;font-size:13px;font-weight:700;color:#17130e}
+.floating-wa__arrow{width:19px;height:19px;margin-left:5px;flex-shrink:0}
+.floating-wa:hover{background:#ff7a2b;transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,.26)}
+.floating-wa:focus-visible{outline:3px solid white;outline-offset:4px}
+@media(max-width:650px){.floating-wa{left:auto;right:14px;bottom:calc(12px + env(safe-area-inset-bottom,0px));width:auto;max-width:calc(100vw - 28px);height:60px;padding:7px 15px 7px 8px;gap:10px;justify-content:flex-start}.floating-wa .floating-wa__icon{width:42px;height:42px;flex-basis:42px}.floating-wa__icon svg{width:25px;height:25px}.floating-wa__copy b{font-size:12px}.floating-wa__arrow{width:17px;height:17px;margin-left:2px}}
+@media(prefers-reduced-motion:reduce){.floating-wa{transition:none}.floating-wa:hover{transform:none}}
