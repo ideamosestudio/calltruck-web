@@ -42,7 +42,6 @@ const shouldShowContactForm = showContactForm ?? !isHome;
         <div class="page-loader__track" aria-hidden="true"><i data-loader-progress></i></div>
       </div>
     </div>
-    <div class="page-transition" aria-hidden="true"><span>CALLTRUCK</span></div>
     <div class="scroll-progress" aria-hidden="true"><i></i></div>
     <div class="cursor" aria-hidden="true"><span></span></div>
     <Header />
@@ -157,15 +156,7 @@ const shouldShowContactForm = showContactForm ?? !isHome;
         });
       }
 
-      document.querySelectorAll('a[href]').forEach((link) => link.addEventListener('click', (event) => {
-        const href = link.getAttribute('href');
-        if (!href || href.startsWith('#') || link.target === '_blank' || event.metaKey || event.ctrlKey || event.shiftKey || reduceMotion) return;
-        const destination = new URL(link.href, location.href);
-        if (destination.origin !== location.origin || destination.pathname === location.pathname) return;
-        event.preventDefault();
-        document.body.classList.add('is-leaving');
-        setTimeout(() => { location.href = destination.href; }, 460);
-      }));
+
     </script>
   </body>
 </html>
