@@ -1,4 +1,5 @@
 ---
+import ArrowIcon from "./ArrowIcon.astro";
 const rawBase = import.meta.env.BASE_URL;
 const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
 const relativePath = Astro.url.pathname.startsWith(base) ? Astro.url.pathname.slice(base.length) : Astro.url.pathname.replace(/^\//, '');
@@ -26,13 +27,13 @@ const whatsapp = 'https://wa.me/541137874158?text=Hola%2C%20quiero%20pedir%20un%
   <nav id="site-nav" class="site-nav" data-menu>
     {nav.map(([label, href]) => label === 'Soluciones' ? (
       <div class="nav-dropdown">
-        <a href={href} class:list={{active: path.startsWith('/soluciones') || services.some(([, url]) => path.startsWith(`/${url.replace(/\/$/, '')}`))}}>{label}<span>⌄</span></a>
+        <a href={href} class:list={{active: path.startsWith('/soluciones') || services.some(([, url]) => path.startsWith(`/${url.replace(/\/$/, '')}`))}}>{label}<span><ArrowIcon direction="chevron-down" /></span></a>
         <div class="dropdown-panel">
           <div class="dropdown-head"><span>SOLUCIONES</span><small>Elegí el punto de partida</small></div>
-          {services.map(([name, url, image, meta], i) => <a class="dropdown-service" href={url}><span class="dropdown-thumb"><img src={image} alt="" loading="lazy" /></span><span class="dropdown-copy"><em>0{i + 1}</em><b>{name}</b><small>{meta}</small></span><span class="dropdown-arrow">↗</span></a>)}
+          {services.map(([name, url, image, meta], i) => <a class="dropdown-service" href={url}><span class="dropdown-thumb"><img src={image} alt="" loading="lazy" /></span><span class="dropdown-copy"><em>0{i + 1}</em><b>{name}</b><small>{meta}</small></span><span class="dropdown-arrow"><ArrowIcon /></span></a>)}
         </div>
       </div>
     ) : <a href={href} class:list={{active: href === '.' ? path === '/' : path.startsWith(`/${href.replace(/\/$/, '')}`)}}>{label}</a>)}
   </nav>
-  <a class="header-cta" href={whatsapp} target="_blank" rel="noreferrer">Pedir presupuesto <span>↗</span></a>
+  <a class="header-cta" href={whatsapp} target="_blank" rel="noreferrer">Pedir presupuesto <span><ArrowIcon /></span></a>
 </header>

@@ -1,4 +1,5 @@
 ---
+import ArrowIcon from "../components/ArrowIcon.astro";
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from '../components/CTA.astro';
 import FleetGallery from '../components/FleetGallery.astro';
@@ -29,7 +30,7 @@ const metrics = [
       <span class="eyebrow">Transporte · Logística · Almacenamiento</span>
       <h1 class="hero-title"><span>Movemos tu carga.</span><span><em>Hacemos avanzar</em></span><span>tus proyectos.</span></h1>
       <p class="hero-lead">Soluciones de transporte para particulares y empresas, distribución nacional y almacenamiento logístico. Flota, infraestructura y seguimiento operativo para acompañar cada movimiento.</p>
-      <div class="hero-actions"><a class="button" href="https://wa.me/541137874158?text=Hola%2C%20quiero%20pedir%20un%20presupuesto" target="_blank" rel="noreferrer">Pedir presupuesto <span>↗</span></a><a class="button button--outline" href="#soluciones">Explorar soluciones <span>↓</span></a></div>
+      <div class="hero-actions"><a class="button" href="https://wa.me/541137874158?text=Hola%2C%20quiero%20pedir%20un%20presupuesto" target="_blank" rel="noreferrer">Pedir presupuesto <span><ArrowIcon /></span></a><a class="button button--outline" href="#soluciones">Explorar soluciones <span><ArrowIcon direction="down" /></span></a></div>
     </div>
     <div class="hero-slider-controls" aria-label="Imágenes de portada">
       <div class="hero-slider-dots" role="group" aria-label="Seleccionar imagen">
@@ -49,7 +50,7 @@ const metrics = [
   <section id="soluciones" class="section reveal">
     <div class="section-inner">
       <div class="section-head"><div><span class="eyebrow">Lo que hacemos</span><h2>Una solución para cada necesidad.</h2></div><p>Desde un traslado puntual hasta una operación logística empresarial, conectamos tu necesidad con el servicio adecuado.</p></div>
-      <div class="services-grid">{services.map(([no,title,text,label,url,image]) => <a class="service-card" href={url}><span class="service-card__visual"><img src={image} alt="" loading="lazy" /></span><span class="card-no">{no} / SOLUCIÓN</span><h3>{title}</h3><p>{text}</p><span class="text-link">{label}<b>↗</b></span></a>)}</div>
+      <div class="services-grid">{services.map(([no,title,text,label,url,image]) => <a class="service-card" href={url}><span class="service-card__visual"><img src={image} alt="" loading="lazy" /></span><span class="card-no">{no} / SOLUCIÓN</span><h3>{title}</h3><p>{text}</p><span class="text-link">{label}<b><ArrowIcon /></b></span></a>)}</div>
     </div>
   </section>
 
@@ -70,13 +71,13 @@ const metrics = [
     </div>
   </section>
 
-  <section class="split split--copy-led reveal"><div class="split-copy"><span class="eyebrow">Somos Calltruck</span><h2>Un equipo que entiende de movimiento.</h2><p>Trabajamos para simplificar los desafíos del transporte y la logística con experiencia operativa, recursos adaptables y compromiso con cada entrega.</p><a class="button button--dark" href="la-empresa/">Conocé Calltruck <span>↗</span></a></div><div class="split-media"><img src="images/editorial/truck-semi-rain.webp" alt="Unidad de transporte de larga distancia" loading="lazy" /><span class="image-tag">Capacidad en movimiento</span></div></section>
+  <section class="split split--copy-led reveal"><div class="split-copy"><span class="eyebrow">Somos Calltruck</span><h2>Un equipo que entiende de movimiento.</h2><p>Trabajamos para simplificar los desafíos del transporte y la logística con experiencia operativa, recursos adaptables y compromiso con cada entrega.</p><a class="button button--dark" href="la-empresa/">Conocé Calltruck <span><ArrowIcon /></span></a></div><div class="split-media"><img src="images/editorial/truck-semi-rain.webp" alt="Unidad de transporte de larga distancia" loading="lazy" /><span class="image-tag">Capacidad en movimiento</span></div></section>
 
   <div class="band band--marquee"><span class="band-label">Nuestros recursos</span><div class="band-viewport"><div class="band-content"><span>Utilitarios</span><i>✦</i><span>Chasis 8–14 pallets</span><i>✦</i><span>Semirremolques</span><i>✦</i><span>Equipos especiales</span><i>✦</i><span aria-hidden="true">Utilitarios</span><i aria-hidden="true">✦</i><span aria-hidden="true">Chasis 8–14 pallets</span><i aria-hidden="true">✦</i></div></div></div>
 
   <section class="section section--fleet reveal"><span class="fleet-outline" aria-hidden="true">MOVIMIENTO</span><div class="section-inner"><div class="section-head"><div><span class="eyebrow">Nuestra flota</span><h2>El vehículo adecuado para cada operación.</h2></div><p>Utilitarios, chasis con capacidad de 8 a 14 pallets, unidades con pala hidráulica, semirremolques y equipos especiales.</p></div><FleetGallery compact /></div></section>
 
-  <section class="split split--media-led reveal"><div class="split-media"><img src="images/editorial/warehouse-interior.webp" alt="Interior del depósito de Calltruck" loading="lazy" /><span class="image-tag">Paso del Rey</span></div><div class="split-copy"><span class="eyebrow">Almacenamiento y distribución</span><h2>Espacio para que tu operación siga avanzando.</h2><p>Más de 1.000 m² de depósito en Paso del Rey, con acceso inmediato a Acceso Oeste y Camino del Buen Ayre.</p><a class="button button--dark" href="almacenamiento-logistico/">Ver almacenamiento <span>↗</span></a></div></section>
+  <section class="split split--media-led reveal"><div class="split-media"><img src="images/editorial/warehouse-interior.webp" alt="Interior del depósito de Calltruck" loading="lazy" /><span class="image-tag">Paso del Rey</span></div><div class="split-copy"><span class="eyebrow">Almacenamiento y distribución</span><h2>Espacio para que tu operación siga avanzando.</h2><p>Más de 1.000 m² de depósito en Paso del Rey, con acceso inmediato a Acceso Oeste y Camino del Buen Ayre.</p><a class="button button--dark" href="almacenamiento-logistico/">Ver almacenamiento <span><ArrowIcon /></span></a></div></section>
 
   <CTA title="Contanos qué necesitás mover." text="Ya sea un traslado puntual o una operación logística para tu empresa, conversemos sobre la solución que necesitás." />
 

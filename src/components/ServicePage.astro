@@ -1,12 +1,13 @@
 ---
+import ArrowIcon from "./ArrowIcon.astro";
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from './CTA.astro';
 const { metaTitle, metaDescription, eyebrow, title, lead, heroCTA, message, introTitle, introText, items, supportEyebrow='Respaldo operativo', supportTitle, supportText, finalTitle, finalText, finalLabel, heroImage='images/fleet/chasis-cortina-frente.webp', supportImage='images/fleet/semirremolque-negro.webp' } = Astro.props;
 const wa = `https://wa.me/541137874158?text=${encodeURIComponent(message)}`;
 ---
 <BaseLayout title={metaTitle} description={metaDescription}>
-  <section class="hero hero--service" style={`background-image:linear-gradient(90deg,rgba(10,12,11,.96) 0%,rgba(10,12,11,.72) 44%,rgba(10,12,11,.1) 82%),url('${heroImage}')`}><div class="hero-grid"></div><span class="hero-index">CALLTRUCK · SOLUCIONES</span><div class="hero-content"><span class="eyebrow">{eyebrow}</span><h1 set:html={title}></h1><p class="hero-lead">{lead}</p><div class="hero-actions"><a class="button" href={wa} target="_blank" rel="noreferrer">{heroCTA}<span>↗</span></a></div></div></section>
+  <section class="hero hero--service" style={`background-image:linear-gradient(90deg,rgba(10,12,11,.96) 0%,rgba(10,12,11,.72) 44%,rgba(10,12,11,.1) 82%),url('${heroImage}')`}><div class="hero-grid"></div><span class="hero-index">CALLTRUCK · SOLUCIONES</span><div class="hero-content"><span class="eyebrow">{eyebrow}</span><h1 set:html={title}></h1><p class="hero-lead">{lead}</p><div class="hero-actions"><a class="button" href={wa} target="_blank" rel="noreferrer">{heroCTA}<span><ArrowIcon /></span></a></div></div></section>
   <section class="section reveal"><div class="section-inner"><div class="section-head"><div><span class="eyebrow">Cómo trabajamos</span><h2>{introTitle}</h2></div><p>{introText}</p></div><div class="process">{items.map((item,i)=><article class="process-card"><span>0{i+1}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div></div></section>
-  <section class="split split--service reveal"><div class="split-media"><img src={supportImage} alt="Unidad de transporte de carga de Calltruck" loading="lazy"/><span class="image-tag">Movimiento nacional</span></div><div class="split-copy"><span class="eyebrow">{supportEyebrow}</span><h2>{supportTitle}</h2><p>{supportText}</p><a class="button button--dark" href={wa} target="_blank" rel="noreferrer">Consultar operación <span>↗</span></a></div></section>
+  <section class="split split--service reveal"><div class="split-media"><img src={supportImage} alt="Unidad de transporte de carga de Calltruck" loading="lazy"/><span class="image-tag">Movimiento nacional</span></div><div class="split-copy"><span class="eyebrow">{supportEyebrow}</span><h2>{supportTitle}</h2><p>{supportText}</p><a class="button button--dark" href={wa} target="_blank" rel="noreferrer">Consultar operación <span><ArrowIcon /></span></a></div></section>
   <CTA title={finalTitle} text={finalText} label={finalLabel} message={message} />
 </BaseLayout>

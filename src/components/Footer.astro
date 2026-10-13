@@ -1,4 +1,5 @@
 ---
+import ArrowIcon from "./ArrowIcon.astro";
 const whatsapp = 'https://wa.me/541137874158?text=Hola%2C%20quiero%20pedir%20un%20presupuesto';
 const navigation = [['Inicio', '.'], ['La empresa', 'la-empresa/'], ['Soluciones', 'soluciones/'], ['Contacto', 'contacto/']];
 const services = [['Transporte para vos', 'transporte-particulares/'], ['Logística para empresas', 'logistica-empresas/'], ['Almacenamiento logístico', 'almacenamiento-logistico/']];
@@ -7,27 +8,27 @@ const services = [['Transporte para vos', 'transporte-particulares/'], ['Logíst
   <div class="footer-shell">
     <div class="footer-statement">
       <div><span class="footer-kicker">El próximo movimiento, juntos.</span><p>Dejala venir.<br /><strong>La logística la hacemos nosotros.</strong></p></div>
-      <a class="footer-talk" href={whatsapp} target="_blank" rel="noreferrer"><span>Coordinemos tu próximo envío</span><span class="footer-talk__arrow" aria-hidden="true">↗</span></a>
+      <a class="footer-talk" href={whatsapp} target="_blank" rel="noreferrer"><span>Coordinemos tu próximo envío</span><span class="footer-talk__arrow" aria-hidden="true"><ArrowIcon /></span></a>
     </div>
     <div class="footer-directory">
       <div class="footer-identity">
         <a class="footer-logo" href="." aria-label="Calltruck, inicio"><img src="images/calltruck-logo.webp" width="900" height="300" alt="CALLTRUCK" loading="lazy" /></a>
         <p>Transporte, logística<br />y almacenamiento.</p>
         <div class="footer-socials" aria-label="Redes sociales">
-          <a href="https://www.instagram.com/transporte.calltruck/" target="_blank" rel="noreferrer" aria-label="Seguir a Calltruck en Instagram"><img src="icons/instagram.svg" width="18" height="18" alt="" aria-hidden="true" />Instagram <span aria-hidden="true">↗</span></a>
-          <a href="https://www.linkedin.com/search/results/companies/?keywords=Transporte%20y%20logistica%20Calltruck%20SRL" target="_blank" rel="noreferrer" aria-label="Buscar Transporte y logística Calltruck SRL en LinkedIn"><img src="icons/linkedin.svg" width="18" height="18" alt="" aria-hidden="true" />LinkedIn <span aria-hidden="true">↗</span></a>
+          <a href="https://www.instagram.com/transporte.calltruck/" target="_blank" rel="noreferrer" aria-label="Seguir a Calltruck en Instagram"><img src="icons/instagram.svg" width="18" height="18" alt="" aria-hidden="true" />Instagram <span aria-hidden="true"><ArrowIcon /></span></a>
+          <a href="https://www.linkedin.com/search/results/companies/?keywords=Transporte%20y%20logistica%20Calltruck%20SRL" target="_blank" rel="noreferrer" aria-label="Buscar Transporte y logística Calltruck SRL en LinkedIn"><img src="icons/linkedin.svg" width="18" height="18" alt="" aria-hidden="true" />LinkedIn <span aria-hidden="true"><ArrowIcon /></span></a>
         </div>
       </div>
       <nav class="footer-column" aria-label="Navegación del pie"><h2>Explorá</h2>{navigation.map(([label, href]) => <a href={href}>{label}</a>)}</nav>
       <nav class="footer-column" aria-label="Servicios del pie"><h2>Soluciones</h2>{services.map(([label, href]) => <a href={href}>{label}</a>)}</nav>
       <div class="footer-column footer-contact"><h2>Estamos cerca</h2>
         <a class="footer-phone" href="tel:+541137997864"><small>Llamanos</small><span>+54 11 3799-7864</span></a>
-        <a href={whatsapp} target="_blank" rel="noreferrer">Escribinos por WhatsApp <span aria-hidden="true">↗</span></a>
+        <a href={whatsapp} target="_blank" rel="noreferrer">Escribinos por WhatsApp <span aria-hidden="true"><ArrowIcon /></span></a>
         <a class="footer-email" href="mailto:info@calltruck.com.ar">info@calltruck.com.ar</a>
-        <a class="footer-address" href="https://www.google.com/maps/search/?api=1&query=La%20Santa%20Mar%C3%ADa%20728%2C%20Paso%20del%20Rey%2C%20Moreno" target="_blank" rel="noreferrer"><svg class="footer-location-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>La Santa María 728<br />Paso del Rey, Moreno</span><span aria-hidden="true">↗</span></a>
+        <a class="footer-address" href="https://www.google.com/maps/search/?api=1&query=La%20Santa%20Mar%C3%ADa%20728%2C%20Paso%20del%20Rey%2C%20Moreno" target="_blank" rel="noreferrer"><svg class="footer-location-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>La Santa María 728<br />Paso del Rey, Moreno</span><span aria-hidden="true"><ArrowIcon /></span></a>
       </div>
     </div>
-    <div class="footer-colophon"><span>© {new Date().getFullYear()} Calltruck. Todos los derechos reservados.</span><a class="footer-credit" href="https://ideamos.com.ar/" target="_blank" rel="noopener noreferrer" aria-label="Desarrollo web que mueve tu marca, por Estudio Ideamos"><span>Desarrollo web que mueve tu marca</span><img src="images/ideamos-light.webp" alt="Estudio Ideamos" width="870" height="213" loading="lazy" /><span class="footer-credit-arrow" aria-hidden="true">↗</span></a></div>
+    <div class="footer-colophon"><span>© {new Date().getFullYear()} Calltruck. Todos los derechos reservados.</span><a class="footer-credit" href="https://ideamos.com.ar/" target="_blank" rel="noopener noreferrer" aria-label="Desarrollo web que mueve tu marca, por Estudio Ideamos"><span>Desarrollo web que mueve tu marca</span><img src="images/ideamos-light.webp" alt="Estudio Ideamos" width="870" height="213" loading="lazy" /><span class="footer-credit-arrow" aria-hidden="true"><ArrowIcon /></span></a></div>
   </div>
 </footer>
 <style>
@@ -37,8 +38,8 @@ const services = [['Transporte para vos', 'transporte-particulares/'], ['Logíst
   .footer-kicker{display:block;color:#c0c3bb;font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;margin-bottom:1.1rem}
   .footer-statement p{font-family:'Barlow Condensed',Impact,sans-serif;font-size:clamp(2.6rem,4.4vw,4.6rem);font-weight:600;line-height:1.04;text-transform:uppercase;letter-spacing:-.015em;max-width:850px}
   .footer-statement strong{font-weight:700;color:var(--orange)}
-  .footer-talk{position:relative;padding-top:1.5rem;flex-shrink:0;display:flex;align-items:center;gap:1rem;font-size:.9rem;font-weight:500}
-  .footer-talk:before{content:"";position:absolute;top:0;left:0;width:48px;height:6px;background:radial-gradient(circle at 3px 3px,var(--orange) 3px,transparent 3.5px),radial-gradient(circle at 45px 3px,var(--orange) 3px,transparent 3.5px),linear-gradient(var(--orange),var(--orange)) center/100% 1px no-repeat}.footer-talk__arrow{display:grid;place-items:center;width:42px;height:42px;border:1px solid #62665c;border-radius:50%;font-size:1.3rem;transition:background .25s,color .25s,border-color .25s,transform .25s}
+  .footer-talk{position:relative;flex-shrink:0;display:flex;align-items:center;gap:1rem;font-size:.9rem;font-weight:500}
+  .footer-talk__arrow{display:grid;place-items:center;width:42px;height:42px;border:1px solid var(--orange);color:var(--orange);border-radius:50%;font-size:1.3rem;transition:background .25s,color .25s,border-color .25s,transform .25s}
   .footer-talk:hover .footer-talk__arrow{background:var(--orange);border-color:var(--orange);color:#111;transform:rotate(45deg)}
   .footer-directory{display:grid;grid-template-columns:1.15fr .55fr .85fr 1.15fr;gap:clamp(1.5rem,2.5vw,3rem);padding:2.8rem 0}
   .footer-directory>*{min-width:0}

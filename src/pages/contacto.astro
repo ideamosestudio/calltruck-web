@@ -1,11 +1,12 @@
 ---
+import ArrowIcon from "../components/ArrowIcon.astro";
 import BaseLayout from '../layouts/BaseLayout.astro';
 const mapQuery = 'La Santa María 728, Paso del Rey, Moreno, Buenos Aires';
 const mapEmbed = `https://www.google.com/maps?q=${encodeURIComponent(mapQuery)}&output=embed`;
 const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}`;
 ---
 <BaseLayout title="Contacto y presupuestos | Calltruck" description="Consultá a Calltruck por transporte particular, logística empresarial o almacenamiento. Contactanos por teléfono, email o WhatsApp.">
-  <section class="hero hero--service hero--contact" style="background-image:linear-gradient(90deg,rgba(10,12,11,.97),rgba(10,12,11,.72) 48%,rgba(10,12,11,.14)),url('images/editorial/hero-company.webp')"><div class="hero-grid"></div><span class="hero-index">CONTACTO · RESPUESTA DIRECTA</span><div class="hero-content"><span class="eyebrow">Hablemos</span><h1>Tu próximo<br><em>movimiento</em><br>empieza acá.</h1><p class="hero-lead">¿Necesitás transportar una carga, resolver la logística de tu empresa o consultar por almacenamiento? Contanos qué necesitás y conversemos.</p><div class="hero-actions"><a class="button" href="#consulta">Enviar una consulta <span>↓</span></a><a class="button button--outline" href="https://wa.me/541137874158?text=Hola%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noreferrer">Abrir WhatsApp <span>↗</span></a></div></div></section>
+  <section class="hero hero--service hero--contact" style="background-image:linear-gradient(90deg,rgba(10,12,11,.97),rgba(10,12,11,.72) 48%,rgba(10,12,11,.14)),url('images/editorial/hero-company.webp')"><div class="hero-grid"></div><span class="hero-index">CONTACTO · RESPUESTA DIRECTA</span><div class="hero-content"><span class="eyebrow">Hablemos</span><h1>Tu próximo<br><em>movimiento</em><br>empieza acá.</h1><p class="hero-lead">¿Necesitás transportar una carga, resolver la logística de tu empresa o consultar por almacenamiento? Contanos qué necesitás y conversemos.</p><div class="hero-actions"><a class="button" href="#consulta">Enviar una consulta <span><ArrowIcon direction="down" /></span></a><a class="button button--outline" href="https://wa.me/541137874158?text=Hola%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noreferrer">Abrir WhatsApp <span><ArrowIcon /></span></a></div></div></section>
 
   <section class="section contact-location reveal">
     <div class="section-inner contact-location__grid">
@@ -14,15 +15,15 @@ const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComp
         <h2>Estamos cerca.</h2>
         <div class="contact-details">
           <div class="contact-row"><span>Teléfono</span><a href="tel:+541137997864">+54 11 3799-7864</a></div>
-          <div class="contact-row"><span>WhatsApp</span><a href="https://wa.me/541137874158?text=Hola%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noreferrer">+54 11 3787-4158 ↗</a></div>
+          <div class="contact-row"><span>WhatsApp</span><a href="https://wa.me/541137874158?text=Hola%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noreferrer">+54 11 3787-4158 <ArrowIcon /></a></div>
           <div class="contact-row"><span>Email</span><a href="mailto:info@calltruck.com.ar">info@calltruck.com.ar</a></div>
-          <div class="contact-row"><span>Dirección</span><a href={mapLink} target="_blank" rel="noreferrer">La Santa María 728<br />Paso del Rey, Moreno ↗</a></div>
-          <div class="contact-row"><span>Redes</span><div class="contact-socials"><a href="https://www.instagram.com/transporte.calltruck/" target="_blank" rel="noreferrer">Instagram: @transporte.calltruck ↗</a><a href="https://www.linkedin.com/search/results/companies/?keywords=Transporte%20y%20logistica%20Calltruck%20SRL" target="_blank" rel="noreferrer">LinkedIn: Transporte y logística Calltruck SRL ↗</a></div></div>
+          <div class="contact-row"><span>Dirección</span><a href={mapLink} target="_blank" rel="noreferrer">La Santa María 728<br />Paso del Rey, Moreno <ArrowIcon /></a></div>
+          <div class="contact-row"><span>Redes</span><div class="contact-socials"><a href="https://www.instagram.com/transporte.calltruck/" target="_blank" rel="noreferrer">Instagram: @transporte.calltruck <ArrowIcon /></a><a href="https://www.linkedin.com/search/results/companies/?keywords=Transporte%20y%20logistica%20Calltruck%20SRL" target="_blank" rel="noreferrer">LinkedIn: Transporte y logística Calltruck SRL <ArrowIcon /></a></div></div>
         </div>
       </div>
       <div class="map-card">
         <iframe title="Ubicación de Calltruck en La Santa María 728, Paso del Rey" src={mapEmbed} loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <div class="map-card__caption"><span>Base operativa</span><strong>La Santa María 728, Paso del Rey, Moreno</strong><a href={mapLink} target="_blank" rel="noreferrer">Abrir en Google Maps ↗</a></div>
+        <div class="map-card__caption"><span>Base operativa</span><strong>La Santa María 728, Paso del Rey, Moreno</strong><a href={mapLink} target="_blank" rel="noreferrer">Abrir en Google Maps <ArrowIcon /></a></div>
       </div>
     </div>
   </section>

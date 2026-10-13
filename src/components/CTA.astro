@@ -1,4 +1,5 @@
 ---
+import ArrowIcon from "./ArrowIcon.astro";
 const { title, text, label = 'Pedir presupuesto', message = 'Hola, quiero pedir un presupuesto' } = Astro.props;
 const href = `https://wa.me/541137874158?text=${encodeURIComponent(message)}`;
 ---
@@ -6,7 +7,7 @@ const href = `https://wa.me/541137874158?text=${encodeURIComponent(message)}`;
   <div class="cta-track" aria-hidden="true">MOVEMOS · CONECTAMOS · RESOLVEMOS · </div>
   <div class="final-cta__inner">
     <div><span class="eyebrow eyebrow--dark">HABLEMOS DE TU OPERACIÓN</span><h2>{title}</h2><p>{text}</p></div>
-    <a class="button button--dark button--large" href={href} target="_blank" rel="noreferrer">{label}<span>↗</span></a>
+    <a class="button button--dark button--large" href={href} target="_blank" rel="noreferrer">{label}<span><ArrowIcon /></span></a>
   </div>
 </section>
 
