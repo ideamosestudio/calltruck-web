@@ -10,10 +10,10 @@ const services = [
   ['03','Almacenamiento logístico','Más de 1.000 m² de depósito en Paso del Rey, con ubicación estratégica y conexión a las principales vías de acceso.','Conocer el depósito','almacenamiento-logistico/','images/editorial/warehouse-interior.webp']
 ];
 const metrics = [
-  ['route','Cobertura nacional','Operaciones de corta, media y larga distancia para distintas necesidades de transporte.'],
-  ['fleet','Flota versátil','Unidades propias y tercerizadas, desde utilitarios hasta semirremolques y equipos especiales.'],
-  ['track','Seguimiento operativo','Monitoreo satelital y seguimiento de las operaciones en tiempo real.'],
-  ['storage','Infraestructura logística','Más de 1.000 m² de capacidad de depósito para acompañar almacenamiento y distribución.']
+  ['route','Cobertura nacional','Transporte de corta, media y larga distancia.'],
+  ['fleet','Flota versátil','Desde utilitarios hasta semirremolques y equipos especiales.'],
+  ['track','Seguimiento operativo','Monitoreo satelital y seguimiento en tiempo real.'],
+  ['storage','Infraestructura logística','Espacio para almacenamiento y distribución.']
 ];
 ---
 <BaseLayout title="Calltruck | Transporte, logística y almacenamiento" description="Transporte para particulares y empresas, distribución nacional y almacenamiento logístico. Conocé las soluciones de Calltruck.">
@@ -54,8 +54,8 @@ const metrics = [
     </div>
   </section>
 
-  <section class="section section--dark reveal">
-    <div class="section-inner"><div class="section-head"><div><span class="eyebrow">Capacidad para responder</span><h2>La logística necesita mucho más que llegar.</h2></div><p>Recursos concretos, seguimiento y una red operativa preparada para acompañar movimientos de distinta escala.</p></div><div class="metrics-grid">{metrics.map(([icon,title,text]) => <article class="metric"><TechnicalIcon name={icon} /><h3>{title}</h3><p>{text}</p></article>)}</div></div>
+  <section class="section section--dark capacity-section reveal" id="capacidad">
+    <div class="section-inner"><div class="section-head"><div><span class="eyebrow">Capacidad para responder</span><h2>La capacidad que tu operación necesita.</h2></div><p>Transporte, seguimiento e infraestructura para acompañar cada etapa de tu logística.</p></div><div class="metrics-grid">{metrics.map(([icon,title,text]) => <article class="metric"><div class="metric-heading"><TechnicalIcon name={icon} />{icon === 'storage' && <strong class="metric-value">+1.000 <span>m²</span></strong>}</div><h3>{title}</h3><p>{text}</p></article>)}</div></div>
   </section>
 
   <section class="section field-report reveal">
