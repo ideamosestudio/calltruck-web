@@ -470,3 +470,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .floating-wa:focus-visible{outline:3px solid white;outline-offset:4px}
 @media(max-width:650px){.floating-wa{left:auto;right:14px;bottom:calc(12px + env(safe-area-inset-bottom,0px));width:auto;max-width:calc(100vw - 28px);height:60px;padding:7px 15px 7px 8px;gap:10px;justify-content:flex-start}.floating-wa .floating-wa__icon{width:42px;height:42px;flex-basis:42px}.floating-wa__icon svg{width:25px;height:25px}.floating-wa__copy b{font-size:12px}.floating-wa__arrow{width:17px;height:17px;margin-left:2px}}
 @media(prefers-reduced-motion:reduce){.floating-wa{transition:none}.floating-wa:hover{transform:none}}
+
+.floating-wa.is-footer-visible{opacity:0;visibility:hidden;pointer-events:none}
+@media(max-width:650px){body{padding-bottom:0}}

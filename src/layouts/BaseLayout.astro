@@ -117,6 +117,22 @@ const shouldShowContactForm = showContactForm ?? !isHome;
       addEventListener('scroll', updateScroll, {passive:true});
       updateScroll();
 
+      const footer = document.querySelector('.footer-premium');
+      const floatingWhatsApp = document.querySelector('.floating-wa');
+      if (footer && floatingWhatsApp instanceof HTMLElement) {
+        const footerObserver = new IntersectionObserver(([entry]) => {
+          const hide = entry.isIntersecting;
+          if (hide && document.activeElement === floatingWhatsApp) {
+            const footerContact = footer.querySelector('.footer-talk');
+            if (footerContact instanceof HTMLElement) footerContact.focus({ preventScroll: true });
+          }
+          floatingWhatsApp.classList.toggle('is-footer-visible', hide);
+          floatingWhatsApp.inert = hide;
+          if (hide) floatingWhatsApp.setAttribute('aria-hidden', 'true');
+          else floatingWhatsApp.removeAttribute('aria-hidden');
+        }, { threshold: 0 });
+        footerObserver.observe(footer);
+      }
       const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
         if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
       }), {threshold: .1, rootMargin: '0px 0px -5%'});
