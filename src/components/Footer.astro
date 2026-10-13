@@ -19,8 +19,8 @@ const services = [['Transporte para vos', 'transporte-particulares/'], ['Logíst
           <a href="https://www.linkedin.com/search/results/companies/?keywords=Transporte%20y%20logistica%20Calltruck%20SRL" target="_blank" rel="noreferrer" aria-label="Buscar Transporte y logística Calltruck SRL en LinkedIn"><img src="icons/linkedin.svg" width="18" height="18" alt="" aria-hidden="true" />LinkedIn <span aria-hidden="true"><ArrowIcon /></span></a>
         </div>
       </div>
-      <nav class="footer-column" aria-label="Navegación del pie"><h2>Explorá</h2>{navigation.map(([label, href]) => <a href={href}>{label}</a>)}</nav>
-      <nav class="footer-column" aria-label="Servicios del pie"><h2>Soluciones</h2>{services.map(([label, href]) => <a href={href}>{label}</a>)}</nav>
+      <nav class="footer-column footer-nav" aria-label="Navegación del pie"><h2><span class="footer-nav-title">Explorá</span><button class="footer-toggle" type="button" aria-expanded="false" aria-controls="footer-explore" data-footer-toggle>Explorá<ArrowIcon direction="chevron-down" /></button></h2><div class="footer-nav-links" id="footer-explore">{navigation.map(([label, href]) => <a href={href}>{label}</a>)}</div></nav>
+      <nav class="footer-column footer-nav" aria-label="Servicios del pie"><h2><span class="footer-nav-title">Soluciones</span><button class="footer-toggle" type="button" aria-expanded="false" aria-controls="footer-services" data-footer-toggle>Soluciones<ArrowIcon direction="chevron-down" /></button></h2><div class="footer-nav-links" id="footer-services">{services.map(([label, href]) => <a href={href}>{label}</a>)}</div></nav>
       <div class="footer-column footer-contact"><h2>Estamos cerca</h2>
         <a class="footer-phone" href="tel:+541137997864"><small>Llamanos</small><span>+54 11 3799-7864</span></a>
         <a href={whatsapp} target="_blank" rel="noreferrer">Escribinos por WhatsApp <span aria-hidden="true"><ArrowIcon /></span></a>
@@ -64,4 +64,44 @@ const services = [['Transporte para vos', 'transporte-particulares/'], ['Logíst
   @media(max-width:1100px){.footer-statement{align-items:flex-start;flex-direction:column;gap:1.4rem}.footer-directory{grid-template-columns:1fr .7fr 1.1fr;gap:3rem}.footer-identity{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:0 2rem}.footer-identity>p{grid-column:1}.footer-socials{grid-column:2;grid-row:1/3;justify-self:end;margin:0}.footer-logo{width:225px}.footer-statement p{font-size:clamp(3rem,5.8vw,4.6rem)}}
   @media(max-width:650px){.footer-statement{padding:2.4rem 0;gap:1.2rem}.footer-kicker{font-size:.65rem;margin-bottom:1.25rem}.footer-statement p{font-size:clamp(2.45rem,10.3vw,3.8rem);line-height:1.08}.footer-talk{justify-content:space-between;width:100%;font-size:.85rem}.footer-talk__arrow{width:48px;height:48px;font-size:1.4rem}.footer-directory{grid-template-columns:.8fr 1.2fr;gap:2rem 1.5rem;padding:2.3rem 0}.footer-identity{display:block}.footer-logo{width:216px}.footer-identity>p{font-size:.9rem}.footer-socials{margin-top:1rem;gap:1.5rem}.footer-column{gap:.45rem}.footer-column h2{margin-bottom:.9rem;font-size:.76rem}.footer-column>a{font-size:.86rem;min-height:36px;display:flex;align-items:center}.footer-contact{grid-column:1/-1;border-top:1px solid #30332e;padding-top:2.3rem}.footer-contact .footer-phone{font-size:1.45rem}.footer-contact .footer-address{padding-top:1rem;margin-top:.5rem}.footer-colophon{flex-direction:column;font-size:.75rem;padding:1.2rem 0 1.5rem;gap:.8rem}.footer-credit{font-size:.75rem}.footer-credit>span:first-child{flex-basis:100%}}
   @media(prefers-reduced-motion:reduce){.footer-talk__arrow,.footer-column>a{transition:none}.footer-talk:hover .footer-talk__arrow{transform:none}}
+
+  .footer-nav-links{display:flex;flex-direction:column;align-items:flex-start;gap:.75rem}
+  .footer-nav-links a{font-size:.88rem;line-height:1.65;color:#e1e4dc;text-underline-offset:5px}.footer-nav-links a:hover{color:var(--orange);text-decoration:underline}
+  .footer-toggle{display:none}.footer-nav-links[hidden]{display:none}
+  @media(max-width:650px){
+    .footer-premium{text-align:center}
+    .footer-statement{align-items:center}.footer-statement p{text-wrap:balance;font-size:clamp(2.15rem,9.2vw,3.4rem)}
+    .footer-talk{justify-content:center;width:auto;gap:.9rem}
+    .footer-directory{display:flex;flex-direction:column;gap:0}
+    .footer-identity{padding-bottom:1.75rem}.footer-logo{margin-inline:auto}.footer-socials{justify-content:center;justify-self:center;width:100%;gap:1.25rem}
+    .footer-column{align-items:center}.footer-nav{border-top:1px solid #30332e;width:100%;gap:0}
+    .footer-nav h2{width:100%;margin:0}.footer-nav-title{display:block;padding:1.1rem}
+    :global(.js) .footer-nav-title{display:none}
+    :global(.js) .footer-toggle{display:flex;position:relative;align-items:center;justify-content:center;width:100%;min-height:58px;padding:1rem 2.5rem;background:none;border:0;color:inherit;font:inherit;letter-spacing:inherit;text-transform:uppercase;cursor:pointer}
+    .footer-toggle :global(svg){position:absolute;right:.75rem;color:var(--orange);width:18px;height:18px;transition:transform .2s}.footer-toggle[aria-expanded="true"] :global(svg){transform:rotate(180deg)}
+    .footer-toggle:focus-visible{outline:2px solid var(--orange);outline-offset:-3px}
+    .footer-nav-links{align-items:center;gap:.25rem;width:100%;padding:0 0 1rem}.footer-nav-links a{display:flex;align-items:center;justify-content:center;min-height:44px;font-size:.9rem}
+    .footer-contact{width:100%;padding-top:1.75rem;gap:.65rem}.footer-contact .footer-phone{align-items:center!important}
+    .footer-contact .footer-address{justify-content:center;gap:.75rem;padding-top:1.25rem;margin-top:.75rem}.footer-address>span:first-of-type{flex:0 1 auto}
+    .footer-colophon{align-items:center;gap:1rem}.footer-credit{justify-content:center;width:100%;gap:.7rem}.footer-credit>span:first-child{flex-basis:100%}
+  }
+  @media(prefers-reduced-motion:reduce){.footer-toggle :global(svg){transition:none}}
 </style>
+<script>
+  const mobileFooter = matchMedia('(max-width: 650px)');
+  const footerToggles = document.querySelectorAll<HTMLButtonElement>('[data-footer-toggle]');
+  const syncFooter = () => footerToggles.forEach(button => {
+    const panel = document.getElementById(button.getAttribute('aria-controls')!);
+    button.setAttribute('aria-expanded', String(!mobileFooter.matches));
+    if (panel) panel.hidden = mobileFooter.matches;
+  });
+  footerToggles.forEach(button => button.addEventListener('click', () => {
+    if (!mobileFooter.matches) return;
+    const open = button.getAttribute('aria-expanded') !== 'true';
+    button.setAttribute('aria-expanded', String(open));
+    const panel = document.getElementById(button.getAttribute('aria-controls')!);
+    if (panel) panel.hidden = !open;
+  }));
+  mobileFooter.addEventListener('change', syncFooter);
+  syncFooter();
+</script>
