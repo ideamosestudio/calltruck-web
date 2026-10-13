@@ -21,10 +21,10 @@ const services = [['Transporte para vos', 'transporte-particulares/'], ['Logíst
       <nav class="footer-column" aria-label="Navegación del pie"><h2>Explorá</h2>{navigation.map(([label, href]) => <a href={href}>{label}</a>)}</nav>
       <nav class="footer-column" aria-label="Servicios del pie"><h2>Soluciones</h2>{services.map(([label, href]) => <a href={href}>{label}</a>)}</nav>
       <div class="footer-column footer-contact"><h2>Estamos cerca</h2>
-        <a class="footer-phone" href="tel:+541137997864">+54 11 3799-7864</a>
-        <a href={whatsapp} target="_blank" rel="noreferrer">WhatsApp: +54 11 3787-4158 <span aria-hidden="true">↗</span></a>
+        <a class="footer-phone" href="tel:+541137997864"><small>Llamanos</small><span>+54 11 3799-7864</span></a>
+        <a href={whatsapp} target="_blank" rel="noreferrer">Escribinos por WhatsApp <span aria-hidden="true">↗</span></a>
         <a class="footer-email" href="mailto:info@calltruck.com.ar">info@calltruck.com.ar</a>
-        <a class="footer-address" href="https://www.google.com/maps/search/?api=1&query=La%20Santa%20Mar%C3%ADa%20728%2C%20Paso%20del%20Rey%2C%20Moreno" target="_blank" rel="noreferrer"><span>La Santa María 728<br />Paso del Rey, Moreno</span><span aria-hidden="true">↗</span></a>
+        <a class="footer-address" href="https://www.google.com/maps/search/?api=1&query=La%20Santa%20Mar%C3%ADa%20728%2C%20Paso%20del%20Rey%2C%20Moreno" target="_blank" rel="noreferrer"><svg class="footer-location-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>La Santa María 728<br />Paso del Rey, Moreno</span><span aria-hidden="true">↗</span></a>
       </div>
     </div>
     <div class="footer-colophon"><span>© {new Date().getFullYear()} Calltruck. Todos los derechos reservados.</span><a class="footer-credit" href="https://ideamos.com.ar/" target="_blank" rel="noopener noreferrer" aria-label="Desarrollo web que mueve tu marca, por Estudio Ideamos"><span>Desarrollo web que mueve tu marca</span><img src="images/ideamos-light.webp" alt="Estudio Ideamos" width="870" height="213" loading="lazy" /><span class="footer-credit-arrow" aria-hidden="true">↗</span></a></div>
@@ -33,28 +33,28 @@ const services = [['Transporte para vos', 'transporte-particulares/'], ['Logíst
 <style>
   .footer-premium{background:#0c0e0d;color:#f7f4ec;padding:0 var(--pad);border-top:1px solid #30332e}
   .footer-shell{max-width:var(--max);margin:auto}
-  .footer-statement{display:flex;align-items:flex-start;flex-direction:column;gap:1.4rem;padding:2.8rem 0;border-bottom:1px solid #30332e}
+  .footer-statement{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;padding:2.8rem 0;border-bottom:1px solid #30332e}
   .footer-kicker{display:block;color:#c0c3bb;font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;margin-bottom:1.1rem}
   .footer-statement p{font-family:'Barlow Condensed',Impact,sans-serif;font-size:clamp(2.6rem,4.4vw,4.6rem);font-weight:600;line-height:1.04;text-transform:uppercase;letter-spacing:-.015em;max-width:850px}
   .footer-statement strong{font-weight:700;color:var(--orange)}
-  .footer-talk{flex-shrink:0;display:flex;align-items:center;gap:1rem;font-size:.9rem;font-weight:500}
-  .footer-talk__arrow{display:grid;place-items:center;width:42px;height:42px;border:1px solid #62665c;border-radius:50%;font-size:1.3rem;transition:background .25s,color .25s,border-color .25s,transform .25s}
+  .footer-talk{position:relative;padding-top:1.5rem;flex-shrink:0;display:flex;align-items:center;gap:1rem;font-size:.9rem;font-weight:500}
+  .footer-talk:before{content:"";position:absolute;top:0;left:0;width:48px;height:6px;background:radial-gradient(circle at 3px 3px,var(--orange) 3px,transparent 3.5px),radial-gradient(circle at 45px 3px,var(--orange) 3px,transparent 3.5px),linear-gradient(var(--orange),var(--orange)) center/100% 1px no-repeat}.footer-talk__arrow{display:grid;place-items:center;width:42px;height:42px;border:1px solid #62665c;border-radius:50%;font-size:1.3rem;transition:background .25s,color .25s,border-color .25s,transform .25s}
   .footer-talk:hover .footer-talk__arrow{background:var(--orange);border-color:var(--orange);color:#111;transform:rotate(45deg)}
   .footer-directory{display:grid;grid-template-columns:1.15fr .55fr .85fr 1.15fr;gap:clamp(1.5rem,2.5vw,3rem);padding:2.8rem 0}
   .footer-directory>*{min-width:0}
-  .footer-logo{display:block;width:270px;max-width:100%;margin:-.65rem 0 1.1rem}
-  .footer-logo img{width:100%;height:auto}
+  .footer-logo{display:block;width:250px;max-width:100%;aspect-ratio:780/180;overflow:hidden;margin:0 0 1.5rem;position:relative}
+  .footer-logo img{position:absolute;width:115.385%;max-width:none;height:auto;left:-7.436%;top:-36.667%}
   .footer-identity>p{color:#b6bbb2;font-size:.94rem;line-height:1.75}
   .footer-socials{display:flex;flex-wrap:wrap;gap:.65rem 1.2rem;margin-top:1.7rem}
-  .footer-socials a{display:inline-flex;align-items:center;gap:.5rem;min-height:44px;font-size:.78rem;color:#d9dcd5}
-  .footer-socials img{width:18px;height:18px;flex-shrink:0;filter:brightness(0) invert(1)}
+  .footer-socials a{display:inline-flex;align-items:center;gap:.65rem;min-height:44px;padding:.25rem 0;font-size:.82rem;color:#d9dcd5}
+  .footer-socials img{width:21px;height:21px;flex-shrink:0;filter:brightness(0) invert(1)}
   .footer-socials a>span{color:#969e90}
   .footer-column{display:flex;align-items:flex-start;flex-direction:column;gap:.75rem}
   .footer-column h2{font-family:Inter,Arial,sans-serif;font-size:.8rem;font-weight:600;line-height:1.4;letter-spacing:.13em;color:#b1b8aa;margin:0 0 1rem;text-transform:uppercase}
   .footer-column>a{font-size:.88rem;line-height:1.65;color:#e1e4dc;max-width:100%;text-decoration-color:transparent;text-underline-offset:5px;transition:color .2s,text-decoration-color .2s}
   .footer-column>a:hover,.footer-socials a:hover{color:var(--orange);text-decoration:underline}
   .footer-contact .footer-phone{font-family:'Barlow Condensed',sans-serif;font-size:1.9rem;line-height:1.15;font-weight:600;letter-spacing:.02em;margin-top:-.2rem}
-  .footer-email{overflow-wrap:anywhere}
+  .footer-phone{display:flex!important;align-items:flex-start!important;flex-direction:column;gap:.35rem}.footer-phone small{font:500 .72rem/1.4 Inter,Arial,sans-serif;color:#b6bbb2;letter-spacing:.03em}.footer-location-icon{width:19px;height:23px;flex-shrink:0;color:var(--orange)}.footer-address>span:first-of-type{flex:1}.footer-email{overflow-wrap:anywhere}
   .footer-contact .footer-address{display:flex;justify-content:space-between;align-items:center;gap:1rem;width:100%;border-top:1px solid #30332e;padding-top:1.1rem;margin-top:.4rem;color:#b6bbb2}
   .footer-address>span:last-child{color:var(--orange)}
   .footer-colophon{display:flex;justify-content:space-between;gap:1rem 2rem;padding:1.2rem 0 1.5rem;border-top:1px solid #30332e;color:#b6bdb1;font-size:.78rem;line-height:1.6}

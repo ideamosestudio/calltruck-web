@@ -473,3 +473,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 
 .floating-wa.is-footer-visible{opacity:0;visibility:hidden;pointer-events:none}
 @media(max-width:650px){body{padding-bottom:0}}
+
+/* Keep the contact-to-footer boundary deliberate and compact. */
+main>.contact-panel:last-child{padding-bottom:clamp(2.5rem,4vw,4rem)}
