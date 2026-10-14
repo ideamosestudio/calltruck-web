@@ -2251,7 +2251,7 @@ textarea:focus-visible {
   right: 0;
   top: 0;
   width: 44%;
-  height: 34%;
+  height: 150px;
   overflow: hidden;
   clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
   opacity: 0.72;
@@ -2276,8 +2276,8 @@ textarea:focus-visible {
     transform 0.75s var(--ease-expo);
 }
 .service-card:hover .service-card__visual {
-  width: 55%;
-  height: 42%;
+  width: 44%;
+  height: 150px;
   opacity: 1;
 }
 .service-card:hover .service-card__visual img {
@@ -2287,11 +2287,12 @@ textarea:focus-visible {
 .service-card .card-no {
   position: relative;
   z-index: 1;
+  min-height: 160px;
 }
 .service-card h3 {
   font-size: clamp(2.25rem, 3vw, 3.35rem);
-  max-width: 78%;
-  margin-top: auto;
+  max-width: 100%;
+  margin-top: 0;
 }
 .service-card p {
   line-height: 1.65;
@@ -2613,9 +2614,13 @@ textarea:focus-visible {
   .service-card h3 {
     max-width: 92%;
   }
-  .service-card__visual {
+  .service-card .card-no {
+    min-height: 120px;
+  }
+  .service-card__visual,
+  .service-card:hover .service-card__visual {
     width: 48%;
-    height: 29%;
+    height: 110px;
   }
   .metrics-grid {
     border-left: 0;
