@@ -64,7 +64,7 @@ Los archivos originales de los logos se conservan en `public/images/credentials`
 - RENPRE: https://marpaq.com.ar/wp-content/uploads/2025/12/Logo-Renpre.png.
 - SENASA: https://marpaq.com.ar/wp-content/uploads/2025/12/Logo-Senasa.png.
 - PCRMA: https://tfaster.com.ar/wp-content/uploads/2020/04/certificado-pcrma.png. Identidad contrastada con el Programa de Cuidado Responsable de CIQyP: https://www.ciqyp.org.ar/.
-- ISTA: https://www.ten-e.com/wp-content/uploads/2026/08/ISTA-1024x329.png (marca ISTA; la denominación Certified Laboratory se muestra como texto).
+- ISTA: https://www.ten-e.com/wp-content/uploads/2026/08/ISTA-1024x329.png (marca ISTA; variante de certificación confirmada por el cliente).
 
 La presentación aplica escala de grises por CSS y recupera el color original al pasar el cursor. Los tamaños se compensan por marca, sin deformar las proporciones.
 
