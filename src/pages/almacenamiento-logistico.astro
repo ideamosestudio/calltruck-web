@@ -103,7 +103,7 @@ const wa =
           <TechnicalIcon name="route" />
           <span>Conectividad</span>
         </div>
-        <h2>Accesos estratégicos</h2>
+        <h2>Conexión directa</h2>
         <p>Acceso Oeste y Camino del Buen Ayre</p>
       </article>
     </div>
@@ -269,8 +269,11 @@ const wa =
     }
   }
 
+  .access-section {
+    padding-top: 64px;
+  }
   .warehouse-facts {
-    padding-block: 64px;
+    padding-block: 48px;
   }
   .warehouse-facts__grid {
     display: grid;
@@ -279,7 +282,7 @@ const wa =
   }
   .warehouse-fact {
     padding: 28px 32px;
-    background: rgb(255 255 255 / 32%);
+    background: #faf9f3;
     border: 1px solid rgb(16 19 16 / 14%);
   }
   .warehouse-fact + .warehouse-fact {
@@ -297,20 +300,24 @@ const wa =
   }
   .warehouse-fact__label :global(.technical-icon) {
     display: flex;
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     color: var(--accent);
   }
   .warehouse-fact__label :global(svg) {
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     stroke: currentColor;
-    stroke-width: 1.6;
+    stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
   }
   .warehouse-fact h2 {
     margin: 0 0 12px;
+    min-height: 60px;
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
     font:
       800 clamp(1.75rem, 2.6vw, 2.5rem)/1.05 'Barlow Condensed',
       sans-serif;
@@ -319,7 +326,7 @@ const wa =
   }
   .warehouse-fact--capacity h2 {
     font-size: clamp(2.75rem, 4vw, 3.5rem);
-    line-height: 0.75;
+    line-height: 1.05;
     color: var(--accent);
   }
   .warehouse-fact--capacity h2 span {
@@ -336,6 +343,10 @@ const wa =
     align-items: center;
     gap: 10px;
     margin-top: 16px;
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 6px;
+    text-decoration-thickness: 1px;
     font-size: 0.85rem;
     font-weight: 600;
   }
@@ -366,6 +377,7 @@ const wa =
       padding: 24px;
     }
     .warehouse-fact h2 {
+      min-height: auto;
       font-size: 2rem;
     }
     .warehouse-fact--capacity h2 {
