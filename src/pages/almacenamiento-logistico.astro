@@ -43,10 +43,9 @@ const wa =
       </div>
     </div>
   </section>
-  <section class="section reveal">
+  <section class="section warehouse-intro reveal">
     <div class="section-inner editorial editorial--warehouse">
       <div class="editorial-media">
-        <aside>01 / El depósito</aside>
         <figure>
           <SiteImage
             src="images/editorial/warehouse-interior.webp"
@@ -56,15 +55,15 @@ const wa =
         </figure>
       </div>
       <article>
-        <h2>Infraestructura que suma capacidad a tu operación.</h2>
+        <span class="eyebrow">El depósito</span>
+        <h2>Más espacio para tu operación.</h2>
         <p>
-          Nuestro depósito permite incorporar espacio de almacenamiento a la
-          planificación logística.
+          Sumá almacenamiento a tu logística y conectalo con el transporte y la
+          distribución de tu mercadería.
         </p>
-        <p>
-          Su ubicación facilita la conexión con las principales vías de acceso
-          de la zona oeste del Gran Buenos Aires.
-        </p>
+        <a class="button button--dark" href={Astro.url.pathname + '#consulta'}>
+          Consultar disponibilidad <ArrowIcon direction="down" />
+        </a>
       </article>
     </div>
   </section>
@@ -241,6 +240,35 @@ const wa =
 </BaseLayout>
 
 <style>
+  .warehouse-intro {
+    padding-block: 80px;
+  }
+  .warehouse-intro .editorial--warehouse {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(32px, 5vw, 72px);
+    align-items: center;
+  }
+  .warehouse-intro article h2 {
+    max-width: 520px;
+    margin-bottom: 24px;
+  }
+  .warehouse-intro article > p {
+    font-size: 1.1rem;
+    line-height: 1.75;
+    max-width: 510px;
+    color: #555951;
+    margin: 0 0 28px;
+  }
+  @media (max-width: 980px) {
+    .warehouse-intro .editorial--warehouse {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .warehouse-intro {
+      padding-block: 48px;
+    }
+  }
+
   .warehouse-facts {
     padding-block: 64px;
   }
