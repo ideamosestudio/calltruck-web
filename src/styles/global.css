@@ -441,8 +441,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .hero-slides{inset:-2.5%;will-change:transform;animation:heroSceneFloat 15s ease-in-out infinite alternate}
 .hero-grid{inset:-24px;will-change:transform;animation:heroGridDrift 20s ease-in-out infinite alternate}
 @keyframes heroBackdropDrift{
-  0%{background-position:calc(var(--hero-base-x) - 11px) calc(var(--hero-base-y) - 7px)}
-  100%{background-position:calc(var(--hero-base-x) + 11px) calc(var(--hero-base-y) + 7px)}
+  0%{background-position:0 0,calc(var(--hero-base-x) - 11px) calc(var(--hero-base-y) - 7px)}
+  100%{background-position:0 0,calc(var(--hero-base-x) + 11px) calc(var(--hero-base-y) + 7px)}
 }
 @keyframes heroSceneFloat{
   0%{transform:translate3d(-8px,-5px,0) scale(1.025)}
