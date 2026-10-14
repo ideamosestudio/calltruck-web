@@ -517,7 +517,7 @@ main>.contact-panel:last-child{padding-bottom:clamp(2.5rem,4vw,4rem)}
 .site-header .header-cta{display:none}.site-header .brand{justify-self:start}.menu-toggle{position:relative;width:46px;height:46px;padding:10px;z-index:2;justify-self:end;border:1px solid #3b4039;border-radius:50%;cursor:pointer}
 .menu-toggle span{position:absolute;left:11px;width:22px;height:2px;margin:0;transition:transform .2s,opacity .2s;top:21px}.menu-toggle span:nth-child(1){transform:translateY(-6px)}.menu-toggle span:nth-child(3){transform:translateY(6px)}
 .menu-toggle[aria-expanded="true"] span:nth-child(1){transform:rotate(45deg)}.menu-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}.menu-toggle[aria-expanded="true"] span:nth-child(3){transform:rotate(-45deg)}
-.site-nav{position:fixed;inset:72px 0 auto;right:0;width:100%;height:calc(100dvh - 72px);height:calc(100svh - 72px);z-index:1;overflow-y:auto;overscroll-behavior:contain;background:#101211;padding:1.4rem var(--pad) max(1.5rem,env(safe-area-inset-bottom));gap:0;align-items:stretch;transform:translateX(100%);visibility:hidden;pointer-events:none;transition:transform .28s ease,visibility 0s .28s}
+.site-nav{position:fixed;inset:72px 0 auto;right:0;width:100%;height:calc(100svh - 72px);height:calc(100dvh - 72px);z-index:1;overflow-y:auto;overscroll-behavior:contain;background:#101211;padding:1.4rem var(--pad) max(1.5rem,env(safe-area-inset-bottom));gap:0;align-items:stretch;transform:translateX(100%);visibility:hidden;pointer-events:none;transition:transform .28s ease,visibility 0s .28s}
 .site-nav.is-open{transform:translateX(0);visibility:visible;pointer-events:auto;transition-delay:0s}
 .mobile-nav-intro{display:block;font-size:.59rem;letter-spacing:.12em;color:#b0b7a9;margin-bottom:.8rem}
 .site-nav>a,.site-nav .nav-dropdown>a{display:flex;align-items:center;justify-content:space-between;min-height:60px;padding:.65rem 0;font-family:'Barlow Condensed',sans-serif;font-size:2.15rem;font-weight:600;line-height:1.1;letter-spacing:.015em;border-bottom:1px solid #33392f;color:#f7f4ec}
@@ -531,3 +531,20 @@ main>.contact-panel:last-child{padding-bottom:clamp(2.5rem,4vw,4rem)}
 .site-nav a:focus-visible,.menu-toggle:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
 }
 @media(prefers-reduced-motion:reduce){.site-nav,.menu-toggle span{transition:none!important}}
+
+/* Mobile UX review: readable type, touch targets and native form use. */
+html{scroll-padding-top:88px}#consulta,#soluciones,#capacidad{scroll-margin-top:88px}
+@media(max-width:650px){
+.hero--home h1{font-size:clamp(2.5rem,12.5vw,3.4rem);line-height:1.02}.hero--home .hero-lead{margin-top:1.4rem}.hero-actions{margin-top:1.6rem;gap:.75rem}
+.hero .eyebrow{font-size:.68rem;letter-spacing:.1em;line-height:1.6}.hero .eyebrow:before{flex-shrink:0}
+.section{padding-block:3.5rem}.section-head{gap:1.25rem;margin-bottom:2rem}.section-head p,.split-copy p{font-size:1rem;line-height:1.7}
+.service-card h3{font-size:clamp(1.65rem,8.3vw,2.3rem);overflow-wrap:anywhere;line-height:1.05}.final-cta h2{font-size:clamp(2.15rem,10vw,3rem);overflow-wrap:anywhere;line-height:1.05}
+.button{min-width:0;min-height:50px;gap:1rem;line-height:1.5}.hero-slider-dots{gap:0}.hero-slider-dots button{min-width:44px;min-height:44px}.hero-slider-toggle{width:44px;height:44px;font-size:.85rem}.hero-slider-controls{gap:.5rem}
+.field label{font-size:.75rem;color:#c8cdc3;letter-spacing:.06em}.field input,.field select,.field textarea{font-size:16px;min-height:50px;scroll-margin-top:100px}.field textarea{min-height:140px}.field input:focus,.field textarea:focus{padding-left:0}.field:focus-within{outline:1px solid #a3ac98;outline-offset:7px}
+.contact-form{padding:1.5rem}.form-grid{gap:1.5rem}.contact-panel__intro>p{margin-top:1.25rem;font-size:1rem}.contact-panel__quick{margin-top:1.5rem}.contact-row a{overflow-wrap:anywhere}.contact-panel__quick strong{font-family:Inter,Arial,sans-serif;font-size:1rem;line-height:1.5}
+body:has(.contact-form :focus) .floating-wa{opacity:0;visibility:hidden;pointer-events:none}
+.footer-column>a,.footer-nav-links a{min-height:44px}
+}
+@media(hover:none){.button:hover{transform:none}.service-card:hover:before{inset:100% 0 0}.service-card:hover{color:inherit}.service-card:hover p{color:#5c6059}}
+
+@media(max-width:650px){.hero--home:before{background:linear-gradient(90deg,rgba(10,12,11,.9),rgba(10,12,11,.68))}}

@@ -26,7 +26,7 @@ const shouldShowContactForm = showContactForm ?? !isHome;
     <meta name="description" content={description} />
     <meta name="theme-color" content="#101211" />
     <base href={base} />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2210%22 fill=%22%23ff5c00%22/><path d=%22M13 16h38v9H22v14h29v9H13z%22 fill=%22%23101211%22/></svg>" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg?v=calltruck-2`} />
     <title>{title}</title>
     <script is:inline>
       document.documentElement.classList.add('js');
@@ -77,18 +77,18 @@ const shouldShowContactForm = showContactForm ?? !isHome;
       const finishLoader = () => {
         if (loaderFinished) return;
         loaderFinished = true;
-        const minimumDisplay = reduceMotion ? 0 : 780;
+        const minimumDisplay = reduceMotion ? 0 : 300;
         const wait = Math.max(0, minimumDisplay - (performance.now() - loaderStartedAt));
         window.setTimeout(() => {
           loaderTarget = 100;
-          window.setTimeout(() => document.body.classList.add('is-loaded'), reduceMotion ? 0 : 560);
+          window.setTimeout(() => document.body.classList.add('is-loaded'), reduceMotion ? 0 : 220);
         }, wait);
       };
 
       requestAnimationFrame(renderLoader);
       if (document.readyState === 'complete') finishLoader();
       else window.addEventListener('load', finishLoader, { once: true });
-      window.setTimeout(finishLoader, 8000);
+      window.setTimeout(finishLoader, 3000);
 
       const mobileNavigation = matchMedia('(max-width: 980px)');
       const setMenu = (open) => {
@@ -97,9 +97,11 @@ const shouldShowContactForm = showContactForm ?? !isHome;
         menu?.classList.toggle('is-open', open);
         if (menu instanceof HTMLElement) menu.inert = mobileNavigation.matches && !open;
         document.body.classList.toggle('menu-open', open);
+        document.querySelectorAll('main, .footer-premium').forEach(el => { if (el instanceof HTMLElement) el.inert = open && mobileNavigation.matches; });
       };
       mobileNavigation.addEventListener('change', () => setMenu(false));
       setMenu(false);
+      window.addEventListener('pageshow', () => setMenu(false));
       toggle?.addEventListener('click', () => setMenu(toggle.getAttribute('aria-expanded') !== 'true'));
       menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenu(false)));
       document.addEventListener('keydown', (event) => {

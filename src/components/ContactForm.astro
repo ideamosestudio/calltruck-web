@@ -25,8 +25,8 @@ const successUrl = 'https://ideamosestudio.github.io/calltruck-web/contacto/?env
       <div class="form-grid">
         <div class="field"><label for="contact-name">Nombre y apellido</label><input id="contact-name" name="Nombre y apellido" autocomplete="name" required /></div>
         <div class="field"><label for="contact-company">Empresa (opcional)</label><input id="contact-company" name="Empresa" autocomplete="organization" /></div>
-        <div class="field"><label for="contact-phone">Teléfono / WhatsApp</label><input id="contact-phone" name="Teléfono" type="tel" autocomplete="tel" required /></div>
-        <div class="field"><label for="contact-email">Correo electrónico</label><input id="contact-email" name="email" type="email" autocomplete="email" required /></div>
+        <div class="field"><label for="contact-phone">Teléfono / WhatsApp</label><input id="contact-phone" name="Teléfono" type="tel" inputmode="tel" autocomplete="tel" required /></div>
+        <div class="field"><label for="contact-email">Correo electrónico</label><input id="contact-email" name="email" type="email" inputmode="email" autocapitalize="none" spellcheck="false" autocomplete="email" required /></div>
         <div class="field field--full"><label for="contact-service">Servicio</label><select id="contact-service" name="Servicio" required><option value="">Seleccioná una opción</option><option>Transporte para particulares</option><option>Logística para empresas</option><option>Almacenamiento logístico</option><option>Otra consulta</option></select></div>
         <div class="field field--full"><label for="contact-message">¿Qué necesitás resolver?</label><textarea id="contact-message" name="Mensaje" required></textarea></div>
       </div>
