@@ -1,6 +1,7 @@
 ---
 import HeroBackdrop from '../components/HeroBackdrop.astro';
 import SiteImage from '../components/SiteImage.astro';
+import TechnicalIcon from '../components/TechnicalIcon.astro';
 import ArrowIcon from '../components/ArrowIcon.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from '../components/CTA.astro';
@@ -67,22 +68,45 @@ const wa =
       </article>
     </div>
   </section>
-  <section class="section section--sand reveal">
-    <div class="section-inner">
-      <div class="stats">
-        <article class="stat">
-          <strong>+1.000 m²</strong>
-          <span>Superficie de almacenamiento</span>
-        </article>
-        <article class="stat">
-          <strong>Paso del Rey</strong>
-          <span>Ubicación del depósito</span>
-        </article>
-        <article class="stat">
-          <strong>Accesos</strong>
-          <span>Acceso Oeste y Camino del Buen Ayre</span>
-        </article>
-      </div>
+  <section
+    class="section section--sand warehouse-facts reveal"
+    aria-label="Datos del depósito"
+  >
+    <div class="section-inner warehouse-facts__grid">
+      <article class="warehouse-fact warehouse-fact--capacity">
+        <div class="warehouse-fact__label">
+          <TechnicalIcon name="storage" />
+          <span>Capacidad</span>
+        </div>
+        <h2>
+          +1.000 <span>m²</span>
+        </h2>
+        <p>Espacio para tu mercadería</p>
+      </article>
+      <article class="warehouse-fact">
+        <div class="warehouse-fact__label">
+          <TechnicalIcon name="track" />
+          <span>Ubicación</span>
+        </div>
+        <h2>Paso del Rey</h2>
+        <p>Moreno, Buenos Aires</p>
+        <a
+          class="warehouse-fact__link"
+          href="https://www.google.com/maps/search/?api=1&query=La%20Santa%20Mar%C3%ADa%20728%2C%20Paso%20del%20Rey%2C%20Moreno"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Ver ubicación <ArrowIcon />
+        </a>
+      </article>
+      <article class="warehouse-fact">
+        <div class="warehouse-fact__label">
+          <TechnicalIcon name="route" />
+          <span>Conectividad</span>
+        </div>
+        <h2>Accesos estratégicos</h2>
+        <p>Acceso Oeste y Camino del Buen Ayre</p>
+      </article>
     </div>
   </section>
   <section class="section access-section reveal">
@@ -215,3 +239,112 @@ const wa =
     message="Hola, quiero consultar por almacenamiento"
   />
 </BaseLayout>
+
+<style>
+  .warehouse-facts {
+    padding-block: 64px;
+  }
+  .warehouse-facts__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+  }
+  .warehouse-fact {
+    padding: 28px 32px;
+    background: rgb(255 255 255 / 32%);
+    border: 1px solid rgb(16 19 16 / 14%);
+  }
+  .warehouse-fact + .warehouse-fact {
+    border-left: 0;
+  }
+  .warehouse-fact__label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    color: #555951;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .warehouse-fact__label :global(.technical-icon) {
+    display: flex;
+    width: 32px;
+    height: 32px;
+    color: var(--accent);
+  }
+  .warehouse-fact__label :global(svg) {
+    width: 32px;
+    height: 32px;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .warehouse-fact h2 {
+    margin: 0 0 12px;
+    font:
+      800 clamp(1.75rem, 2.6vw, 2.5rem)/1.05 'Barlow Condensed',
+      sans-serif;
+    letter-spacing: -0.02em;
+    text-transform: none;
+  }
+  .warehouse-fact--capacity h2 {
+    font-size: clamp(2.75rem, 4vw, 3.5rem);
+    line-height: 0.75;
+    color: var(--accent);
+  }
+  .warehouse-fact--capacity h2 span {
+    font-size: 0.55em;
+  }
+  .warehouse-fact p {
+    margin: 0;
+    color: #555951;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  .warehouse-fact__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  .warehouse-fact__link:hover {
+    color: var(--accent);
+  }
+  .warehouse-fact__link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 5px;
+  }
+  @media (max-width: 980px) {
+    .warehouse-fact {
+      padding: 24px 20px;
+    }
+  }
+  @media (max-width: 760px) {
+    .warehouse-facts {
+      padding-block: 40px;
+    }
+    .warehouse-facts__grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .warehouse-fact + .warehouse-fact {
+      border-left: 1px solid rgb(16 19 16 / 14%);
+    }
+    .warehouse-fact {
+      padding: 24px;
+    }
+    .warehouse-fact h2 {
+      font-size: 2rem;
+    }
+    .warehouse-fact--capacity h2 {
+      font-size: 3rem;
+    }
+    .warehouse-fact__label {
+      margin-bottom: 18px;
+    }
+  }
+</style>
