@@ -58,14 +58,21 @@ const wa = `https://wa.me/541137874158?text=${encodeURIComponent(message)}`;
         </div>
         <p>{introText}</p>
       </div>
-      <div class="process">
+      <ol class="transfer-steps">
         {items.map((item, i) => (
-          <article class="process-card">
-            <span>0{i + 1}</span>
+          <li class="transfer-step">
+            <span class="transfer-step__number" aria-hidden="true">
+              0{i + 1}
+            </span>
             <h3>{item.title}</h3>
             <p>{item.text}</p>
-          </article>
+          </li>
         ))}
+      </ol>
+      <div class="transfer-action">
+        <a class="button button--dark" href={`${Astro.url.pathname}#consulta`}>
+          Consultar mi traslado <ArrowIcon direction="down" />
+        </a>
       </div>
     </div>
   </section>
@@ -97,3 +104,104 @@ const wa = `https://wa.me/541137874158?text=${encodeURIComponent(message)}`;
     message={message}
   />
 </BaseLayout>
+
+<style>
+  .transfer-steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 32px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .transfer-step {
+    position: relative;
+    display: grid;
+    grid-template-rows: 56px 2.4em auto;
+    gap: 20px;
+    align-content: start;
+    padding: 24px 0;
+    border-top: 1px solid #c8cbc2;
+  }
+  .transfer-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 32px;
+    top: -1px;
+    right: -32px;
+    background: #c8cbc2;
+  }
+  .transfer-step::before {
+    content: '';
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    top: -4px;
+    left: 0;
+  }
+  .transfer-step__number {
+    font:
+      700 48px/1 'Barlow Condensed',
+      sans-serif;
+    color: var(--accent);
+  }
+  .transfer-step h3 {
+    font:
+      600 clamp(1.1rem, 1.6vw, 1.35rem)/1.2 Inter,
+      sans-serif;
+    text-transform: none;
+    letter-spacing: -0.025em;
+    margin: 0;
+    max-width: 300px;
+  }
+  .transfer-step p {
+    margin: 0;
+    max-width: 330px;
+    font-size: 0.95rem;
+    color: #555951;
+    line-height: 1.7;
+  }
+  .transfer-action {
+    margin-top: 24px;
+  }
+  @media (max-width: 760px) {
+    .transfer-steps {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .transfer-step {
+      grid-template-columns: 42px 1fr;
+      grid-template-rows: auto auto;
+      gap: 10px 16px;
+      border-top: 0;
+      border-left: 1px solid #c8cbc2;
+      padding: 0 0 32px 22px;
+    }
+    .transfer-step:last-child {
+      padding-bottom: 0;
+    }
+    .transfer-step::before {
+      top: 7px;
+      left: -4px;
+    }
+    .transfer-step:not(:last-child)::after {
+      display: none;
+    }
+    .transfer-step__number {
+      grid-row: 1 / 3;
+      font-size: 36px;
+    }
+    .transfer-step h3 {
+      max-width: none;
+    }
+    .transfer-step p {
+      grid-column: 2;
+    }
+    .transfer-action {
+      margin-top: 32px;
+    }
+  }
+</style>
