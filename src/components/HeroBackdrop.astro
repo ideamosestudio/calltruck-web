@@ -11,7 +11,7 @@ const { src, gradient } = Astro.props;
   <SiteImage
     src={src}
     alt=""
-    sizes="100vw"
+    sizes="max(100vw, 180vh)"
     loading="eager"
     fetchpriority="high"
   />

@@ -6,19 +6,18 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
   '../assets/images/**/*.{jpg,png,webp}',
   { eager: true },
 );
-const {
-  src,
-  alt,
-  sizes = '(max-width: 650px) 100vw, 50vw',
-  width,
-  height,
-  ...attributes
-} = Astro.props;
+const { src, alt, sizes, width, height, ...attributes } = Astro.props;
 const image = images[`../assets/${src}`]?.default;
 if (!image) throw new Error(`Missing image: ${src}`);
-const maxWidth = Math.min(Number(width) || 1600, image.width);
+const maxWidth = Math.min(Number(width) || image.width, image.width);
+// Cover crops can paint a landscape image much wider than its visible column.
+const mobileCoverWidth = Math.ceil((460 * image.width) / image.height);
+const responsiveSizes =
+  sizes ?? `(max-width: 980px) max(100vw, ${mobileCoverWidth}px), 66vw`;
 const widths = [
-  ...new Set([480, 800, 1200, maxWidth].filter((value) => value <= maxWidth)),
+  ...new Set(
+    [480, 800, 1200, 1600, maxWidth].filter((value) => value <= maxWidth),
+  ),
 ];
 ---
 
@@ -27,9 +26,9 @@ const widths = [
   alt={alt}
   width={maxWidth}
   widths={widths}
-  sizes={sizes}
+  sizes={responsiveSizes}
   format="webp"
-  quality={78}
+  quality={86}
   loading="lazy"
   decoding="async"
   {...attributes}
