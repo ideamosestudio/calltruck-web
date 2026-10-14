@@ -290,7 +290,7 @@ p {
 }
 .hero h1 em {
   font-style: normal;
-  color: var(--accent);
+  color: inherit;
 }
 .hero-lead {
   font-size: clamp(1rem, 1.45vw, 1.25rem);
