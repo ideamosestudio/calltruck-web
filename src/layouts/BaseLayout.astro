@@ -1,23 +1,30 @@
 ---
+import SEO from '../components/SEO.astro';
+import ColorCustomizer from '../components/ColorCustomizer.astro';
+import interFont from '@fontsource/inter/files/inter-latin-400-normal.woff2?url';
+import headingFont from '@fontsource/barlow-condensed/files/barlow-condensed-latin-800-normal.woff2?url';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ContactForm from '../components/ContactForm.astro';
-import '@fontsource/barlow-condensed/500.css';
-import '@fontsource/barlow-condensed/600.css';
-import '@fontsource/barlow-condensed/700.css';
-import '@fontsource/barlow-condensed/800.css';
-import '@fontsource/barlow-condensed/900.css';
-import '@fontsource/inter/400.css';
-import '@fontsource/inter/500.css';
-import '@fontsource/inter/600.css';
+import '@fontsource/barlow-condensed/latin-500.css';
+import '@fontsource/barlow-condensed/latin-600.css';
+import '@fontsource/barlow-condensed/latin-700.css';
+import '@fontsource/barlow-condensed/latin-800.css';
+import '@fontsource/barlow-condensed/latin-900.css';
+import '@fontsource/inter/latin-400.css';
+import '@fontsource/inter/latin-500.css';
+import '@fontsource/inter/latin-600.css';
 import '../styles/global.css';
 const { title, description, showContactForm } = Astro.props;
 const rawBase = import.meta.env.BASE_URL;
 const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
-const path = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const path = Astro.url.pathname.endsWith('/')
+  ? Astro.url.pathname
+  : `${Astro.url.pathname}/`;
 const isHome = path === base;
 const shouldShowContactForm = showContactForm ?? !isHome;
 ---
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -25,144 +32,279 @@ const shouldShowContactForm = showContactForm ?? !isHome;
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#101211" />
+    <link
+      rel="preload"
+      href={interFont}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href={headingFont}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <base href={base} />
-    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg?v=calltruck-2`} />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href={`${base}favicon.svg?v=calltruck-2`}
+    />
     <title>{title}</title>
+    <SEO {title} {description} />
     <script is:inline>
       document.documentElement.classList.add('js');
+      try {
+        const accent = localStorage.getItem('calltruck-accent');
+        if (['orange', 'yellow', 'gray', 'blue', 'red'].includes(accent))
+          document.documentElement.dataset.accent = accent;
+      } catch {
+        /* Storage is optional. */
+      }
+      window.setTimeout(() => {
+        if (!document.body?.classList.contains('is-loaded'))
+          document.documentElement.classList.remove('js');
+      }, 4000);
     </script>
   </head>
   <body data-page={Astro.url.pathname}>
-    <div class="page-loader" role="status" aria-live="polite" aria-label="Cargando sitio">
-      <div class="page-loader__glow page-loader__glow--one" aria-hidden="true"></div>
-      <div class="page-loader__glow page-loader__glow--two" aria-hidden="true"></div>
+    <div
+      class="page-loader"
+      role="status"
+      aria-live="polite"
+      aria-label="Cargando sitio"
+    >
+      <div
+        class="page-loader__glow page-loader__glow--one"
+        aria-hidden="true"
+      ></div>
+      <div
+        class="page-loader__glow page-loader__glow--two"
+        aria-hidden="true"
+      ></div>
       <div class="page-loader__content">
-        <img src="images/calltruck-loader-logo.webp" alt="Calltruck Transporte" width="1100" height="374" />
-        <div class="page-loader__meta"><span>Cargando</span><strong data-loader-percent>0%</strong></div>
-        <div class="page-loader__track" aria-hidden="true"><i data-loader-progress></i></div>
+        <img
+          src="images/calltruck-loader-logo.webp?v=3"
+          alt="Calltruck Transporte"
+          width="1100"
+          height="374"
+        />
+        <div class="page-loader__meta">
+          <span>Cargando</span>
+          <strong data-loader-percent>0%</strong>
+        </div>
+        <div class="page-loader__track" aria-hidden="true">
+          <i data-loader-progress></i>
+        </div>
       </div>
     </div>
-    <div class="scroll-progress" aria-hidden="true"><i></i></div>
-    <div class="cursor" aria-hidden="true"><span></span></div>
+    <div class="scroll-progress" aria-hidden="true">
+      <i></i>
+    </div>
+    <a class="skip-link" href={`${Astro.url.pathname}#main-content`}>
+      Saltar al contenido
+    </a>
     <Header />
-    <main><slot />{shouldShowContactForm && <ContactForm />}</main>
+    <main id="main-content" tabindex="-1">
+      <slot />
+      {shouldShowContactForm && <ContactForm />}
+    </main>
     <Footer />
-    <a class="floating-wa" href="https://wa.me/541137874158?text=Hola%2C%20quiero%20pedir%20un%20presupuesto" target="_blank" rel="noreferrer" aria-label="Escribir por WhatsApp"><span class="floating-wa__icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path fill="currentColor" d="M20.52 3.48A11.91 11.91 0 0 0 12.04 0C5.46 0 .1 5.35.1 11.93c0 2.1.55 4.16 1.6 5.97L0 24l6.25-1.64a11.93 11.93 0 0 0 5.78 1.47h.01c6.58 0 11.94-5.35 11.94-11.93 0-3.19-1.24-6.18-3.46-8.42ZM12.04 21.8h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.71.97.99-3.62-.23-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.47 4.45-9.92 9.93-9.92a9.85 9.85 0 0 1 7.02 2.91 9.85 9.85 0 0 1 2.9 7.02c0 5.47-4.45 9.92-9.98 9.86Zm5.44-7.43c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.87 1.21 3.07c.15.2 2.1 3.2 5.09 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.11.57-.08 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35Z"/></svg></span><span class="floating-wa__copy"><small>¿Movemos tu carga?</small><b>Hablemos por WhatsApp</b></span><svg class="floating-wa__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10" /></svg></a>
+    <ColorCustomizer />
+    <a
+      class="floating-wa"
+      href="https://wa.me/541137874158?text=Hola%2C%20quiero%20pedir%20un%20presupuesto"
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Escribir por WhatsApp"
+    >
+      <span class="floating-wa__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" focusable="false">
+          <path
+            fill="currentColor"
+            d="M20.52 3.48A11.91 11.91 0 0 0 12.04 0C5.46 0 .1 5.35.1 11.93c0 2.1.55 4.16 1.6 5.97L0 24l6.25-1.64a11.93 11.93 0 0 0 5.78 1.47h.01c6.58 0 11.94-5.35 11.94-11.93 0-3.19-1.24-6.18-3.46-8.42ZM12.04 21.8h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.71.97.99-3.62-.23-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.47 4.45-9.92 9.93-9.92a9.85 9.85 0 0 1 7.02 2.91 9.85 9.85 0 0 1 2.9 7.02c0 5.47-4.45 9.92-9.98 9.86Zm5.44-7.43c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.87 1.21 3.07c.15.2 2.1 3.2 5.09 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.11.57-.08 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35Z"
+          />
+        </svg>
+      </span>
+      <span class="floating-wa__copy">
+        <small>¿Movemos tu carga?</small>
+        <b>Hablemos por WhatsApp</b>
+      </span>
+      <svg
+        class="floating-wa__arrow"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M7 17 17 7M7 7h10v10" />
+      </svg>
+    </a>
     <script>
       const header = document.querySelector('[data-header]');
       const toggle = document.querySelector('[data-menu-toggle]');
       const menu = document.querySelector('[data-menu]');
       const progress = document.querySelector('.scroll-progress i');
-      const cursor = document.querySelector('.cursor');
-      const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const reduceMotion = matchMedia(
+        '(prefers-reduced-motion: reduce)',
+      ).matches;
 
       const loaderBar = document.querySelector('[data-loader-progress]');
       const loaderPercent = document.querySelector('[data-loader-percent]');
-      const loaderStartedAt = performance.now();
       let loaderValue = 0;
       let loaderTarget = 12;
       let loaderFinished = false;
 
       const renderLoader = () => {
-        const easing = loaderTarget === 100 ? .16 : .085;
-        loaderValue += (loaderTarget - loaderValue) * (reduceMotion ? 1 : easing);
-        if (loaderTarget < 100) loaderTarget = Math.min(92, loaderTarget + 1.15);
+        const easing = loaderTarget === 100 ? 0.16 : 0.085;
+        loaderValue +=
+          (loaderTarget - loaderValue) * (reduceMotion ? 1 : easing);
+        if (loaderTarget < 100)
+          loaderTarget = Math.min(92, loaderTarget + 1.15);
         if (loaderTarget === 100 && loaderValue > 99.4) loaderValue = 100;
         const rounded = Math.round(loaderValue);
-        loaderBar?.style.setProperty('--loader-progress', `${loaderValue / 100}`);
+        loaderBar?.style.setProperty(
+          '--loader-progress',
+          `${loaderValue / 100}`,
+        );
         if (loaderPercent) loaderPercent.textContent = `${rounded}%`;
-        if (!loaderFinished || loaderValue < 100) requestAnimationFrame(renderLoader);
+        if (!loaderFinished || loaderValue < 100)
+          requestAnimationFrame(renderLoader);
       };
 
       const finishLoader = () => {
         if (loaderFinished) return;
         loaderFinished = true;
-        const minimumDisplay = reduceMotion ? 0 : 300;
-        const wait = Math.max(0, minimumDisplay - (performance.now() - loaderStartedAt));
-        window.setTimeout(() => {
-          loaderTarget = 100;
-          window.setTimeout(() => document.body.classList.add('is-loaded'), reduceMotion ? 0 : 220);
-        }, wait);
+        loaderTarget = 100;
+        window.setTimeout(
+          () => {
+            document.body.classList.add('is-loaded');
+          },
+          reduceMotion ? 0 : 120,
+        );
       };
 
       requestAnimationFrame(renderLoader);
-      if (document.readyState === 'complete') finishLoader();
-      else window.addEventListener('load', finishLoader, { once: true });
-      window.setTimeout(finishLoader, 3000);
+      // The page is already rendered: secondary media must not hold up reading.
+      finishLoader();
 
       const mobileNavigation = matchMedia('(max-width: 980px)');
       const setMenu = (open) => {
         toggle?.setAttribute('aria-expanded', String(open));
         toggle?.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
         menu?.classList.toggle('is-open', open);
-        if (menu instanceof HTMLElement) menu.inert = mobileNavigation.matches && !open;
+        if (menu instanceof HTMLElement)
+          menu.inert = mobileNavigation.matches && !open;
         document.body.classList.toggle('menu-open', open);
-        document.querySelectorAll('main, .footer-premium').forEach(el => { if (el instanceof HTMLElement) el.inert = open && mobileNavigation.matches; });
+        document.querySelectorAll('main, .footer-premium').forEach((el) => {
+          if (el instanceof HTMLElement)
+            el.inert = open && mobileNavigation.matches;
+        });
       };
       mobileNavigation.addEventListener('change', () => setMenu(false));
       setMenu(false);
       window.addEventListener('pageshow', () => setMenu(false));
-      toggle?.addEventListener('click', () => setMenu(toggle.getAttribute('aria-expanded') !== 'true'));
-      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenu(false)));
+      toggle?.addEventListener('click', () =>
+        setMenu(toggle.getAttribute('aria-expanded') !== 'true'),
+      );
+      menu
+        ?.querySelectorAll('a')
+        .forEach((link) =>
+          link.addEventListener('click', () => setMenu(false)),
+        );
       document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') { setMenu(false); toggle.focus(); }
-        if (event.key !== 'Tab' || toggle?.getAttribute('aria-expanded') !== 'true' || innerWidth > 980) return;
-        const focusable = [toggle, ...menu.querySelectorAll('a,button')].filter(el => el instanceof HTMLElement && el.getClientRects().length > 0);
-        const first = focusable[0], last = focusable[focusable.length - 1];
-        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
-        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+        if (
+          event.key === 'Escape' &&
+          toggle?.getAttribute('aria-expanded') === 'true'
+        ) {
+          setMenu(false);
+          toggle.focus();
+        }
+        if (
+          event.key !== 'Tab' ||
+          toggle?.getAttribute('aria-expanded') !== 'true' ||
+          innerWidth > 980
+        )
+          return;
+        const focusable = [toggle, ...menu.querySelectorAll('a,button')].filter(
+          (el) => el instanceof HTMLElement && el.getClientRects().length > 0,
+        );
+        const first = focusable[0],
+          last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
       });
 
       const updateScroll = () => {
         header?.classList.toggle('is-scrolled', scrollY > 24);
         const available = document.documentElement.scrollHeight - innerHeight;
-        if (progress) progress.style.transform = `scaleX(${available > 0 ? scrollY / available : 0})`;
-        if (!reduceMotion) document.documentElement.style.setProperty('--scroll-y', `${Math.min(scrollY * .08, 72)}px`);
+        if (progress)
+          progress.style.transform = `scaleX(${available > 0 ? scrollY / available : 0})`;
+        if (!reduceMotion)
+          document.documentElement.style.setProperty(
+            '--scroll-y',
+            `${Math.min(scrollY * 0.08, 72)}px`,
+          );
       };
-      addEventListener('scroll', updateScroll, {passive:true});
+      let scrollFrame = 0;
+      addEventListener(
+        'scroll',
+        () => {
+          if (!scrollFrame)
+            scrollFrame = requestAnimationFrame(() => {
+              updateScroll();
+              scrollFrame = 0;
+            });
+        },
+        { passive: true },
+      );
       updateScroll();
 
       const footer = document.querySelector('.footer-premium');
       const floatingWhatsApp = document.querySelector('.floating-wa');
       if (footer && floatingWhatsApp instanceof HTMLElement) {
-        const footerObserver = new IntersectionObserver(([entry]) => {
-          const hide = entry.isIntersecting;
-          if (hide && document.activeElement === floatingWhatsApp) {
-            const footerContact = footer.querySelector('.footer-talk');
-            if (footerContact instanceof HTMLElement) footerContact.focus({ preventScroll: true });
-          }
-          floatingWhatsApp.classList.toggle('is-footer-visible', hide);
-          floatingWhatsApp.inert = hide;
-          if (hide) floatingWhatsApp.setAttribute('aria-hidden', 'true');
-          else floatingWhatsApp.removeAttribute('aria-hidden');
-        }, { threshold: 0 });
+        const footerObserver = new IntersectionObserver(
+          ([entry]) => {
+            const hide = entry.isIntersecting;
+            if (hide && document.activeElement === floatingWhatsApp) {
+              const footerContact = footer.querySelector('.footer-talk');
+              if (footerContact instanceof HTMLElement)
+                footerContact.focus({ preventScroll: true });
+            }
+            floatingWhatsApp.classList.toggle('is-footer-visible', hide);
+            floatingWhatsApp.inert = hide;
+            if (hide) floatingWhatsApp.setAttribute('aria-hidden', 'true');
+            else floatingWhatsApp.removeAttribute('aria-hidden');
+          },
+          { threshold: 0 },
+        );
         footerObserver.observe(footer);
       }
-      const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
-        if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
-      }), {threshold: .1, rootMargin: '0px 0px -5%'});
-      document.querySelectorAll('.reveal,.split-media,.fleet-shot,.metric,.capability,.process-card,.story-row,.report-shot,.warehouse-shot,.logistics-strip figure').forEach((el) => observer.observe(el));
-
-      if (matchMedia('(pointer:fine)').matches && cursor) {
-        let x = innerWidth / 2, y = innerHeight / 2, cx = x, cy = y;
-        addEventListener('mousemove', (event) => { x = event.clientX; y = event.clientY; cursor.classList.add('is-visible'); }, {passive:true});
-        addEventListener('mouseout', (event) => { if (!event.relatedTarget) cursor.classList.remove('is-visible'); });
-        const renderCursor = () => { cx += (x-cx)*.18; cy += (y-cy)*.18; cursor.style.transform = `translate3d(${cx}px,${cy}px,0)`; requestAnimationFrame(renderCursor); };
-        renderCursor();
-        document.querySelectorAll('a,button,input,select,textarea,.fleet-shot').forEach((el) => {
-          el.addEventListener('mouseenter', () => cursor.classList.add('is-active'));
-          el.addEventListener('mouseleave', () => cursor.classList.remove('is-active'));
-        });
-        document.querySelectorAll('.button').forEach((button) => {
-          button.addEventListener('mousemove', (event) => {
-            const box = button.getBoundingClientRect();
-            button.style.transform = `translate(${(event.clientX-box.left-box.width/2)*.055}px,${(event.clientY-box.top-box.height/2)*.08}px)`;
-          });
-          button.addEventListener('mouseleave', () => button.style.transform = '');
-        });
-      }
-
-
+      const observer = new IntersectionObserver(
+        (entries) =>
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          }),
+        { threshold: 0.1, rootMargin: '0px 0px -5%' },
+      );
+      document
+        .querySelectorAll(
+          '.reveal,.split-media,.fleet-shot,.metric,.capability,.process-card,.story-row,.report-shot,.warehouse-shot,.logistics-strip figure',
+        )
+        .forEach((el) => observer.observe(el));
     </script>
   </body>
 </html>

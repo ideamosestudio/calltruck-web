@@ -1,128 +1,522 @@
 ---
-import ArrowIcon from "../components/ArrowIcon.astro";
+import SiteImage from '../components/SiteImage.astro';
+import ArrowIcon from '../components/ArrowIcon.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from '../components/CTA.astro';
 import FleetGallery from '../components/FleetGallery.astro';
 import TechnicalIcon from '../components/TechnicalIcon.astro';
 const services = [
-  ['01','Transporte para vos','¿Necesitás trasladar una carga? Contanos qué necesitás mover y a dónde. Te ayudamos a encontrar una solución para tu traslado.','Consultar por un traslado','transporte-particulares/','images/editorial/truck-urban-white.webp'],
-  ['02','Logística para empresas','Transporte nacional, distribución y operaciones logísticas para acompañar el movimiento de tu negocio.','Ver soluciones para empresas','logistica-empresas/','images/editorial/truck-calltruck-clean.webp'],
-  ['03','Almacenamiento logístico','Más de 1.000 m² de depósito en Paso del Rey, con ubicación estratégica y conexión a las principales vías de acceso.','Conocer el depósito','almacenamiento-logistico/','images/editorial/warehouse-interior.webp']
+  [
+    '01',
+    'Transporte para vos',
+    '¿Necesitás trasladar una carga? Contanos qué necesitás mover y a dónde. Te ayudamos a encontrar una solución para tu traslado.',
+    'Consultar por un traslado',
+    'transporte-particulares/',
+    'images/editorial/truck-urban-white.webp',
+  ],
+  [
+    '02',
+    'Logística para empresas',
+    'Transporte nacional, distribución y operaciones logísticas para acompañar el movimiento de tu negocio.',
+    'Ver soluciones para empresas',
+    'logistica-empresas/',
+    'images/editorial/truck-calltruck-clean.webp',
+  ],
+  [
+    '03',
+    'Almacenamiento logístico',
+    'Más de 1.000 m² de depósito en Paso del Rey, con ubicación estratégica y conexión a las principales vías de acceso.',
+    'Conocer el depósito',
+    'almacenamiento-logistico/',
+    'images/editorial/warehouse-interior.webp',
+  ],
 ];
 const metrics = [
-  ['route','Cobertura nacional','Transporte de corta, media y larga distancia.'],
-  ['fleet','Flota versátil','Desde utilitarios hasta semirremolques y equipos especiales.'],
-  ['track','Seguimiento operativo','Monitoreo satelital y seguimiento en tiempo real.'],
-  ['storage','Infraestructura logística','Espacio para almacenamiento y distribución.']
+  [
+    'route',
+    'Cobertura nacional',
+    'Transporte de corta, media y larga distancia.',
+  ],
+  [
+    'fleet',
+    'Flota versátil',
+    'Desde utilitarios hasta semirremolques y equipos especiales.',
+  ],
+  [
+    'track',
+    'Seguimiento operativo',
+    'Monitoreo satelital y seguimiento en tiempo real.',
+  ],
+  [
+    'storage',
+    'Infraestructura logística',
+    'Espacio para almacenamiento y distribución.',
+  ],
 ];
 ---
-<BaseLayout title="Calltruck | Transporte, logística y almacenamiento" description="Transporte para particulares y empresas, distribución nacional y almacenamiento logístico. Conocé las soluciones de Calltruck.">
+
+<BaseLayout
+  title="Calltruck | Transporte, logística y almacenamiento"
+  description="Transporte para particulares y empresas, distribución nacional y almacenamiento logístico. Conocé las soluciones de Calltruck."
+>
   <section class="hero hero--home" data-hero-slider>
     <div class="hero-slides" aria-hidden="true">
-      <img class="hero-slide is-active" src="images/editorial/hero-slide-02.webp" alt="" fetchpriority="high" />
-      <img class="hero-slide" src="images/editorial/hero-slide-03.webp" alt="" loading="lazy" />
-      <img class="hero-slide" src="images/editorial/hero-slide-04.webp" alt="" loading="lazy" />
-      <img class="hero-slide" src="images/editorial/hero-slide-05.webp" alt="" loading="lazy" />
-      <img class="hero-slide" src="images/editorial/truck-calltruck-clean.webp" alt="" loading="lazy" />
+      <SiteImage
+        class="hero-slide is-active"
+        src="images/editorial/hero-slide-02.webp"
+        alt=""
+        sizes="100vw"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <template data-slide-template>
+        <SiteImage
+          class="hero-slide"
+          sizes="100vw"
+          src="images/editorial/hero-slide-03.webp"
+          alt=""
+          loading="lazy"
+        />
+      </template>
+      <template data-slide-template>
+        <SiteImage
+          class="hero-slide"
+          sizes="100vw"
+          src="images/editorial/hero-slide-04.webp"
+          alt=""
+          loading="lazy"
+        />
+      </template>
+      <template data-slide-template>
+        <SiteImage
+          class="hero-slide"
+          sizes="100vw"
+          src="images/editorial/hero-slide-05.webp"
+          alt=""
+          loading="lazy"
+        />
+      </template>
+      <template data-slide-template>
+        <SiteImage
+          class="hero-slide"
+          sizes="100vw"
+          src="images/editorial/truck-calltruck-clean.webp"
+          alt=""
+          loading="lazy"
+        />
+      </template>
     </div>
-    <div class="hero-grid"></div><span class="hero-index">ARGENTINA · 34°36′S</span>
+    <div class="hero-grid"></div>
+    <span class="hero-index">ARGENTINA · 34°36′S</span>
     <div class="hero-content">
       <span class="eyebrow">Transporte · Logística · Almacenamiento</span>
-      <h1 class="hero-title"><span>Movemos tu carga.</span><span><em>Hacemos avanzar</em></span><span>tus proyectos.</span></h1>
-      <p class="hero-lead">Soluciones de transporte para particulares y empresas, distribución nacional y almacenamiento logístico. Flota, infraestructura y seguimiento operativo para acompañar cada movimiento.</p>
-      <div class="hero-actions"><a class="button" href="https://wa.me/541137874158?text=Hola%2C%20quiero%20pedir%20un%20presupuesto" target="_blank" rel="noreferrer">Pedir presupuesto <span><ArrowIcon /></span></a><a class="button button--outline" href="#soluciones">Explorar soluciones <span><ArrowIcon direction="down" /></span></a></div>
+      <h1 class="hero-title">
+        <span>Movemos tu carga.</span>
+        <span>
+          <em>Hacemos avanzar</em>
+        </span>
+        <span>tus proyectos.</span>
+      </h1>
+      <p class="hero-lead">
+        Soluciones de transporte para particulares y empresas, distribución
+        nacional y almacenamiento logístico. Flota, infraestructura y
+        seguimiento operativo para acompañar cada movimiento.
+      </p>
+      <div class="hero-actions">
+        <a
+          class="button"
+          href="https://wa.me/541137874158?text=Hola%2C%20quiero%20pedir%20un%20presupuesto"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Pedir presupuesto{' '}
+          <span>
+            <ArrowIcon />
+          </span>
+        </a>
+        <a class="button button--outline" href="#soluciones">
+          Explorar soluciones{' '}
+          <span>
+            <ArrowIcon direction="down" />
+          </span>
+        </a>
+      </div>
     </div>
     <div class="hero-slider-controls" aria-label="Imágenes de portada">
-      <div class="hero-slider-dots" role="group" aria-label="Seleccionar imagen">
-        <button class="is-active" type="button" data-slide="0" aria-label="Ver imagen 1" aria-current="true"><span></span></button>
-        <button type="button" data-slide="1" aria-label="Ver imagen 2"><span></span></button>
-        <button type="button" data-slide="2" aria-label="Ver imagen 3"><span></span></button>
-        <button type="button" data-slide="3" aria-label="Ver imagen 4"><span></span></button>
-        <button type="button" data-slide="4" aria-label="Ver imagen 5"><span></span></button>
+      <div
+        class="hero-slider-dots"
+        role="group"
+        aria-label="Seleccionar imagen"
+      >
+        <button
+          class="is-active"
+          type="button"
+          data-slide="0"
+          aria-label="Ver imagen 1"
+          aria-current="true"
+        >
+          <span></span>
+        </button>
+        <button type="button" data-slide="1" aria-label="Ver imagen 2">
+          <span></span>
+        </button>
+        <button type="button" data-slide="2" aria-label="Ver imagen 3">
+          <span></span>
+        </button>
+        <button type="button" data-slide="3" aria-label="Ver imagen 4">
+          <span></span>
+        </button>
+        <button type="button" data-slide="4" aria-label="Ver imagen 5">
+          <span></span>
+        </button>
       </div>
-      <button class="hero-slider-toggle" type="button" data-slider-toggle aria-label="Pausar slider" aria-pressed="false">II</button>
-      <span class="sr-only" data-slider-status aria-live="polite">Imagen 1 de 5</span>
+      <button
+        class="hero-slider-toggle"
+        type="button"
+        data-slider-toggle
+        aria-label="Pausar slider"
+        aria-pressed="false"
+      >
+        II
+      </button>
+      <span class="sr-only" data-slider-status aria-live="polite">
+        Imagen 1 de 5
+      </span>
     </div>
-    <div class="hero-rail" aria-hidden="true"><span>COBERTURA NACIONAL</span><i></i><span>SEGUIMIENTO OPERATIVO</span><i></i><span>INFRAESTRUCTURA LOGÍSTICA</span></div>
-    <a class="scroll-cue" href="#soluciones" aria-label="Ir a soluciones"><span></span><small>DESCUBRIR</small></a>
+    <div class="hero-rail" aria-hidden="true">
+      <span>COBERTURA NACIONAL</span>
+      <i></i>
+      <span>SEGUIMIENTO OPERATIVO</span>
+      <i></i>
+      <span>INFRAESTRUCTURA LOGÍSTICA</span>
+    </div>
+    <a class="scroll-cue" href="#soluciones" aria-label="Ir a soluciones">
+      <span></span>
+      <small>DESCUBRIR</small>
+    </a>
   </section>
 
   <section id="soluciones" class="section reveal">
     <div class="section-inner">
-      <div class="section-head"><div><span class="eyebrow">Lo que hacemos</span><h2>Una solución para cada necesidad.</h2></div><p>Desde un traslado puntual hasta una operación logística empresarial, conectamos tu necesidad con el servicio adecuado.</p></div>
-      <div class="services-grid">{services.map(([no,title,text,label,url,image]) => <a class="service-card" href={url}><span class="service-card__visual"><img src={image} alt="" loading="lazy" /></span><span class="card-no">{no} / SOLUCIÓN</span><h3>{title}</h3><p>{text}</p><span class="text-link">{label}<b><ArrowIcon /></b></span></a>)}</div>
-    </div>
-  </section>
-
-  <section class="section section--dark capacity-section reveal" id="capacidad">
-    <div class="section-inner"><div class="section-head"><div><span class="eyebrow">Capacidad para responder</span><h2>La capacidad que tu operación necesita.</h2></div><p>Transporte, seguimiento e infraestructura para acompañar cada etapa de tu logística.</p></div><div class="metrics-grid">{metrics.map(([icon,title,text]) => <article class="metric"><div class="metric-heading"><TechnicalIcon name={icon} />{icon === 'storage' && <strong class="metric-value">+1.000 <span>m²</span></strong>}</div><h3>{title}</h3><p>{text}</p></article>)}</div></div>
-  </section>
-
-  <section class="section field-report reveal">
-    <div class="section-inner">
-      <div class="section-head"><div><span class="eyebrow">Operación en imágenes</span><h2>Recursos que se ven. Capacidad que se demuestra.</h2></div><p>Unidades para diferentes escalas de carga, operaciones de distribución, contenedores e infraestructura de almacenamiento.</p></div>
-      <div class="report-grid">
-        <figure class="report-shot report-shot--hero"><img src="images/editorial/truck-calltruck-clean.webp" alt="Semirremolque Calltruck en plataforma logística" loading="lazy" /><figcaption><span>01</span><strong>Semirremolques</strong><small>Larga distancia</small></figcaption></figure>
-        <figure class="report-shot report-shot--portrait"><img src="images/editorial/truck-container.webp" alt="Transporte de contenedor" loading="lazy" /><figcaption><span>02</span><strong>Contenedores</strong><small>Equipos especiales</small></figcaption></figure>
-        <figure class="report-shot"><img src="images/editorial/truck-urban-black.webp" alt="Unidad urbana con caja de cortina" loading="lazy" /><figcaption><span>03</span><strong>Distribución</strong><small>Carga general</small></figcaption></figure>
-        <figure class="report-shot"><img src="images/editorial/truck-blue-rear.webp" alt="Unidad equipada con plataforma hidráulica" loading="lazy" /><figcaption><span>04</span><strong>Equipamiento</strong><small>Plataforma hidráulica</small></figcaption></figure>
-        <figure class="report-shot"><img src="images/editorial/warehouse-interior.webp" alt="Interior del depósito de Calltruck" loading="lazy" /><figcaption><span>05</span><strong>Depósito</strong><small>Paso del Rey</small></figcaption></figure>
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Lo que hacemos</span>
+          <h2>Una solución para cada necesidad.</h2>
+        </div>
+        <p>
+          Desde un traslado puntual hasta una operación logística empresarial,
+          conectamos tu necesidad con el servicio adecuado.
+        </p>
+      </div>
+      <div class="services-grid">
+        {services.map(([no, title, text, label, url, image]) => (
+          <a class="service-card" href={url}>
+            <span class="service-card__visual">
+              <SiteImage
+                src={image}
+                width={800}
+                sizes="(max-width: 650px) 45vw, 25vw"
+                alt=""
+                loading="lazy"
+              />
+            </span>
+            <span class="card-no">{no} / SOLUCIÓN</span>
+            <h3>{title}</h3>
+            <p>{text}</p>
+            <span class="text-link">
+              {label}
+              <b>
+                <ArrowIcon />
+              </b>
+            </span>
+          </a>
+        ))}
       </div>
     </div>
   </section>
 
-  <section class="split split--copy-led reveal"><div class="split-copy"><span class="eyebrow">Somos Calltruck</span><h2>Un equipo que entiende de movimiento.</h2><p>Trabajamos para simplificar los desafíos del transporte y la logística con experiencia operativa, recursos adaptables y compromiso con cada entrega.</p><a class="button button--dark" href="la-empresa/">Conocé Calltruck <span><ArrowIcon /></span></a></div><div class="split-media"><img src="images/editorial/truck-semi-rain.webp" alt="Unidad de transporte de larga distancia" loading="lazy" /><span class="image-tag">Capacidad en movimiento</span></div></section>
+  <section class="section section--dark capacity-section reveal" id="capacidad">
+    <div class="section-inner">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Capacidad para responder</span>
+          <h2>La capacidad que tu operación necesita.</h2>
+        </div>
+        <p>
+          Transporte, seguimiento e infraestructura para acompañar cada etapa de
+          tu logística.
+        </p>
+      </div>
+      <div class="metrics-grid">
+        {metrics.map(([icon, title, text]) => (
+          <article class="metric">
+            <div class="metric-heading">
+              <TechnicalIcon name={icon} />
+              {icon === 'storage' && (
+                <strong class="metric-value">
+                  +1.000 <span>m²</span>
+                </strong>
+              )}
+            </div>
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
 
-  <div class="band band--marquee"><span class="band-label">Nuestros recursos</span><div class="band-viewport"><div class="band-content"><span>Utilitarios</span><i>✦</i><span>Chasis 8–14 pallets</span><i>✦</i><span>Semirremolques</span><i>✦</i><span>Equipos especiales</span><i>✦</i><span aria-hidden="true">Utilitarios</span><i aria-hidden="true">✦</i><span aria-hidden="true">Chasis 8–14 pallets</span><i aria-hidden="true">✦</i></div></div></div>
+  <section class="section field-report reveal">
+    <div class="section-inner">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Operación en imágenes</span>
+          <h2>Recursos que se ven. Capacidad que se demuestra.</h2>
+        </div>
+        <p>
+          Unidades para diferentes escalas de carga, operaciones de
+          distribución, contenedores e infraestructura de almacenamiento.
+        </p>
+      </div>
+      <div class="report-grid">
+        <figure class="report-shot report-shot--hero">
+          <SiteImage
+            src="images/editorial/truck-calltruck-clean.webp"
+            alt="Semirremolque Calltruck en plataforma logística"
+            loading="lazy"
+          />
+          <figcaption>
+            <span>01</span>
+            <strong>Semirremolques</strong>
+            <small>Larga distancia</small>
+          </figcaption>
+        </figure>
+        <figure class="report-shot report-shot--portrait">
+          <SiteImage
+            src="images/editorial/truck-container.webp"
+            alt="Transporte de contenedor"
+            loading="lazy"
+          />
+          <figcaption>
+            <span>02</span>
+            <strong>Contenedores</strong>
+            <small>Equipos especiales</small>
+          </figcaption>
+        </figure>
+        <figure class="report-shot">
+          <SiteImage
+            src="images/editorial/truck-urban-black.webp"
+            alt="Unidad urbana con caja de cortina"
+            loading="lazy"
+          />
+          <figcaption>
+            <span>03</span>
+            <strong>Distribución</strong>
+            <small>Carga general</small>
+          </figcaption>
+        </figure>
+        <figure class="report-shot">
+          <SiteImage
+            src="images/editorial/truck-blue-rear.webp"
+            alt="Unidad equipada con plataforma hidráulica"
+            loading="lazy"
+          />
+          <figcaption>
+            <span>04</span>
+            <strong>Equipamiento</strong>
+            <small>Plataforma hidráulica</small>
+          </figcaption>
+        </figure>
+        <figure class="report-shot">
+          <SiteImage
+            src="images/editorial/warehouse-interior.webp"
+            alt="Interior del depósito de Calltruck"
+            loading="lazy"
+          />
+          <figcaption>
+            <span>05</span>
+            <strong>Depósito</strong>
+            <small>Paso del Rey</small>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
 
-  <section class="section section--fleet reveal"><span class="fleet-outline" aria-hidden="true">MOVIMIENTO</span><div class="section-inner"><div class="section-head"><div><span class="eyebrow">Nuestra flota</span><h2>El vehículo adecuado para cada operación.</h2></div><p>Utilitarios, chasis con capacidad de 8 a 14 pallets, unidades con pala hidráulica, semirremolques y equipos especiales.</p></div><FleetGallery compact /></div></section>
+  <section class="split split--copy-led reveal">
+    <div class="split-copy">
+      <span class="eyebrow">Somos Calltruck</span>
+      <h2>Un equipo que entiende de movimiento.</h2>
+      <p>
+        Trabajamos para simplificar los desafíos del transporte y la logística
+        con experiencia operativa, recursos adaptables y compromiso con cada
+        entrega.
+      </p>
+      <a class="button button--dark" href="la-empresa/">
+        Conocé Calltruck{' '}
+        <span>
+          <ArrowIcon />
+        </span>
+      </a>
+    </div>
+    <div class="split-media">
+      <SiteImage
+        src="images/editorial/truck-semi-rain.webp"
+        alt="Unidad de transporte de larga distancia"
+        loading="lazy"
+      />
+      <span class="image-tag">Capacidad en movimiento</span>
+    </div>
+  </section>
 
-  <section class="split split--media-led reveal"><div class="split-media"><img src="images/editorial/warehouse-interior.webp" alt="Interior del depósito de Calltruck" loading="lazy" /><span class="image-tag">Paso del Rey</span></div><div class="split-copy"><span class="eyebrow">Almacenamiento y distribución</span><h2>Espacio para que tu operación siga avanzando.</h2><p>Más de 1.000 m² de depósito en Paso del Rey, con acceso inmediato a Acceso Oeste y Camino del Buen Ayre.</p><a class="button button--dark" href="almacenamiento-logistico/">Ver almacenamiento <span><ArrowIcon /></span></a></div></section>
+  <div class="band band--marquee">
+    <span class="band-label">Nuestros recursos</span>
+    <div class="band-viewport">
+      <div class="band-content">
+        <span>Utilitarios</span>
+        <i>✦</i>
+        <span>Chasis 8–14 pallets</span>
+        <i>✦</i>
+        <span>Semirremolques</span>
+        <i>✦</i>
+        <span>Equipos especiales</span>
+        <i>✦</i>
+        <span aria-hidden="true">Utilitarios</span>
+        <i aria-hidden="true">✦</i>
+        <span aria-hidden="true">Chasis 8–14 pallets</span>
+        <i aria-hidden="true">✦</i>
+      </div>
+    </div>
+  </div>
 
-  <CTA title="Contanos qué necesitás mover." text="Ya sea un traslado puntual o una operación logística para tu empresa, conversemos sobre la solución que necesitás." />
+  <section class="section section--fleet reveal">
+    <span class="fleet-outline" aria-hidden="true">
+      MOVIMIENTO
+    </span>
+    <div class="section-inner">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Nuestra flota</span>
+          <h2>El vehículo adecuado para cada operación.</h2>
+        </div>
+        <p>
+          Utilitarios, chasis con capacidad de 8 a 14 pallets, unidades con pala
+          hidráulica, semirremolques y equipos especiales.
+        </p>
+      </div>
+      <FleetGallery compact />
+    </div>
+  </section>
+
+  <section class="split split--media-led reveal">
+    <div class="split-media">
+      <SiteImage
+        src="images/editorial/warehouse-interior.webp"
+        alt="Interior del depósito de Calltruck"
+        loading="lazy"
+      />
+      <span class="image-tag">Paso del Rey</span>
+    </div>
+    <div class="split-copy">
+      <span class="eyebrow">Almacenamiento y distribución</span>
+      <h2>Espacio para que tu operación siga avanzando.</h2>
+      <p>
+        Más de 1.000 m² de depósito en Paso del Rey, con acceso inmediato a
+        Acceso Oeste y Camino del Buen Ayre.
+      </p>
+      <a class="button button--dark" href="almacenamiento-logistico/">
+        Ver almacenamiento{' '}
+        <span>
+          <ArrowIcon />
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <CTA
+    title="Contanos qué necesitás mover."
+    text="Ya sea un traslado puntual o una operación logística para tu empresa, conversemos sobre la solución que necesitás."
+  />
 
   <script>
     const slider = document.querySelector('[data-hero-slider]');
     if (slider) {
-      const slides = [...slider.querySelectorAll('.hero-slide')];
+      const slides = [...slider.querySelector('.hero-slides').children];
       const dots = [...slider.querySelectorAll('[data-slide]')];
       const toggle = slider.querySelector('[data-slider-toggle]');
       const status = slider.querySelector('[data-slider-status]');
-      const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const reduceMotion = matchMedia(
+        '(prefers-reduced-motion: reduce)',
+      ).matches;
       let active = 0;
       let paused = reduceMotion;
       let timer;
+      let visible = true;
+      let slideRequest = 0;
 
-      const showSlide = (next, announce = true) => {
-        active = (next + slides.length) % slides.length;
-        slides.forEach((slide, index) => slide.classList.toggle('is-active', index === active));
+      const showSlide = async (next, announce = true) => {
+        const request = ++slideRequest;
+        const index = (next + slides.length) % slides.length;
+        if (slides[index] instanceof HTMLTemplateElement) {
+          const image = slides[index].content.firstElementChild.cloneNode(true);
+          slides[index].replaceWith(image);
+          slides[index] = image;
+        }
+        if (slides[index] instanceof HTMLImageElement) {
+          await slides[index].decode().catch(() => {});
+        }
+        if (request !== slideRequest) return;
+        active = index;
+        slides.forEach((slide, index) =>
+          slide.classList.toggle('is-active', index === active),
+        );
         dots.forEach((dot, index) => {
           dot.classList.toggle('is-active', index === active);
-          index === active ? dot.setAttribute('aria-current', 'true') : dot.removeAttribute('aria-current');
+          index === active
+            ? dot.setAttribute('aria-current', 'true')
+            : dot.removeAttribute('aria-current');
         });
-        if (announce && status) status.textContent = `Imagen ${active + 1} de ${slides.length}`;
+        if (announce && status)
+          status.textContent = `Imagen ${active + 1} de ${slides.length}`;
       };
 
-      const stop = () => { if (timer) window.clearInterval(timer); timer = undefined; };
+      const stop = () => {
+        if (timer) window.clearInterval(timer);
+        timer = undefined;
+      };
       const start = () => {
         stop();
-        if (!paused && !document.hidden) timer = window.setInterval(() => showSlide(active + 1, false), 5500);
+        if (!paused && visible && !document.hidden)
+          timer = window.setInterval(() => showSlide(active + 1, false), 5500);
       };
 
-      dots.forEach((dot) => dot.addEventListener('click', () => {
-        showSlide(Number(dot.dataset.slide));
-        start();
-      }));
+      dots.forEach((dot) =>
+        dot.addEventListener('click', () => {
+          showSlide(Number(dot.dataset.slide));
+          start();
+        }),
+      );
 
       const updateToggle = () => {
         if (!toggle) return;
         toggle.textContent = paused ? '▶' : 'II';
-        toggle.setAttribute('aria-label', paused ? 'Reproducir slider' : 'Pausar slider');
+        toggle.setAttribute(
+          'aria-label',
+          paused ? 'Reproducir slider' : 'Pausar slider',
+        );
         toggle.setAttribute('aria-pressed', String(paused));
       };
 
-      toggle?.addEventListener('click', () => { paused = !paused; updateToggle(); start(); });
+      toggle?.addEventListener('click', () => {
+        paused = !paused;
+        updateToggle();
+        start();
+      });
       document.addEventListener('visibilitychange', start);
+      new IntersectionObserver(([entry]) => {
+        visible = entry.isIntersecting;
+        start();
+      }).observe(slider);
       updateToggle();
       start();
     }

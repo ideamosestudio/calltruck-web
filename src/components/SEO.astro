@@ -1,0 +1,135 @@
+---
+import { getImage } from 'astro:assets';
+import socialSource from '../assets/images/editorial/hero-slide-02.webp';
+import { site, pages } from '../config/site';
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const socialImage = await getImage({
+  src: socialSource,
+  width: 1200,
+  height: 630,
+  fit: 'cover',
+  format: 'jpg',
+  quality: 80,
+});
+const socialUrl = new URL(socialImage.src, Astro.site).href;
+const page = pages.find((page) => canonical === `${site.url}${page.path}`);
+const organization = `${site.url}#organization`;
+const graph = [
+  {
+    '@type': 'Organization',
+    '@id': organization,
+    name: site.name,
+    url: site.url,
+    logo: `${site.url}images/calltruck-logo.webp`,
+    email: site.email,
+    telephone: site.phone,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'La Santa María 728',
+      addressLocality: 'Paso del Rey, Moreno',
+      addressRegion: 'Buenos Aires',
+      addressCountry: 'AR',
+    },
+    sameAs: ['https://www.instagram.com/transporte.calltruck/'],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: site.phone,
+      contactType: 'customer service',
+      availableLanguage: 'es',
+      areaServed: 'AR',
+    },
+  },
+  {
+    '@type': 'WebSite',
+    '@id': `${site.url}#website`,
+    url: site.url,
+    name: site.name,
+    inLanguage: 'es-AR',
+    publisher: { '@id': organization },
+  },
+  {
+    '@type': 'WebPage',
+    '@id': `${canonical}#webpage`,
+    url: canonical,
+    name: title,
+    description,
+    inLanguage: 'es-AR',
+    isPartOf: { '@id': `${site.url}#website` },
+    about: { '@id': organization },
+  },
+  ...(page?.path
+    ? [
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'Inicio',
+              item: site.url,
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: page.name,
+              item: canonical,
+            },
+          ],
+        },
+      ]
+    : []),
+  ...([
+    'transporte-particulares/',
+    'logistica-empresas/',
+    'almacenamiento-logistico/',
+  ].includes(page?.path ?? '')
+    ? [
+        {
+          '@type': 'Service',
+          '@id': `${canonical}#service`,
+          name: page!.name,
+          description: page!.description,
+          url: canonical,
+          provider: { '@id': organization },
+          areaServed:
+            page!.path === 'almacenamiento-logistico/'
+              ? 'Paso del Rey, Buenos Aires, Argentina'
+              : 'Argentina',
+        },
+      ]
+    : []),
+];
+---
+
+<link rel="canonical" href={canonical} />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="es_AR" />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={socialUrl} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Transporte y logística Calltruck" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={socialUrl} />
+<link rel="sitemap" href={`${site.url}sitemap-index.xml`} />
+<link
+  rel="alternate"
+  type="text/plain"
+  title="Información de Calltruck para asistentes"
+  href={`${site.url}llms.txt`}
+/>
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': graph,
+  }).replace(/</g, '\\u003c')}
+/>

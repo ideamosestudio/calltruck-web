@@ -1,0 +1,18 @@
+---
+import SiteImage from './SiteImage.astro';
+const { src, gradient } = Astro.props;
+---
+
+<div
+  class="hero-backdrop"
+  aria-hidden="true"
+  style={`--hero-gradient:${gradient}`}
+>
+  <SiteImage
+    src={src}
+    alt=""
+    sizes="100vw"
+    loading="eager"
+    fetchpriority="high"
+  />
+</div>

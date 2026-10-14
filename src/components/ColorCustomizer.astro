@@ -1,0 +1,363 @@
+---
+const colors = [
+  ['orange', 'Naranja Calltruck', '#FF5C00'],
+  ['yellow', 'Amarillo ámbar', '#F4C542'],
+  ['gray', 'Gris acero', '#B8C0CC'],
+  ['blue', 'Azul eléctrico', '#5A9BFF'],
+  ['red', 'Rojo coral', '#FF5A5F'],
+];
+---
+
+<div class="color-customizer" data-color-customizer>
+  <button
+    class="color-customizer__tab"
+    type="button"
+    aria-label="Personalizar color del sitio"
+    aria-expanded="false"
+    aria-controls="color-customizer-panel"
+    data-color-tab
+  >
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.6"
+      aria-hidden="true"
+    >
+      <path d="M12 3a9 9 0 1 0 0 18h1.2a2 2 0 0 0 1.6-3.2 1.5 1.5 0 0 1 1.2-2.4h1.4A3.6 3.6 0 0 0 21 12a9 9 0 0 0-9-9Z" />
+      <circle cx="7" cy="10" r=".8" />
+      <circle cx="10" cy="6.8" r=".8" />
+      <circle cx="14.5" cy="7" r=".8" />
+      <circle cx="17" cy="10.5" r=".8" />
+    </svg>
+  </button>
+  <aside
+    class="color-customizer__panel"
+    id="color-customizer-panel"
+    aria-label="Personalizar color"
+    hidden
+  >
+    <div class="color-customizer__heading">
+      <div>
+        <span>VISTA PREVIA</span>
+        <h2>Probá otro color.</h2>
+      </div>
+      <button
+        type="button"
+        class="color-customizer__close"
+        aria-label="Cerrar personalizador"
+        data-color-close
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          aria-hidden="true"
+        >
+          <path d="m6 6 12 12M18 6 6 18" />
+        </svg>
+      </button>
+    </div>
+    <p>Elegí el acento que mejor acompaña a Calltruck.</p>
+    <div
+      class="color-customizer__options"
+      role="group"
+      aria-label="Color destacado"
+    >
+      {colors.map(([id, name, hex]) => (
+        <button
+          type="button"
+          class="color-customizer__option"
+          data-accent-choice={id}
+          aria-pressed={id === 'orange'}
+        >
+          <span
+            class="color-customizer__swatch"
+            style={`--swatch:${hex}`}
+            aria-hidden="true"
+          ></span>
+          <span>
+            <strong>{name}</strong>
+            <small>{hex}</small>
+          </span>
+          <svg
+            class="color-customizer__check"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <path d="m5 12 4 4L19 6" />
+          </svg>
+        </button>
+      ))}
+    </div>
+    <button type="button" class="color-customizer__reset" data-color-reset>
+      Volver al naranja original
+    </button>
+    <p class="color-customizer__note">
+      La elección solo se guarda en este navegador.
+    </p>
+    <span class="sr-only" role="status" data-color-status></span>
+  </aside>
+</div>
+<script>
+  const customizer = document.querySelector('[data-color-customizer]');
+  if (customizer) {
+    const tab =
+      customizer.querySelector<HTMLButtonElement>('[data-color-tab]')!;
+    const panel = customizer.querySelector<HTMLElement>(
+      '.color-customizer__panel',
+    )!;
+    const options = [
+      ...customizer.querySelectorAll<HTMLButtonElement>('[data-accent-choice]'),
+    ];
+    const setOpen = (open: boolean) => {
+      panel.hidden = !open;
+      tab.setAttribute('aria-expanded', String(open));
+      if (open)
+        options
+          .find((option) => option.getAttribute('aria-pressed') === 'true')
+          ?.focus();
+      else tab.focus({ preventScroll: true });
+    };
+    const select = (color: string, save = true) => {
+      if (!options.some((option) => option.dataset.accentChoice === color))
+        color = 'orange';
+      document.documentElement.dataset.accent = color;
+      options.forEach((option) =>
+        option.setAttribute(
+          'aria-pressed',
+          String(option.dataset.accentChoice === color),
+        ),
+      );
+      if (save) {
+        try {
+          localStorage.setItem('calltruck-accent', color);
+        } catch {
+          /* Preview still works if storage is blocked. */
+        }
+        const selected = options.find(
+          (option) => option.dataset.accentChoice === color,
+        )!;
+        customizer.querySelector('[data-color-status]')!.textContent =
+          `Color seleccionado: ${selected.querySelector('strong')!.textContent}`;
+      }
+    };
+    select(document.documentElement.dataset.accent || 'orange', false);
+    tab.addEventListener('click', () => setOpen(panel.hidden));
+    customizer
+      .querySelector('[data-color-close]')
+      ?.addEventListener('click', () => setOpen(false));
+    customizer
+      .querySelector('[data-color-reset]')
+      ?.addEventListener('click', () => select('orange'));
+    options.forEach((option) =>
+      option.addEventListener('click', () =>
+        select(option.dataset.accentChoice!),
+      ),
+    );
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !panel.hidden) setOpen(false);
+    });
+    document.addEventListener('pointerdown', (event) => {
+      if (
+        !panel.hidden &&
+        event.target instanceof Node &&
+        !customizer.contains(event.target)
+      ) {
+        panel.hidden = true;
+        tab.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+</script>
+<style>
+  .color-customizer {
+    position: fixed;
+    right: 0;
+    top: 42%;
+    z-index: 65;
+    color: #f7f4ec;
+    font-family: Inter, Arial, sans-serif;
+  }
+  .color-customizer__tab {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 52px;
+    padding: 10px;
+    border: 1px solid #424740;
+    border-right: 0;
+    border-radius: 12px 0 0 12px;
+    background: #171b18;
+    color: var(--accent);
+    box-shadow: 0 3px 16px #0003;
+    cursor: pointer;
+  }
+  .color-customizer svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+  }
+  .color-customizer__tab:hover,
+  .color-customizer__tab[aria-expanded='true'] {
+    background: #252b26;
+    border-color: var(--accent);
+  }
+  .color-customizer__panel {
+    position: fixed;
+    right: 58px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 300px;
+    max-width: calc(100vw - 76px);
+    max-height: calc(100dvh - 100px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 22px;
+    border: 1px solid #424740;
+    border-radius: 18px;
+    background: #111713;
+    box-shadow: 0 18px 70px #0007;
+  }
+  .color-customizer__panel[hidden] {
+    display: none;
+  }
+  .color-customizer__heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .color-customizer__heading span {
+    font-size: 10px;
+    letter-spacing: 0.13em;
+    color: #b8c0b9;
+  }
+  .color-customizer h2 {
+    font:
+      600 19px/1.3 Inter,
+      Arial,
+      sans-serif;
+    text-transform: none;
+    letter-spacing: -0.03em;
+    margin: 4px 0 0;
+  }
+  .color-customizer__close {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: #f7f4ec;
+    cursor: pointer;
+  }
+  .color-customizer__close:hover {
+    background: #29332b;
+  }
+  .color-customizer__panel > p {
+    font-size: 12px;
+    line-height: 1.6;
+    color: #b8c0b9;
+    margin: 12px 0 18px;
+  }
+  .color-customizer__options {
+    display: grid;
+    gap: 7px;
+  }
+  .color-customizer__option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 56px;
+    padding: 8px 10px;
+    text-align: left;
+    background: #1b241d;
+    color: #f7f4ec;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    transition:
+      background 0.18s,
+      border-color 0.18s;
+  }
+  .color-customizer__option:hover {
+    background: #28352b;
+  }
+  .color-customizer__option[aria-pressed='true'] {
+    border-color: var(--accent);
+  }
+  .color-customizer__swatch {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: var(--swatch);
+    box-shadow: inset 0 0 0 1px #ffffff26;
+    flex-shrink: 0;
+  }
+  .color-customizer__option strong {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .color-customizer__option small {
+    display: block;
+    font-size: 10px;
+    color: #b8c0b9;
+    letter-spacing: 0.04em;
+    line-height: 1.5;
+  }
+  .color-customizer__check {
+    margin-left: auto;
+    opacity: 0;
+    color: var(--accent);
+  }
+  .color-customizer__option[aria-pressed='true'] .color-customizer__check {
+    opacity: 1;
+  }
+  .color-customizer__reset {
+    width: 100%;
+    min-height: 44px;
+    margin-top: 12px;
+    background: none;
+    border: 0;
+    color: #f7f4ec;
+    font-size: 11px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    cursor: pointer;
+  }
+  .color-customizer__panel > p.color-customizer__note {
+    font-size: 10px;
+    text-align: center;
+    margin: 5px 0 0;
+  }
+  .color-customizer button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+  :global(html:not(.js)) .color-customizer,
+  :global(body.menu-open) .color-customizer {
+    display: none;
+  }
+  @media (max-width: 650px) {
+    .color-customizer__panel {
+      right: 52px;
+      width: 286px;
+      max-width: calc(100vw - 64px);
+      padding: 16px;
+    }
+    .color-customizer__tab {
+      width: 40px;
+      height: 48px;
+    }
+  }
+</style>

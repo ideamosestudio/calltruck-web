@@ -1,13 +1,136 @@
 ---
-import ArrowIcon from "../components/ArrowIcon.astro";
+import HeroBackdrop from '../components/HeroBackdrop.astro';
+import SiteImage from '../components/SiteImage.astro';
+import ArrowIcon from '../components/ArrowIcon.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from '../components/CTA.astro';
-const services=[['01','Transporte para vos','Un traslado puntual también necesita una solución clara. Contanos qué necesitás transportar y te orientamos para avanzar.','transporte-particulares/','images/editorial/truck-urban-white.webp'],['02','Logística para empresas','Transporte nacional, distribución, contenedores y cargas generales, con recursos adaptados a cada empresa.','logistica-empresas/','images/editorial/truck-calltruck-clean.webp'],['03','Almacenamiento logístico','Infraestructura para almacenar y acompañar la distribución de mercaderías desde Paso del Rey.','almacenamiento-logistico/','images/editorial/warehouse-interior.webp']];
-const capabilities=['Transporte nacional','Distribución','Logística inversa','Operaciones IMO','Contenedores y cargas generales','Importación y exportación','Servicio aduanero (ATA)'];
+const services = [
+  [
+    '01',
+    'Transporte para vos',
+    'Un traslado puntual también necesita una solución clara. Contanos qué necesitás transportar y te orientamos para avanzar.',
+    'transporte-particulares/',
+    'images/editorial/truck-urban-white.webp',
+  ],
+  [
+    '02',
+    'Logística para empresas',
+    'Transporte nacional, distribución, contenedores y cargas generales, con recursos adaptados a cada empresa.',
+    'logistica-empresas/',
+    'images/editorial/truck-calltruck-clean.webp',
+  ],
+  [
+    '03',
+    'Almacenamiento logístico',
+    'Infraestructura para almacenar y acompañar la distribución de mercaderías desde Paso del Rey.',
+    'almacenamiento-logistico/',
+    'images/editorial/warehouse-interior.webp',
+  ],
+];
+const capabilities = [
+  'Transporte nacional',
+  'Distribución',
+  'Logística inversa',
+  'Operaciones IMO',
+  'Contenedores y cargas generales',
+  'Importación y exportación',
+  'Servicio aduanero (ATA)',
+];
 ---
-<BaseLayout title="Soluciones de transporte y logística | Calltruck" description="Explorá los servicios de Calltruck: transporte para particulares, logística para empresas y almacenamiento en Paso del Rey.">
-  <section class="hero hero--service" style="background-image:linear-gradient(90deg,rgba(10,12,11,.96),rgba(10,12,11,.67) 48%,rgba(10,12,11,.1)),url('images/editorial/hero-home.webp')"><div class="hero-grid"></div><span class="hero-index">SOLUCIONES · 01—03</span><div class="hero-content"><span class="eyebrow">Nuestros servicios</span><h1>Transporte y logística<br>para lo que necesitás<br><em>resolver.</em></h1><p class="hero-lead">Tres grandes soluciones, un mismo objetivo: ayudarte a mover, distribuir o almacenar tu carga con el respaldo operativo de Calltruck.</p></div></section>
-  <section class="section reveal"><div class="section-inner"><div class="section-head"><div><span class="eyebrow">Tres grandes soluciones</span><h2>Elegí cómo podemos ayudarte.</h2></div><p>Cada necesidad tiene su propia escala. Empezá por la solución que mejor describe tu operación.</p></div><div class="services-grid">{services.map(([no,title,text,url,image])=><a class="service-card" href={url}><span class="service-card__visual"><img src={image} alt="" loading="lazy" /></span><span class="card-no">{no} / SERVICIO</span><h3>{title}</h3><p>{text}</p><span class="text-link">Conocer solución <b><ArrowIcon /></b></span></a>)}</div></div></section>
-  <section class="section section--dark reveal"><div class="section-inner"><div class="section-head"><div><span class="eyebrow">Más que transporte</span><h2>Capacidad para operaciones de distinta complejidad.</h2></div><p>Nuestra presentación comercial incluye distintas capacidades operativas. El alcance concreto se confirma para cada consulta.</p></div><div class="capability-list">{capabilities.map((item,i)=><div class="capability"><span>0{i+1}</span><h3>{item}</h3><p>Recursos y coordinación adaptados a las características de cada operación.</p></div>)}</div></div></section>
-  <CTA title="¿No sabés qué solución necesitás?" text="Contanos qué querés trasladar o almacenar y conversemos sobre tu operación." label="Consultar con Calltruck" />
+
+<BaseLayout
+  title="Soluciones de transporte y logística | Calltruck"
+  description="Explorá los servicios de Calltruck: transporte para particulares, logística para empresas y almacenamiento en Paso del Rey."
+>
+  <section class="hero hero--service">
+    <HeroBackdrop
+      src="images/editorial/hero-home.webp"
+      gradient="linear-gradient(90deg,rgba(10,12,11,.96),rgba(10,12,11,.67) 48%,rgba(10,12,11,.1))"
+    />
+    <div class="hero-grid"></div>
+    <span class="hero-index">SOLUCIONES · 01—03</span>
+    <div class="hero-content">
+      <span class="eyebrow">Nuestros servicios</span>
+      <h1>
+        Transporte y logística
+        <br />
+        para lo que necesitás
+        <br />
+        <em>resolver.</em>
+      </h1>
+      <p class="hero-lead">
+        Tres grandes soluciones, un mismo objetivo: ayudarte a mover, distribuir
+        o almacenar tu carga con el respaldo operativo de Calltruck.
+      </p>
+    </div>
+  </section>
+  <section class="section reveal">
+    <div class="section-inner">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Tres grandes soluciones</span>
+          <h2>Elegí cómo podemos ayudarte.</h2>
+        </div>
+        <p>
+          Cada necesidad tiene su propia escala. Empezá por la solución que
+          mejor describe tu operación.
+        </p>
+      </div>
+      <div class="services-grid">
+        {services.map(([no, title, text, url, image]) => (
+          <a class="service-card" href={url}>
+            <span class="service-card__visual">
+              <SiteImage
+                src={image}
+                width={800}
+                sizes="(max-width: 650px) 45vw, 25vw"
+                alt=""
+                loading="lazy"
+              />
+            </span>
+            <span class="card-no">{no} / SERVICIO</span>
+            <h3>{title}</h3>
+            <p>{text}</p>
+            <span class="text-link">
+              Conocer solución{' '}
+              <b>
+                <ArrowIcon />
+              </b>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="section section--dark reveal">
+    <div class="section-inner">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Más que transporte</span>
+          <h2>Capacidad para operaciones de distinta complejidad.</h2>
+        </div>
+        <p>
+          Nuestra presentación comercial incluye distintas capacidades
+          operativas. El alcance concreto se confirma para cada consulta.
+        </p>
+      </div>
+      <div class="capability-list">
+        {capabilities.map((item, i) => (
+          <div class="capability">
+            <span>0{i + 1}</span>
+            <h3>{item}</h3>
+            <p>
+              Recursos y coordinación adaptados a las características de cada
+              operación.
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  <CTA
+    title="¿No sabés qué solución necesitás?"
+    text="Contanos qué querés trasladar o almacenar y conversemos sobre tu operación."
+    label="Consultar con Calltruck"
+  />
 </BaseLayout>

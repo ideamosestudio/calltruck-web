@@ -1,40 +1,151 @@
 ---
-import ArrowIcon from "./ArrowIcon.astro";
+import SiteImage from './SiteImage.astro';
+import ArrowIcon from './ArrowIcon.astro';
 const rawBase = import.meta.env.BASE_URL;
 const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
-const relativePath = Astro.url.pathname.startsWith(base) ? Astro.url.pathname.slice(base.length) : Astro.url.pathname.replace(/^\//, '');
+const relativePath = Astro.url.pathname.startsWith(base)
+  ? Astro.url.pathname.slice(base.length)
+  : Astro.url.pathname.replace(/^\//, '');
 const path = `/${relativePath}`;
 const nav = [
   ['Inicio', '.'],
   ['La empresa', 'la-empresa/'],
   ['Soluciones', 'soluciones/'],
-  ['Contacto', 'contacto/']
+  ['Contacto', 'contacto/'],
 ];
 const services = [
-  ['Transporte para vos', 'transporte-particulares/', 'images/editorial/truck-urban-white.webp', 'Traslados a medida'],
-  ['Logística para empresas', 'logistica-empresas/', 'images/editorial/truck-calltruck-clean.webp', 'Operación nacional'],
-  ['Almacenamiento logístico', 'almacenamiento-logistico/', 'images/editorial/warehouse-interior.webp', 'Paso del Rey']
+  [
+    'Transporte para vos',
+    'transporte-particulares/',
+    'images/editorial/truck-urban-white.webp',
+    'Traslados a medida',
+  ],
+  [
+    'Logística para empresas',
+    'logistica-empresas/',
+    'images/editorial/truck-calltruck-clean.webp',
+    'Operación nacional',
+  ],
+  [
+    'Almacenamiento logístico',
+    'almacenamiento-logistico/',
+    'images/editorial/warehouse-interior.webp',
+    'Paso del Rey',
+  ],
 ];
-const whatsapp = 'https://wa.me/541137874158?text=Hola%2C%20quiero%20pedir%20un%20presupuesto';
+const whatsapp =
+  'https://wa.me/541137874158?text=Hola%2C%20quiero%20pedir%20un%20presupuesto';
 ---
+
 <header class="site-header" data-header>
   <a class="brand" href="." aria-label="Calltruck, inicio">
-    <img class="brand-logo" src="images/calltruck-logo.webp" width="900" height="300" alt="CALLTRUCK" fetchpriority="high" />
+    <img
+      class="brand-logo"
+      src="images/calltruck-logo.webp?v=3"
+      width="900"
+      height="300"
+      alt="CALLTRUCK"
+      decoding="async"
+    />
   </a>
-  <button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú">
-    <span></span><span></span><span></span><b class="sr-only">Abrir menú</b>
+  <button
+    class="menu-toggle"
+    data-menu-toggle
+    aria-expanded="false"
+    aria-controls="site-nav"
+    aria-label="Abrir menú"
+  >
+    <span></span>
+    <span></span>
+    <span></span>
+    <b class="sr-only">Abrir menú</b>
   </button>
-  <nav id="site-nav" class="site-nav" data-menu aria-label="Navegación principal"><div class="mobile-nav-intro">TRANSPORTE · LOGÍSTICA · ALMACENAMIENTO</div>
-    {nav.map(([label, href]) => label === 'Soluciones' ? (
-      <div class="nav-dropdown">
-        <a href={href} class:list={{active: path.startsWith('/soluciones') || services.some(([, url]) => path.startsWith(`/${url.replace(/\/$/, '')}`))}}>{label}<span><ArrowIcon direction="chevron-down" /></span></a>
-        <div class="dropdown-panel">
-          <div class="dropdown-head"><span>SOLUCIONES</span><small>Elegí el punto de partida</small></div>
-          {services.map(([name, url, image, meta], i) => <a class="dropdown-service" href={url}><span class="dropdown-thumb"><img src={image} alt="" loading="lazy" /></span><span class="dropdown-copy"><em>0{i + 1}</em><b>{name}</b><small>{meta}</small></span><span class="dropdown-arrow"><ArrowIcon /></span></a>)}
+  <nav
+    id="site-nav"
+    class="site-nav"
+    data-menu
+    aria-label="Navegación principal"
+  >
+    <div class="mobile-nav-intro">TRANSPORTE · LOGÍSTICA · ALMACENAMIENTO</div>
+    {nav.map(([label, href]) =>
+      label === 'Soluciones' ? (
+        <div class="nav-dropdown">
+          <a
+            href={href}
+            class:list={{
+              active:
+                path.startsWith('/soluciones') ||
+                services.some(([, url]) =>
+                  path.startsWith(`/${url.replace(/\/$/, '')}`),
+                ),
+            }}
+          >
+            {label}
+            <span>
+              <ArrowIcon direction="chevron-down" />
+            </span>
+          </a>
+          <div class="dropdown-panel">
+            <div class="dropdown-head">
+              <span>SOLUCIONES</span>
+              <small>Elegí el punto de partida</small>
+            </div>
+            {services.map(([name, url, image, meta], i) => (
+              <a class="dropdown-service" href={url}>
+                <span class="dropdown-thumb">
+                  <SiteImage
+                    src={image}
+                    width={320}
+                    sizes="100px"
+                    alt=""
+                    loading="lazy"
+                  />
+                </span>
+                <span class="dropdown-copy">
+                  <em>0{i + 1}</em>
+                  <b>{name}</b>
+                  <small>{meta}</small>
+                </span>
+                <span class="dropdown-arrow">
+                  <ArrowIcon />
+                </span>
+              </a>
+            ))}
+          </div>
         </div>
-      </div>
-    ) : <a href={href} class:list={{active: href === '.' ? path === '/' : path.startsWith(`/${href.replace(/\/$/, '')}`)}}>{label}</a>)}
-    <div class="mobile-nav-contact"><a class="mobile-nav-cta" href={whatsapp} target="_blank" rel="noreferrer">Pedir presupuesto <ArrowIcon /></a><a class="mobile-nav-email" href="mailto:info@calltruck.com.ar">info@calltruck.com.ar</a><span>Tu carga, en buenas manos.</span></div>
+      ) : (
+        <a
+          href={href}
+          class:list={{
+            active:
+              href === '.'
+                ? path === '/'
+                : path.startsWith(`/${href.replace(/\/$/, '')}`),
+          }}
+        >
+          {label}
+        </a>
+      ),
+    )}
+    <div class="mobile-nav-contact">
+      <a
+        class="mobile-nav-cta"
+        href={whatsapp}
+        target="_blank"
+        rel="noreferrer"
+      >
+        Pedir presupuesto <ArrowIcon />
+      </a>
+      <a class="mobile-nav-email" href="mailto:info@calltruck.com.ar">
+        info@calltruck.com.ar
+      </a>
+      <span>Tu carga, en buenas manos.</span>
+    </div>
   </nav>
-  <a class="header-cta" href={whatsapp} target="_blank" rel="noreferrer">Pedir presupuesto <span><ArrowIcon /></span></a>
+  <a class="header-cta" href={whatsapp} target="_blank" rel="noreferrer">
+    Pedir presupuesto{' '}
+    <span>
+      <ArrowIcon />
+    </span>
+  </a>
 </header>

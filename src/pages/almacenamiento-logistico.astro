@@ -1,15 +1,217 @@
 ---
-import ArrowIcon from "../components/ArrowIcon.astro";
+import HeroBackdrop from '../components/HeroBackdrop.astro';
+import SiteImage from '../components/SiteImage.astro';
+import ArrowIcon from '../components/ArrowIcon.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from '../components/CTA.astro';
-const wa='https://wa.me/541137874158?text=Hola%2C%20quiero%20consultar%20por%20almacenamiento';
+const wa =
+  'https://wa.me/541137874158?text=Hola%2C%20quiero%20consultar%20por%20almacenamiento';
 ---
-<BaseLayout title="Depósito y almacenamiento logístico | Calltruck" description="Más de 1.000 m² de almacenamiento en Paso del Rey, con acceso a Acceso Oeste y Buen Ayre. Consultá por nuestro depósito.">
-  <section class="hero hero--service hero--structured" style="background-image:linear-gradient(90deg,rgba(10,12,11,.95),rgba(10,12,11,.64) 47%,rgba(10,12,11,.1)),url('images/editorial/warehouse-hero-empty.webp')"><div class="hero-grid"></div><span class="hero-index">PASO DEL REY · BUENOS AIRES</span><div class="hero-content"><span class="eyebrow">Depósito y distribución</span><h1>El espacio que<br><em>tu logística</em><br>necesita.</h1><p class="hero-lead">Más de 1.000 m² de almacenamiento en Paso del Rey, en una ubicación estratégica con acceso inmediato a Acceso Oeste y Camino del Buen Ayre.</p><div class="hero-actions"><a class="button" href={wa} target="_blank" rel="noreferrer">Consultar por almacenamiento <span><ArrowIcon /></span></a></div></div></section>
-  <section class="section reveal"><div class="section-inner editorial editorial--warehouse"><div class="editorial-media"><aside>01 / El depósito</aside><figure><img src="images/editorial/warehouse-interior.webp" alt="Interior del depósito vacío de Calltruck" loading="lazy" /></figure></div><article><h2>Infraestructura que suma capacidad a tu operación.</h2><p>Nuestro depósito permite incorporar espacio de almacenamiento a la planificación logística.</p><p>Su ubicación facilita la conexión con las principales vías de acceso de la zona oeste del Gran Buenos Aires.</p></article></div></section>
-  <section class="section section--sand reveal"><div class="section-inner"><div class="stats"><article class="stat"><strong>+1.000 m²</strong><span>Superficie de almacenamiento</span></article><article class="stat"><strong>Paso del Rey</strong><span>Ubicación del depósito</span></article><article class="stat"><strong>Accesos</strong><span>Acceso Oeste y Camino del Buen Ayre</span></article></div></div></section>
-  <section class="section access-section reveal"><div class="section-inner access-grid"><div><span class="eyebrow">Conectividad estratégica</span><h2>Cerca de los accesos que mueven tu operación.</h2><p>La ubicación en Paso del Rey facilita la conexión con Acceso Oeste y Camino del Buen Ayre para integrar almacenamiento y distribución.</p></div><div class="access-diagram"><svg viewBox="0 0 720 420" role="img" aria-labelledby="access-title access-desc"><title id="access-title">Esquema de accesos al depósito</title><desc id="access-desc">Conexión de Paso del Rey con Acceso Oeste y Camino del Buen Ayre.</desc><path class="access-route access-route--main" d="M35 295 C180 220 310 255 455 170 S640 80 690 55"/><path class="access-route" d="M120 45 C210 145 285 165 370 200 S545 315 675 365"/><path class="access-route access-route--minor" d="M40 365 C150 340 265 330 350 270 S510 165 680 150"/><circle class="access-hub" cx="370" cy="200" r="13"/><circle class="access-ring" cx="370" cy="200" r="29"/><text x="392" y="192">PASO DEL REY</text><text x="470" y="128">ACCESO OESTE</text><text x="470" y="327">CAMINO DEL BUEN AYRE</text><text class="access-code" x="40" y="395">ESQUEMA DE CONECTIVIDAD / GBA OESTE</text></svg></div></div></section>
-  <section class="section section--dark warehouse-portfolio reveal"><div class="section-inner"><div class="section-head"><div><span class="eyebrow">Infraestructura en operación</span><h2>Espacio, unidades y capacidad de respuesta.</h2></div><p>Una mirada concreta al depósito y a los recursos que permiten conectar almacenamiento con distribución.</p></div><div class="warehouse-grid"><figure class="warehouse-shot warehouse-shot--wide"><img src="images/editorial/warehouse-interior.webp" alt="Vista amplia del interior del depósito" loading="lazy"/><figcaption>01 / Superficie operativa</figcaption></figure><figure class="warehouse-shot"><img src="images/editorial/hero-slide-05.webp" alt="Semirremolque dentro de una nave logística" loading="lazy"/><figcaption>02 / Carga y descarga</figcaption></figure><figure class="warehouse-shot"><img src="images/editorial/truck-urban-black.webp" alt="Unidad de distribución dentro del depósito" loading="lazy"/><figcaption>03 / Distribución</figcaption></figure><figure class="warehouse-shot warehouse-shot--wide"><img src="images/editorial/hero-slide-06.webp" alt="Unidad de larga distancia dentro de una plataforma logística" loading="lazy"/><figcaption>04 / Integración logística</figcaption></figure></div></div></section>
-  <section class="split split--storage-feature reveal"><div class="split-copy"><span class="eyebrow">Mover mejor</span><h2>Almacenar es parte de una logística eficiente.</h2><p>Combinamos servicios de almacenamiento y distribución para acompañar distintas necesidades logísticas. Contanos qué mercadería necesitás guardar y cómo es tu operación.</p><a class="button button--dark" href={wa} target="_blank" rel="noreferrer">Consultar disponibilidad <span><ArrowIcon /></span></a></div><div class="split-media"><img src="images/editorial/warehouse-handling.webp" alt="Operario manipulando cajas dentro de una operación de almacenamiento" loading="lazy"/><span class="image-tag">Almacenamiento + distribución</span></div></section>
-  <CTA title="¿Necesitás espacio para tu mercadería?" text="Escribinos para conversar sobre las características y necesidades de almacenamiento de tu operación." label="Hablar sobre almacenamiento" message="Hola, quiero consultar por almacenamiento" />
+
+<BaseLayout
+  title="Depósito y almacenamiento logístico | Calltruck"
+  description="Más de 1.000 m² de almacenamiento en Paso del Rey, con acceso a Acceso Oeste y Buen Ayre. Consultá por nuestro depósito."
+>
+  <section class="hero hero--service hero--structured">
+    <HeroBackdrop
+      src="images/editorial/warehouse-hero-empty.webp"
+      gradient="linear-gradient(90deg,rgba(10,12,11,.95),rgba(10,12,11,.64) 47%,rgba(10,12,11,.1))"
+    />
+    <div class="hero-grid"></div>
+    <span class="hero-index">PASO DEL REY · BUENOS AIRES</span>
+    <div class="hero-content">
+      <span class="eyebrow">Depósito y distribución</span>
+      <h1>
+        El espacio que
+        <br />
+        <em>tu logística</em>
+        <br />
+        necesita.
+      </h1>
+      <p class="hero-lead">
+        Más de 1.000 m² de almacenamiento en Paso del Rey, en una ubicación
+        estratégica con acceso inmediato a Acceso Oeste y Camino del Buen Ayre.
+      </p>
+      <div class="hero-actions">
+        <a class="button" href={wa} target="_blank" rel="noreferrer">
+          Consultar por almacenamiento{' '}
+          <span>
+            <ArrowIcon />
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+  <section class="section reveal">
+    <div class="section-inner editorial editorial--warehouse">
+      <div class="editorial-media">
+        <aside>01 / El depósito</aside>
+        <figure>
+          <SiteImage
+            src="images/editorial/warehouse-interior.webp"
+            alt="Interior del depósito vacío de Calltruck"
+            loading="lazy"
+          />
+        </figure>
+      </div>
+      <article>
+        <h2>Infraestructura que suma capacidad a tu operación.</h2>
+        <p>
+          Nuestro depósito permite incorporar espacio de almacenamiento a la
+          planificación logística.
+        </p>
+        <p>
+          Su ubicación facilita la conexión con las principales vías de acceso
+          de la zona oeste del Gran Buenos Aires.
+        </p>
+      </article>
+    </div>
+  </section>
+  <section class="section section--sand reveal">
+    <div class="section-inner">
+      <div class="stats">
+        <article class="stat">
+          <strong>+1.000 m²</strong>
+          <span>Superficie de almacenamiento</span>
+        </article>
+        <article class="stat">
+          <strong>Paso del Rey</strong>
+          <span>Ubicación del depósito</span>
+        </article>
+        <article class="stat">
+          <strong>Accesos</strong>
+          <span>Acceso Oeste y Camino del Buen Ayre</span>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section class="section access-section reveal">
+    <div class="section-inner access-grid">
+      <div>
+        <span class="eyebrow">Conectividad estratégica</span>
+        <h2>Cerca de los accesos que mueven tu operación.</h2>
+        <p>
+          La ubicación en Paso del Rey facilita la conexión con Acceso Oeste y
+          Camino del Buen Ayre para integrar almacenamiento y distribución.
+        </p>
+      </div>
+      <div class="access-diagram">
+        <svg
+          viewBox="0 0 720 420"
+          role="img"
+          aria-labelledby="access-title access-desc"
+        >
+          <title id="access-title">Esquema de accesos al depósito</title>
+          <desc id="access-desc">
+            Conexión de Paso del Rey con Acceso Oeste y Camino del Buen Ayre.
+          </desc>
+          <path
+            class="access-route access-route--main"
+            d="M35 295 C180 220 310 255 455 170 S640 80 690 55"
+          />
+          <path
+            class="access-route"
+            d="M120 45 C210 145 285 165 370 200 S545 315 675 365"
+          />
+          <path
+            class="access-route access-route--minor"
+            d="M40 365 C150 340 265 330 350 270 S510 165 680 150"
+          />
+          <circle class="access-hub" cx="370" cy="200" r="13" />
+          <circle class="access-ring" cx="370" cy="200" r="29" />
+          <text x="392" y="192">
+            PASO DEL REY
+          </text>
+          <text x="470" y="128">
+            ACCESO OESTE
+          </text>
+          <text x="470" y="327">
+            CAMINO DEL BUEN AYRE
+          </text>
+          <text class="access-code" x="40" y="395">
+            ESQUEMA DE CONECTIVIDAD / GBA OESTE
+          </text>
+        </svg>
+      </div>
+    </div>
+  </section>
+  <section class="section section--dark warehouse-portfolio reveal">
+    <div class="section-inner">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Infraestructura en operación</span>
+          <h2>Espacio, unidades y capacidad de respuesta.</h2>
+        </div>
+        <p>
+          Una mirada concreta al depósito y a los recursos que permiten conectar
+          almacenamiento con distribución.
+        </p>
+      </div>
+      <div class="warehouse-grid">
+        <figure class="warehouse-shot warehouse-shot--wide">
+          <SiteImage
+            src="images/editorial/warehouse-interior.webp"
+            alt="Vista amplia del interior del depósito"
+            loading="lazy"
+          />
+          <figcaption>01 / Superficie operativa</figcaption>
+        </figure>
+        <figure class="warehouse-shot">
+          <SiteImage
+            src="images/editorial/hero-slide-05.webp"
+            alt="Semirremolque dentro de una nave logística"
+            loading="lazy"
+          />
+          <figcaption>02 / Carga y descarga</figcaption>
+        </figure>
+        <figure class="warehouse-shot">
+          <SiteImage
+            src="images/editorial/truck-urban-black.webp"
+            alt="Unidad de distribución dentro del depósito"
+            loading="lazy"
+          />
+          <figcaption>03 / Distribución</figcaption>
+        </figure>
+        <figure class="warehouse-shot warehouse-shot--wide">
+          <SiteImage
+            src="images/editorial/hero-slide-06.webp"
+            alt="Unidad de larga distancia dentro de una plataforma logística"
+            loading="lazy"
+          />
+          <figcaption>04 / Integración logística</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+  <section class="split split--storage-feature reveal">
+    <div class="split-copy">
+      <span class="eyebrow">Mover mejor</span>
+      <h2>Almacenar es parte de una logística eficiente.</h2>
+      <p>
+        Combinamos servicios de almacenamiento y distribución para acompañar
+        distintas necesidades logísticas. Contanos qué mercadería necesitás
+        guardar y cómo es tu operación.
+      </p>
+      <a class="button button--dark" href={wa} target="_blank" rel="noreferrer">
+        Consultar disponibilidad{' '}
+        <span>
+          <ArrowIcon />
+        </span>
+      </a>
+    </div>
+    <div class="split-media">
+      <SiteImage
+        src="images/editorial/warehouse-handling.webp"
+        alt="Operario manipulando cajas dentro de una operación de almacenamiento"
+        loading="lazy"
+      />
+      <span class="image-tag">Almacenamiento + distribución</span>
+    </div>
+  </section>
+  <CTA
+    title="¿Necesitás espacio para tu mercadería?"
+    text="Escribinos para conversar sobre las características y necesidades de almacenamiento de tu operación."
+    label="Hablar sobre almacenamiento"
+    message="Hola, quiero consultar por almacenamiento"
+  />
 </BaseLayout>

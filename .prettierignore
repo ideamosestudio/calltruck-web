@@ -1,0 +1,9 @@
+node_modules
+dist
+.astro
+.pnpm-store
+pnpm-lock.yaml
+public
+src/assets
+test-results
+playwright-report

@@ -1,14 +1,64 @@
 ---
+import SiteImage from './SiteImage.astro';
 const items = [
-  { src: 'images/editorial/van-warehouse.webp', alt: 'Furgón Mercedes-Benz dentro de una nave logística', label: 'Utilitarios', meta: 'Distribución urbana', wide: true },
-  { src: 'images/editorial/partner-warehouse.webp', alt: 'Peugeot Partner dentro de un depósito moderno', label: 'Última milla', meta: 'Carga liviana' },
-  { src: 'images/editorial/actros-golden-route.webp', alt: 'Mercedes-Benz Actros con contenedor circulando en ruta', label: 'Cobertura nacional', meta: 'Larga distancia', wide: true },
-  { src: 'images/editorial/truck-container.webp', alt: 'Transporte de contenedor en plataforma logística', label: 'Contenedores', meta: 'Equipos especiales' },
-  { src: 'images/editorial/truck-semi-side.webp', alt: 'Camión con semirremolque dentro de un depósito', label: 'Semirremolques', meta: 'Gran porte' },
-  { src: 'images/editorial/calltruck-port-convoy.webp', alt: 'Convoy de unidades Calltruck junto a contenedores', label: 'Capacidad operativa', meta: 'Flota versátil', wide: true },
-  { src: 'images/editorial/truck-route-purple.webp', alt: 'Unidad de transporte durante una operación en ruta', label: 'Distribución nacional', meta: 'En movimiento', wide: true },
-  { src: 'images/editorial/truck-urban-white.webp', alt: 'Camión mediano con caja de cortina', label: 'Cargas generales', meta: 'Distribución' },
-  { src: 'images/editorial/warehouse-empty-wide.webp', alt: 'Interior de una nave logística con superficie operativa disponible', label: 'Infraestructura', meta: 'Almacenamiento' },
+  {
+    src: 'images/editorial/van-warehouse.webp',
+    alt: 'Furgón Mercedes-Benz dentro de una nave logística',
+    label: 'Utilitarios',
+    meta: 'Distribución urbana',
+    wide: true,
+  },
+  {
+    src: 'images/editorial/partner-warehouse.webp',
+    alt: 'Peugeot Partner dentro de un depósito moderno',
+    label: 'Última milla',
+    meta: 'Carga liviana',
+  },
+  {
+    src: 'images/editorial/actros-golden-route.webp',
+    alt: 'Mercedes-Benz Actros con contenedor circulando en ruta',
+    label: 'Cobertura nacional',
+    meta: 'Larga distancia',
+    wide: true,
+  },
+  {
+    src: 'images/editorial/truck-container.webp',
+    alt: 'Transporte de contenedor en plataforma logística',
+    label: 'Contenedores',
+    meta: 'Equipos especiales',
+  },
+  {
+    src: 'images/editorial/truck-semi-side.webp',
+    alt: 'Camión con semirremolque dentro de un depósito',
+    label: 'Semirremolques',
+    meta: 'Gran porte',
+  },
+  {
+    src: 'images/editorial/calltruck-port-convoy.webp',
+    alt: 'Convoy de unidades Calltruck junto a contenedores',
+    label: 'Capacidad operativa',
+    meta: 'Flota versátil',
+    wide: true,
+  },
+  {
+    src: 'images/editorial/truck-route-purple.webp',
+    alt: 'Unidad de transporte durante una operación en ruta',
+    label: 'Distribución nacional',
+    meta: 'En movimiento',
+    wide: true,
+  },
+  {
+    src: 'images/editorial/truck-urban-white.webp',
+    alt: 'Camión mediano con caja de cortina',
+    label: 'Cargas generales',
+    meta: 'Distribución',
+  },
+  {
+    src: 'images/editorial/warehouse-empty-wide.webp',
+    alt: 'Interior de una nave logística con superficie operativa disponible',
+    label: 'Infraestructura',
+    meta: 'Almacenamiento',
+  },
 ];
 const { compact = false } = Astro.props;
 ---
@@ -16,9 +66,13 @@ const { compact = false } = Astro.props;
 <div class:list={['fleet-gallery', { 'fleet-gallery--compact': compact }]}>
   {items.map((item, index) => (
     <figure class:list={['fleet-shot', { 'fleet-shot--wide': item.wide }]}>
-      <img src={item.src} alt={item.alt} loading="lazy" />
+      <SiteImage src={item.src} alt={item.alt} loading="lazy" />
       <span class="fleet-shot__frame" aria-hidden="true"></span>
-      <figcaption><span>0{index + 1}</span><strong>{item.label}</strong>{item.meta && <small>{item.meta}</small>}</figcaption>
+      <figcaption>
+        <span>0{index + 1}</span>
+        <strong>{item.label}</strong>
+        {item.meta && <small>{item.meta}</small>}
+      </figcaption>
     </figure>
   ))}
 </div>
