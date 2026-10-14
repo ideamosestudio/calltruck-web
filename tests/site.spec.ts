@@ -10,6 +10,7 @@ for (const width of [320, 390, 1366]) {
       await page.goto(route.path || './');
       await expect(page.locator('body')).toHaveClass(/is-loaded/);
       await expect(page.locator('h1')).toHaveCount(1);
+      await expect(page.locator('#consulta form')).toHaveCount(1);
       await expect(page.locator('h1')).toBeVisible();
       await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
         'href',

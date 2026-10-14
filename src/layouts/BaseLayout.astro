@@ -23,11 +23,7 @@ const {
 } = Astro.props;
 const rawBase = import.meta.env.BASE_URL;
 const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
-const path = Astro.url.pathname.endsWith('/')
-  ? Astro.url.pathname
-  : `${Astro.url.pathname}/`;
-const isHome = path === base;
-const shouldShowContactForm = showContactForm ?? !isHome;
+const shouldShowContactForm = showContactForm ?? true;
 ---
 
 <!doctype html>
