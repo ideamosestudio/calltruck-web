@@ -4382,18 +4382,18 @@ html:not(.js) .reveal {
   --accent-rgb: 255, 92, 0;
 }
 :root[data-accent='yellow'] {
-  --accent: #f4c542;
-  --accent-rgb: 244, 197, 66;
+  --accent: #ffd600;
+  --accent-rgb: 255, 214, 0;
 }
 :root[data-accent='gray'] {
-  --accent: #b8c0cc;
-  --accent-rgb: 184, 192, 204;
+  --accent: #a7adb5;
+  --accent-rgb: 167, 173, 181;
 }
 :root[data-accent='blue'] {
-  --accent: #5a9bff;
-  --accent-rgb: 90, 155, 255;
+  --accent: #387bff;
+  --accent-rgb: 56, 123, 255;
 }
 :root[data-accent='red'] {
-  --accent: #ff5a5f;
-  --accent-rgb: 255, 90, 95;
+  --accent: #ff343b;
+  --accent-rgb: 255, 52, 59;
 }

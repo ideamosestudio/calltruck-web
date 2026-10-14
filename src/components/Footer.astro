@@ -1,5 +1,6 @@
 ---
 import ArrowIcon from './ArrowIcon.astro';
+const { compact = false } = Astro.props;
 const whatsapp =
   'https://wa.me/541137874158?text=Hola%2C%20quiero%20pedir%20un%20presupuesto';
 const navigation = [
@@ -15,24 +16,26 @@ const services = [
 ];
 ---
 
-<footer class="footer-premium">
+<footer class:list={['footer-premium', { 'footer-premium--compact': compact }]}>
   <div class="footer-shell">
-    <div class="footer-statement">
-      <div>
-        <span class="footer-kicker">El próximo movimiento, juntos.</span>
-        <p>
-          Tu carga, en buenas manos.
-          <br />
-          <strong>Tu negocio, en movimiento.</strong>
-        </p>
+    {!compact && (
+      <div class="footer-statement">
+        <div>
+          <span class="footer-kicker">El próximo movimiento, juntos.</span>
+          <p>
+            Tu carga, en buenas manos.
+            <br />
+            <strong>Tu negocio, en movimiento.</strong>
+          </p>
+        </div>
+        <a class="footer-talk" href={whatsapp} target="_blank" rel="noreferrer">
+          <span>Hablemos de tu operación</span>
+          <span class="footer-talk__arrow" aria-hidden="true">
+            <ArrowIcon />
+          </span>
+        </a>
       </div>
-      <a class="footer-talk" href={whatsapp} target="_blank" rel="noreferrer">
-        <span>Hablemos de tu operación</span>
-        <span class="footer-talk__arrow" aria-hidden="true">
-          <ArrowIcon />
-        </span>
-      </a>
-    </div>
+    )}
     <div class="footer-directory">
       <div class="footer-identity">
         <a class="footer-logo" href="." aria-label="Calltruck, inicio">
@@ -127,48 +130,50 @@ const services = [
           ))}
         </div>
       </nav>
-      <div class="footer-column footer-contact">
-        <h2>Estamos cerca</h2>
-        <a class="footer-phone" href="tel:+541137997864">
-          <small>Llamanos</small>
-          <span>+54 11 3799-7864</span>
-        </a>
-        <a href={whatsapp} target="_blank" rel="noreferrer">
-          Escribinos por WhatsApp{' '}
-          <span aria-hidden="true">
-            <ArrowIcon />
-          </span>
-        </a>
-        <a class="footer-email" href="mailto:info@calltruck.com.ar">
-          info@calltruck.com.ar
-        </a>
-        <a
-          class="footer-address"
-          href="https://www.google.com/maps/search/?api=1&query=La%20Santa%20Mar%C3%ADa%20728%2C%20Paso%20del%20Rey%2C%20Moreno"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <svg
-            class="footer-location-icon"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            aria-hidden="true"
+      {!compact && (
+        <div class="footer-column footer-contact">
+          <h2>Estamos cerca</h2>
+          <a class="footer-phone" href="tel:+541137997864">
+            <small>Llamanos</small>
+            <span>+54 11 3799-7864</span>
+          </a>
+          <a href={whatsapp} target="_blank" rel="noreferrer">
+            Escribinos por WhatsApp{' '}
+            <span aria-hidden="true">
+              <ArrowIcon />
+            </span>
+          </a>
+          <a class="footer-email" href="mailto:info@calltruck.com.ar">
+            info@calltruck.com.ar
+          </a>
+          <a
+            class="footer-address"
+            href="https://www.google.com/maps/search/?api=1&query=La%20Santa%20Mar%C3%ADa%20728%2C%20Paso%20del%20Rey%2C%20Moreno"
+            target="_blank"
+            rel="noreferrer"
           >
-            <path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z" />
-            <circle cx="12" cy="10" r="2.5" />
-          </svg>
-          <span>
-            La Santa María 728
-            <br />
-            Paso del Rey, Moreno
-          </span>
-          <span aria-hidden="true">
-            <ArrowIcon />
-          </span>
-        </a>
-      </div>
+            <svg
+              class="footer-location-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              aria-hidden="true"
+            >
+              <path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z" />
+              <circle cx="12" cy="10" r="2.5" />
+            </svg>
+            <span>
+              La Santa María 728
+              <br />
+              Paso del Rey, Moreno
+            </span>
+            <span aria-hidden="true">
+              <ArrowIcon />
+            </span>
+          </a>
+        </div>
+      )}
     </div>
     <div class="footer-colophon">
       <span>
@@ -197,6 +202,15 @@ const services = [
   </div>
 </footer>
 <style>
+  .footer-premium--compact .footer-directory {
+    grid-template-columns: 1.4fr 1fr 1fr;
+    border-top: 0;
+  }
+  @media (max-width: 650px) {
+    .footer-premium--compact .footer-directory {
+      grid-template-columns: 1fr;
+    }
+  }
   .footer-premium {
     background: #0c0e0d;
     color: #f7f4ec;
