@@ -24,7 +24,7 @@ const whatsapp = 'https://wa.me/541137874158?text=Hola%2C%20quiero%20pedir%20un%
   <button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú">
     <span></span><span></span><span></span><b class="sr-only">Abrir menú</b>
   </button>
-  <nav id="site-nav" class="site-nav" data-menu>
+  <nav id="site-nav" class="site-nav" data-menu aria-label="Navegación principal"><div class="mobile-nav-intro">TRANSPORTE · LOGÍSTICA · ALMACENAMIENTO</div>
     {nav.map(([label, href]) => label === 'Soluciones' ? (
       <div class="nav-dropdown">
         <a href={href} class:list={{active: path.startsWith('/soluciones') || services.some(([, url]) => path.startsWith(`/${url.replace(/\/$/, '')}`))}}>{label}<span><ArrowIcon direction="chevron-down" /></span></a>
@@ -34,6 +34,7 @@ const whatsapp = 'https://wa.me/541137874158?text=Hola%2C%20quiero%20pedir%20un%
         </div>
       </div>
     ) : <a href={href} class:list={{active: href === '.' ? path === '/' : path.startsWith(`/${href.replace(/\/$/, '')}`)}}>{label}</a>)}
+    <div class="mobile-nav-contact"><a class="mobile-nav-cta" href={whatsapp} target="_blank" rel="noreferrer">Pedir presupuesto <ArrowIcon /></a><a class="mobile-nav-email" href="mailto:info@calltruck.com.ar">info@calltruck.com.ar</a><span>Tu carga, en buenas manos.</span></div>
   </nav>
   <a class="header-cta" href={whatsapp} target="_blank" rel="noreferrer">Pedir presupuesto <span><ArrowIcon /></span></a>
 </header>
