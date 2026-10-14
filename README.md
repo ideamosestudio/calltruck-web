@@ -53,3 +53,19 @@ No guardar secretos en el repositorio. Los `.env`, dependencias, artefactos y re
 ## Vista previa de color
 
 La pestaña del margen derecho permite probar cinco acentos. La selección se guarda solo en localStorage del navegador y puede restablecerse al naranja original. Los logos de marca conservan sus colores. El panel se cierra con Escape o al tocar fuera y permanece oculto al abrir el menú mobile.
+
+## Habilitaciones y marcas
+
+El bloque de La empresa refleja las habilitaciones indicadas por el cliente. El cliente confirmó expresamente ISTA Certified Laboratory, diferenciándolo de la iniciativa aduanera ISTA. No se publican números de registro, vencimientos ni alcances no proporcionados.
+
+Los archivos originales de los logos se conservan en `public/images/credentials`:
+
+- SEDRONAR: https://www.sanrafael.gov.ar/wp-content/uploads/2024/07/sedronar-logo.png (fuente municipal).
+- RENPRE: https://marpaq.com.ar/wp-content/uploads/2025/12/Logo-Renpre.png.
+- SENASA: https://marpaq.com.ar/wp-content/uploads/2025/12/Logo-Senasa.png.
+- PCRMA: https://tfaster.com.ar/wp-content/uploads/2020/04/certificado-pcrma.png. Identidad contrastada con el Programa de Cuidado Responsable de CIQyP: https://www.ciqyp.org.ar/.
+- ISTA: https://www.ten-e.com/wp-content/uploads/2026/08/ISTA-1024x329.png (marca ISTA; la denominación Certified Laboratory se muestra como texto).
+
+La presentación aplica escala de grises por CSS y recupera el color original al pasar el cursor. Los tamaños se compensan por marca, sin deformar las proporciones.
+
+Actualizar este bloque si el cliente informa cambios en sus habilitaciones. Los logos identifican las entidades; no sustituyen la documentación de Calltruck.
