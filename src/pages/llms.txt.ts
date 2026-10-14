@@ -5,6 +5,8 @@ export function GET() {
 
 > Transporte, logística y almacenamiento en Argentina.
 
+Calltruck es una empresa familiar cuya historia comenzó en 2006, cuando Luis inició su actividad con un Mercedes-Benz 1114.
+
 Calltruck ofrece transporte para particulares, logística para empresas, distribución y almacenamiento. Cuenta con flota propia y unidades tercerizadas, seguimiento operativo y más de 1.000 m² de depósito en Paso del Rey.
 
 ## Páginas oficiales

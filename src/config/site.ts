@@ -17,7 +17,8 @@ export const pages = [
   {
     path: 'la-empresa/',
     name: 'La empresa',
-    description: 'Equipo, flota y recursos operativos de Calltruck.',
+    description:
+      'Historia de la empresa familiar iniciada por Luis en 2006 con un Mercedes-Benz 1114. Equipo, flota y recursos actuales.',
   },
   {
     path: 'soluciones/',
