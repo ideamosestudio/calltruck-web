@@ -1,0 +1,165 @@
+/* Shared interaction rhythm. Motion never changes layout or scroll behavior. */
+:root {
+  --interaction-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+:is(.button, .header-cta, .floating-wa):active {
+  scale: 0.97;
+}
+:is(.button, .header-cta, .floating-wa) {
+  transition:
+    background-color 0.25s,
+    color 0.25s,
+    box-shadow 0.3s,
+    transform 0.3s var(--interaction-ease),
+    scale 0.15s;
+}
+:is(.button, .header-cta):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 5px;
+}
+.service-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -3px;
+}
+:is(.service-card, .metric, .capability, .transfer-step, .warehouse-fact) {
+  transition:
+    border-color 0.25s,
+    box-shadow 0.3s,
+    background-color 0.3s,
+    color 0.3s,
+    transform 0.35s var(--interaction-ease);
+}
+:is(.button, .header-cta, .text-link, .warehouse-fact__link) .arrow-icon {
+  transition: translate 0.25s var(--interaction-ease);
+}
+.field {
+  transition: background-color 0.25s;
+}
+.field label {
+  transition: color 0.2s;
+}
+.field:focus-within label {
+  color: var(--accent);
+}
+.field :is(input, textarea, select) {
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    background-color 0.2s;
+}
+.field :is(input, textarea, select):focus-visible {
+  border-bottom-color: var(--accent);
+  box-shadow: 0 2px 0 var(--accent);
+  background-color: rgb(255 255 255 / 3%);
+}
+@media (hover: hover) and (pointer: fine) {
+  :is(.button, .header-cta):hover {
+    transform: translateY(-2px);
+  }
+  :is(.text-link, .warehouse-fact__link):hover .arrow-icon {
+    translate: 3px -3px;
+  }
+  :is(.metric, .capability, .transfer-step, .warehouse-fact):hover {
+    border-color: var(--accent);
+    box-shadow: inset 0 -2px 0 var(--accent);
+  }
+  .service-card:hover {
+    transform: translateY(-4px);
+  }
+  .service-card:hover .text-link .arrow-icon {
+    translate: 3px -3px;
+  }
+  :is(.warehouse-shot, .fleet-shot, .report-shot) img {
+    transition:
+      transform 0.65s var(--interaction-ease),
+      filter 0.4s;
+  }
+  :is(.warehouse-shot, .fleet-shot, .report-shot):hover img {
+    transform: scale(1.025);
+    filter: contrast(1.04);
+  }
+  .contact-panel__quick a {
+    transition:
+      color 0.2s,
+      border-color 0.2s;
+  }
+  .contact-panel__quick a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .reveal.is-visible
+    :is(.services-grid, .metrics-grid, .transfer-steps, .warehouse-facts__grid)
+    > * {
+    animation: detail-arrive 0.55s var(--interaction-ease) both;
+  }
+  .reveal.is-visible
+    :is(.services-grid, .metrics-grid, .transfer-steps, .warehouse-facts__grid)
+    > :nth-child(2) {
+    animation-delay: 0.07s;
+  }
+  .reveal.is-visible
+    :is(.services-grid, .metrics-grid, .transfer-steps, .warehouse-facts__grid)
+    > :nth-child(3) {
+    animation-delay: 0.14s;
+  }
+  .reveal.is-visible
+    :is(.services-grid, .metrics-grid, .transfer-steps, .warehouse-facts__grid)
+    > :nth-child(4) {
+    animation-delay: 0.21s;
+  }
+  .reveal.is-visible .eyebrow::before {
+    animation: line-arrive 0.6s var(--interaction-ease) both;
+    transform-origin: left;
+  }
+}
+@keyframes detail-arrive {
+  from {
+    translate: 0 18px;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+@keyframes line-arrive {
+  from {
+    scale: 0 1;
+  }
+  to {
+    scale: 1 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :is(
+    .button,
+    .header-cta,
+    .floating-wa,
+    .service-card,
+    .metric,
+    .capability,
+    .transfer-step,
+    .warehouse-fact,
+    .field,
+    .field label,
+    .contact-panel__quick a
+  ),
+  :is(.button, .header-cta, .text-link, .warehouse-fact__link) .arrow-icon,
+  :is(.warehouse-shot, .fleet-shot, .report-shot) img,
+  .field :is(input, textarea, select) {
+    transition: none !important;
+    animation: none !important;
+  }
+  :is(.button, .header-cta, .floating-wa):active {
+    scale: none;
+  }
+  :is(.button, .header-cta, .service-card):hover {
+    transform: none;
+  }
+  :is(.warehouse-shot, .fleet-shot, .report-shot):hover img {
+    transform: none;
+  }
+  :is(.text-link, .warehouse-fact__link):hover .arrow-icon {
+    translate: none;
+  }
+}
