@@ -125,3 +125,28 @@ test('color preview persists, restores and closes with Escape', async ({
     .click();
   await expect(page.locator('html')).toHaveAttribute('data-accent', 'orange');
 });
+
+test('contact intro stays pinned while the form scrolls', async ({ page }) => {
+  await page.setViewportSize({ width: 1366, height: 607 });
+  await page.goto('contacto/');
+  const intro = page.locator('.contact-panel__intro');
+  const grid = page.locator('.contact-panel__grid');
+  const start = await grid.evaluate(
+    (el) => el.getBoundingClientRect().top + scrollY,
+  );
+  await page.evaluate((y) => {
+    document.documentElement.style.scrollBehavior = 'auto';
+    scrollTo(0, y);
+  }, start);
+  await expect(intro).toHaveCSS('position', 'sticky');
+  const before = await intro.boundingBox();
+  const formBefore = await page.locator('form').boundingBox();
+  await page.evaluate(() => scrollBy(0, 100));
+  await expect
+    .poll(async () => (await intro.boundingBox())!.y)
+    .toBeCloseTo(before!.y, 0);
+  expect((await page.locator('form').boundingBox())!.y).toBeLessThan(
+    formBefore!.y - 90,
+  );
+  expect(before!.y + before!.height).toBeLessThan(607);
+});
