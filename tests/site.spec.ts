@@ -93,6 +93,23 @@ test('touch devices keep hero autoplay paused and allow manual navigation', asyn
   await context.close();
 });
 
+test('client logo rail includes the added brands without playback controls', async ({
+  page,
+}) => {
+  await page.goto('./');
+  const rail = page.locator('.client-logos');
+  for (const name of [
+    'Vatten',
+    'BSA Burgert',
+    'Renarp',
+    'Surplast',
+    'Lecker Argentina',
+  ]) {
+    await expect(rail.getByAltText(name)).toHaveCount(1);
+  }
+  await expect(rail.getByRole('button')).toHaveCount(0);
+});
+
 test('contact anchor and native form validation', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('contacto/');
