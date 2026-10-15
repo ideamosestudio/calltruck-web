@@ -19,7 +19,13 @@ const clients = [
           aria-hidden={copy === 1 ? 'true' : undefined}
         >
           {clients.map(([file, name, wide]) => (
-            <li class:list={['client-logos__item', { 'is-wide': wide }]}>
+            <li
+              class:list={[
+                'client-logos__item',
+                `client-logos__item--${file}`,
+                { 'is-wide': wide },
+              ]}
+            >
               <img
                 src={`${import.meta.env.BASE_URL}images/clients/${file}.webp`}
                 alt={copy === 0 ? String(name) : ''}
@@ -56,9 +62,10 @@ const clients = [
 <style>
   .client-logos {
     position: relative;
-    background: #fff;
-    border-bottom: 1px solid #dededb;
-    padding: 22px 0;
+    background: #0c0e0d;
+    border-top: 1px solid #ffffff14;
+    border-bottom: 1px solid #ffffff14;
+    padding: 30px 0;
   }
   .client-logos__viewport {
     overflow: hidden;
@@ -91,11 +98,11 @@ const clients = [
     justify-content: center;
   }
   .client-logos__item img {
-    width: 96px;
-    height: 96px;
+    width: 86px;
+    height: 86px;
     object-fit: contain;
-    filter: grayscale(1);
-    opacity: 0.72;
+    filter: grayscale(1) brightness(0) invert(0.86);
+    opacity: 0.9;
     transition:
       filter 0.3s,
       opacity 0.3s;
@@ -103,6 +110,17 @@ const clients = [
   .client-logos__item.is-wide img {
     width: 190px;
     height: 76px;
+  }
+  .client-logos__item--cachamai img {
+    width: 146px;
+    height: 86px;
+  }
+  .client-logos__item--tml img {
+    width: 128px;
+    height: 92px;
+  }
+  .client-logos__item--lit img {
+    filter: grayscale(1);
   }
   .client-logos__item:hover img {
     filter: grayscale(0);
@@ -121,14 +139,14 @@ const clients = [
     height: 32px;
     display: grid;
     place-items: center;
-    border: 1px solid #dadcde;
+    border: 1px solid #ffffff30;
     border-radius: 50%;
-    background: #fff;
-    color: #565d66;
+    background: #191c1a;
+    color: #d7dade;
     cursor: pointer;
   }
   .client-logos__pause:focus-visible {
-    outline: 2px solid #565d66;
+    outline: 2px solid #d7dade;
     outline-offset: 3px;
   }
   .play-symbol,
@@ -153,12 +171,20 @@ const clients = [
       padding: 8px 20px;
     }
     .client-logos__item img {
-      width: 80px;
-      height: 80px;
+      width: 70px;
+      height: 70px;
     }
     .client-logos__item.is-wide img {
       width: 150px;
       height: 64px;
+    }
+    .client-logos__item--cachamai img {
+      width: 120px;
+      height: 74px;
+    }
+    .client-logos__item--tml img {
+      width: 108px;
+      height: 78px;
     }
   }
   @media (prefers-reduced-motion: reduce) {

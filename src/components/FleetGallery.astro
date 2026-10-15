@@ -58,6 +58,7 @@ const items = [
     alt: 'Interior de una nave logística con superficie operativa disponible',
     label: 'Infraestructura',
     meta: 'Almacenamiento',
+    full: true,
   },
 ];
 const { compact = false } = Astro.props;
@@ -65,12 +66,17 @@ const { compact = false } = Astro.props;
 
 <div class:list={['fleet-gallery', { 'fleet-gallery--compact': compact }]}>
   {(compact ? items.slice(0, 3) : items).map((item, index) => (
-    <figure class:list={['fleet-shot', { 'fleet-shot--wide': item.wide }]}>
+    <figure
+      class:list={[
+        'fleet-shot',
+        { 'fleet-shot--wide': item.wide, 'fleet-shot--full': item.full },
+      ]}
+    >
       <SiteImage
         src={item.src}
         alt={item.alt}
         loading="lazy"
-        sizes={compact && index === 2 ? '100vw' : undefined}
+        sizes={item.full || (compact && index === 2) ? '100vw' : undefined}
       />
       <span class="fleet-shot__frame" aria-hidden="true"></span>
       <figcaption>

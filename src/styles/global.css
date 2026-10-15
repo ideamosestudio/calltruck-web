@@ -1066,6 +1066,9 @@ p {
 .fleet-shot--wide {
   grid-column: span 2;
 }
+.fleet-shot--full {
+  grid-column: 1 / -1;
+}
 .fleet-shot img {
   width: 100%;
   height: 100%;
