@@ -3,7 +3,7 @@ const clients = [
   ['andreani', 'Andreani', true],
   ['cachamai', 'Cachamai', false],
   ['locksley', 'Locksley', true],
-  ['tml', 'TML', false],
+  ['tml', 'TML', true],
   ['toshin', 'Toshin', true],
   ['violetta', 'Violetta', true],
   ['lit', 'LIT', false],
@@ -27,7 +27,7 @@ const clients = [
               ]}
             >
               <img
-                src={`${import.meta.env.BASE_URL}images/clients/${file}-transparent-v3.png`}
+                src={`${import.meta.env.BASE_URL}images/clients/${file}-transparent-v4.png`}
                 alt={copy === 0 ? String(name) : ''}
                 width="220"
                 height="96"
@@ -98,8 +98,8 @@ const clients = [
     justify-content: center;
   }
   .client-logos__item img {
-    width: 86px;
-    height: 86px;
+    width: 68px;
+    height: 68px;
     object-fit: contain;
     filter: grayscale(1) brightness(0) invert(0.86);
     opacity: 0.9;
@@ -108,16 +108,16 @@ const clients = [
       opacity 0.3s;
   }
   .client-logos__item.is-wide img {
-    width: 190px;
-    height: 76px;
+    width: 168px;
+    height: 66px;
   }
   .client-logos__item--cachamai img {
-    width: 146px;
+    width: 128px;
     height: 86px;
   }
   .client-logos__item--tml img {
-    width: 128px;
-    height: 92px;
+    width: 156px;
+    height: 66px;
   }
   .client-logos__item--lit img {
     filter: grayscale(1);
@@ -171,8 +171,8 @@ const clients = [
       padding: 8px 20px;
     }
     .client-logos__item img {
-      width: 70px;
-      height: 70px;
+      width: 62px;
+      height: 62px;
     }
     .client-logos__item.is-wide img {
       width: 150px;
@@ -180,11 +180,11 @@ const clients = [
     }
     .client-logos__item--cachamai img {
       width: 120px;
-      height: 74px;
+      height: 62px;
     }
     .client-logos__item--tml img {
-      width: 108px;
-      height: 78px;
+      width: 140px;
+      height: 62px;
     }
   }
   @media (prefers-reduced-motion: reduce) {
