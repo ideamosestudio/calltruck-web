@@ -1,0 +1,127 @@
+<button class="back-to-top" type="button" aria-label="Volver arriba" hidden>
+  <span class="back-to-top__label" aria-hidden="true">
+    Volver arriba
+  </span>
+  <svg
+    width="22"
+    height="22"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.7"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M12 19V5m-6 6 6-6 6 6" />
+  </svg>
+</button>
+
+<style>
+  .back-to-top {
+    position: fixed;
+    right: 32px;
+    bottom: calc(104px + env(safe-area-inset-bottom));
+    z-index: 90;
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #a7adb566;
+    border-radius: 50%;
+    background: #171a18;
+    color: #e7e9eb;
+    box-shadow: 0 6px 24px #0003;
+    cursor: pointer;
+    transition:
+      background 0.2s,
+      transform 0.2s,
+      border-color 0.2s;
+  }
+  .back-to-top[hidden] {
+    display: none;
+  }
+  .back-to-top:focus-visible {
+    outline: 2px solid #a7adb5;
+    outline-offset: 4px;
+  }
+  .back-to-top__label {
+    position: absolute;
+    right: 60px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    background: #171a18;
+    color: #fff;
+    font:
+      500 12px Inter,
+      sans-serif;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+  .back-to-top:focus-visible .back-to-top__label {
+    opacity: 1;
+  }
+  @media (hover: hover) {
+    .back-to-top:hover {
+      background: #a7adb5;
+      color: #101211;
+      border-color: #a7adb5;
+      transform: translateY(-3px);
+    }
+    .back-to-top:hover .back-to-top__label {
+      opacity: 1;
+    }
+  }
+  :global(body.menu-open) .back-to-top,
+  :global(body:has(.contact-form :focus)) .back-to-top {
+    visibility: hidden;
+  }
+  @media (max-width: 650px) {
+    .back-to-top {
+      right: 19px;
+      bottom: calc(94px + env(safe-area-inset-bottom));
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .back-to-top,
+    .back-to-top__label {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const topButton = document.querySelector<HTMLButtonElement>('.back-to-top');
+  if (topButton) {
+    let scheduled = false;
+    const update = () => {
+      topButton.hidden = window.scrollY < Math.max(600, innerHeight * 0.8);
+      scheduled = false;
+    };
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!scheduled) {
+          scheduled = true;
+          requestAnimationFrame(update);
+        }
+      },
+      { passive: true },
+    );
+    window.addEventListener('pageshow', update);
+    topButton.addEventListener('click', () => {
+      document
+        .querySelector<HTMLElement>('#main-content')
+        ?.focus({ preventScroll: true });
+      window.scrollTo({
+        top: 0,
+        behavior: matchMedia('(prefers-reduced-motion: reduce)').matches
+          ? 'instant'
+          : 'smooth',
+      });
+    });
+    update();
+  }
+</script>

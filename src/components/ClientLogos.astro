@@ -85,14 +85,16 @@ const clients = [
   .client-logos__group {
     display: flex;
     flex-shrink: 0;
+    gap: 72px;
     margin: 0;
-    padding: 0;
+    padding: 0 72px 0 0;
     list-style: none;
   }
   .client-logos__item {
-    width: 240px;
+    width: auto;
+    flex: 0 0 auto;
     height: 112px;
-    padding: 8px 30px;
+    padding: 8px 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -122,8 +124,11 @@ const clients = [
   .client-logos__item--lit img {
     filter: grayscale(1);
   }
+  .client-logos .client-logos__item img {
+    height: auto;
+    flex-shrink: 0;
+  }
   .client-logos__item:hover img {
-    filter: grayscale(0);
     opacity: 1;
   }
   .client-logos:hover .client-logos__track,
@@ -166,9 +171,12 @@ const clients = [
       padding: 18px 0 30px;
     }
     .client-logos__item {
-      width: 180px;
       height: 96px;
-      padding: 8px 20px;
+      padding: 8px 0;
+    }
+    .client-logos__group {
+      gap: 40px;
+      padding-right: 40px;
     }
     .client-logos__item img {
       width: 62px;

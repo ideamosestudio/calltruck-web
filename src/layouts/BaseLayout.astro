@@ -1,5 +1,6 @@
 ---
 import SEO from '../components/SEO.astro';
+import BackToTop from '../components/BackToTop.astro';
 import interFont from '@fontsource/inter/files/inter-latin-400-normal.woff2?url';
 import headingFont from '@fontsource/barlow-condensed/files/barlow-condensed-latin-800-normal.woff2?url';
 import Header from '../components/Header.astro';
@@ -113,6 +114,7 @@ const shouldShowContactForm = showContactForm ?? true;
       <Credentials />
     </main>
     <Footer compact={compactFooter} />
+    <BackToTop />
 
     <a
       class="floating-wa"
