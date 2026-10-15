@@ -3827,10 +3827,19 @@ main > .contact-panel:last-child {
 .capacity-section .metric:after {
   display: none;
 }
+:root {
+  --floating-right: 20px;
+  --floating-bottom: 20px;
+}
 .floating-wa {
-  width: 62px;
-  height: 62px;
-  padding: 7px;
+  right: var(--floating-right);
+  bottom: calc(var(--floating-bottom) + env(safe-area-inset-bottom));
+  width: 56px;
+  height: 56px;
+  padding: 3px;
+  border: 2px solid var(--accent);
+  background: #f6f7f7;
+  box-shadow: 0 3px 12px #0002;
   gap: 0;
   overflow: hidden;
   justify-content: flex-start;
@@ -3844,6 +3853,7 @@ main > .contact-panel:last-child {
   width: 46px;
   height: 46px;
   flex-basis: 46px;
+  box-shadow: none;
 }
 .floating-wa .floating-wa__copy {
   max-width: 0;
@@ -3870,6 +3880,8 @@ main > .contact-panel:last-child {
 @media (hover: hover) and (pointer: fine) {
   .floating-wa:hover {
     width: 270px;
+    background: #f6f7f7;
+    box-shadow: 0 5px 16px #0003;
   }
   .floating-wa:hover .floating-wa__copy {
     max-width: 195px;
@@ -3878,16 +3890,20 @@ main > .contact-panel:last-child {
   }
 }
 @media (max-width: 650px) {
+  :root {
+    --floating-right: 14px;
+    --floating-bottom: 12px;
+  }
   .floating-wa {
-    width: 58px;
-    height: 58px;
-    padding: 6px;
+    width: 56px;
+    height: 56px;
+    padding: 3px;
     max-width: calc(100vw - 28px);
   }
   .floating-wa .floating-wa__icon {
-    width: 44px;
-    height: 44px;
-    flex-basis: 44px;
+    width: 46px;
+    height: 46px;
+    flex-basis: 46px;
   }
 }
 @media (prefers-reduced-motion: reduce) {

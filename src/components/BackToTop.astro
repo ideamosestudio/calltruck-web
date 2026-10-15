@@ -20,18 +20,18 @@
 <style>
   .back-to-top {
     position: fixed;
-    right: 32px;
-    bottom: calc(104px + env(safe-area-inset-bottom));
+    right: calc(var(--floating-right) + 6px);
+    bottom: calc(var(--floating-bottom) + 70px + env(safe-area-inset-bottom));
     z-index: 90;
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     display: grid;
     place-items: center;
     border: 1px solid #a7adb566;
     border-radius: 50%;
     background: #171a18;
     color: #e7e9eb;
-    box-shadow: 0 6px 24px #0003;
+    box-shadow: 0 3px 12px #0002;
     cursor: pointer;
     transition:
       background 0.2s,
@@ -77,12 +77,6 @@
   :global(body.menu-open) .back-to-top,
   :global(body:has(.contact-form :focus)) .back-to-top {
     visibility: hidden;
-  }
-  @media (max-width: 650px) {
-    .back-to-top {
-      right: 19px;
-      bottom: calc(94px + env(safe-area-inset-bottom));
-    }
   }
   @media (prefers-reduced-motion: reduce) {
     .back-to-top,
