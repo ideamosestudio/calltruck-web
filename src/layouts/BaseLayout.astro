@@ -4,6 +4,7 @@ import interFont from '@fontsource/inter/files/inter-latin-400-normal.woff2?url'
 import headingFont from '@fontsource/barlow-condensed/files/barlow-condensed-latin-800-normal.woff2?url';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Credentials from '../components/Credentials.astro';
 import ContactForm from '../components/ContactForm.astro';
 import '@fontsource/barlow-condensed/latin-500.css';
 import '@fontsource/barlow-condensed/latin-600.css';
@@ -109,6 +110,7 @@ const shouldShowContactForm = showContactForm ?? true;
     <main id="main-content" tabindex="-1">
       <slot />
       {shouldShowContactForm && <ContactForm />}
+      <Credentials />
     </main>
     <Footer compact={compactFooter} />
 

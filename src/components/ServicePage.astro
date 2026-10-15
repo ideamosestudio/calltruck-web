@@ -1,6 +1,6 @@
 ---
 import HeroBackdrop from './HeroBackdrop.astro';
-import SiteImage from './SiteImage.astro';
+import FleetGallery from './FleetGallery.astro';
 import ArrowIcon from './ArrowIcon.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from './CTA.astro';
@@ -15,14 +15,10 @@ const {
   introTitle,
   introText,
   items,
-  supportEyebrow = 'Respaldo operativo',
-  supportTitle,
-  supportText,
   finalTitle,
   finalText,
   finalLabel,
   heroImage = 'images/fleet/chasis-cortina-frente.webp',
-  supportImage = 'images/fleet/semirremolque-negro.webp',
 } = Astro.props;
 const wa = `https://wa.me/541137874158?text=${encodeURIComponent(message)}`;
 ---
@@ -76,25 +72,20 @@ const wa = `https://wa.me/541137874158?text=${encodeURIComponent(message)}`;
       </div>
     </div>
   </section>
-  <section class="split split--service reveal">
-    <div class="split-media">
-      <SiteImage
-        src={supportImage}
-        alt="Unidad de transporte de carga de Calltruck"
-        loading="lazy"
-      />
-      <span class="image-tag">Movimiento nacional</span>
-    </div>
-    <div class="split-copy">
-      <span class="eyebrow">{supportEyebrow}</span>
-      <h2>{supportTitle}</h2>
-      <p>{supportText}</p>
-      <a class="button button--dark" href={wa} target="_blank" rel="noreferrer">
-        Consultar operación{' '}
-        <span>
-          <ArrowIcon />
-        </span>
-      </a>
+  <section class="section section--fleet reveal">
+    <div class="section-inner">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Capacidad operativa</span>
+          <h2>Una flota preparada para distintos desafíos.</h2>
+        </div>
+        <p>
+          Disponemos de chasis de 8 a 14 pallets, unidades con pala hidráulica,
+          semirremolques, equipos especiales y utilitarios para responder a
+          diferentes tipos de operaciones.
+        </p>
+      </div>
+      <FleetGallery />
     </div>
   </section>
   <CTA

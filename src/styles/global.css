@@ -1105,8 +1105,8 @@ p {
   grid-template-columns: 1.25fr 0.75fr 1fr;
   grid-auto-rows: 230px;
 }
-.fleet-gallery--compact .fleet-shot:nth-child(n + 4) {
-  display: none;
+.fleet-gallery--compact .fleet-shot:nth-child(3) {
+  grid-column: 1 / -1;
 }
 
 @media (max-width: 980px) {
@@ -1121,9 +1121,6 @@ p {
   .fleet-shot--wide {
     grid-column: span 1;
   }
-  .fleet-gallery--compact .fleet-shot:nth-child(3) {
-    display: none;
-  }
 }
 @media (max-width: 650px) {
   .brand-logo {
@@ -1133,9 +1130,6 @@ p {
   .fleet-gallery--compact {
     grid-template-columns: 1fr;
     grid-auto-rows: 360px;
-  }
-  .fleet-gallery--compact .fleet-shot:nth-child(2) {
-    display: none;
   }
 }
 
@@ -4393,4 +4387,15 @@ html:not(.js) .reveal {
   .footer-premium a .arrow-icon {
     transition: none !important;
   }
+}
+
+/* Legible section labels on the permanent gray palette. */
+.eyebrow {
+  color: #565d66;
+}
+:is(.hero, .section--dark, .contact-form, .footer-premium) .eyebrow {
+  color: var(--accent);
+}
+.eyebrow--dark {
+  color: var(--ink);
 }

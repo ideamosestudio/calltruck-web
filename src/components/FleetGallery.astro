@@ -64,9 +64,9 @@ const { compact = false } = Astro.props;
 ---
 
 <div class:list={['fleet-gallery', { 'fleet-gallery--compact': compact }]}>
-  {items.map((item, index) => (
+  {(compact ? items.slice(0, 3) : items).map((item, index) => (
     <figure class:list={['fleet-shot', { 'fleet-shot--wide': item.wide }]}>
-      <SiteImage src={item.src} alt={item.alt} loading="lazy" />
+      <SiteImage src={item.src} alt={item.alt} loading="lazy" sizes={compact && index === 2 ? "100vw" : undefined} />
       <span class="fleet-shot__frame" aria-hidden="true"></span>
       <figcaption>
         <span>0{index + 1}</span>
