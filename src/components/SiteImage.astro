@@ -10,6 +10,7 @@ const { src, alt, sizes, width, height, ...attributes } = Astro.props;
 const image = images[`../assets/${src}`]?.default;
 if (!image) throw new Error(`Missing image: ${src}`);
 const maxWidth = Math.min(Number(width) || image.width, image.width);
+const isHero = src.includes('hero-') || attributes.fetchpriority === 'high';
 // Cover crops can paint a landscape image much wider than its visible column.
 const mobileCoverWidth = Math.ceil((460 * image.width) / image.height);
 const responsiveSizes =
@@ -27,8 +28,8 @@ const widths = [
   width={maxWidth}
   widths={widths}
   sizes={responsiveSizes}
-  format="webp"
-  quality={86}
+  format={isHero ? 'avif' : 'webp'}
+  quality={isHero ? 70 : 86}
   loading="lazy"
   decoding="async"
   {...attributes}

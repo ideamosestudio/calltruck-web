@@ -18,7 +18,7 @@ export const pages = [
     path: 'la-empresa/',
     name: 'La empresa',
     description:
-      'Historia de la empresa familiar iniciada por Luis en 2006 con un Mercedes-Benz 1114. Equipo, flota y recursos actuales.',
+      'Historia de la empresa familiar iniciada por Luis en 2006 con un Mercedes-Benz 1114.',
   },
   {
     path: 'soluciones/',

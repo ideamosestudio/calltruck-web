@@ -71,34 +71,9 @@ const shouldShowContactForm = showContactForm ?? true;
     </script>
   </head>
   <body data-page={Astro.url.pathname}>
-    <div
-      class="page-loader"
-      role="status"
-      aria-live="polite"
-      aria-label="Cargando sitio"
-    >
-      <div
-        class="page-loader__glow page-loader__glow--one"
-        aria-hidden="true"
-      ></div>
-      <div
-        class="page-loader__glow page-loader__glow--two"
-        aria-hidden="true"
-      ></div>
-      <div class="page-loader__content">
-        <img
-          src="images/calltruck-loader-logo.webp?v=3"
-          alt="Calltruck Transporte"
-          width="1100"
-          height="374"
-        />
-        <div class="page-loader__meta">
-          <span>Cargando</span>
-          <strong data-loader-percent>0%</strong>
-        </div>
-        <div class="page-loader__track" aria-hidden="true">
-          <i data-loader-progress></i>
-        </div>
+    <div class="page-loader" aria-hidden="true">
+      <div class="page-loader__track">
+        <i data-loader-progress></i>
       </div>
     </div>
     <div class="scroll-progress" aria-hidden="true">
@@ -249,8 +224,8 @@ const shouldShowContactForm = showContactForm ?? true;
       });
 
       const updateScroll = () => {
-        header?.classList.toggle('is-scrolled', scrollY > 24);
         const available = document.documentElement.scrollHeight - innerHeight;
+        header?.classList.toggle('is-scrolled', scrollY > 24);
         if (progress)
           progress.style.transform = `scaleX(${available > 0 ? scrollY / available : 0})`;
         if (!reduceMotion)

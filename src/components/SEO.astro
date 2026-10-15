@@ -20,6 +20,8 @@ const graph = [
     '@type': 'Organization',
     '@id': organization,
     name: site.name,
+    legalName: 'Transporte y Logística Calltruck SRL',
+    foundingDate: '2006',
     url: site.url,
     logo: `${site.url}images/calltruck-logo.webp`,
     email: site.email,
@@ -49,7 +51,12 @@ const graph = [
     publisher: { '@id': organization },
   },
   {
-    '@type': 'WebPage',
+    '@type':
+      page?.path === 'la-empresa/'
+        ? 'AboutPage'
+        : page?.path === 'contacto/'
+          ? 'ContactPage'
+          : 'WebPage',
     '@id': `${canonical}#webpage`,
     url: canonical,
     name: title,

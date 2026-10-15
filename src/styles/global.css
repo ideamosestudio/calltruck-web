@@ -1153,7 +1153,7 @@ body:before {
   mix-blend-mode: multiply;
 }
 .js body:not(.is-loaded) {
-  overflow: hidden;
+  overflow-x: clip;
 }
 .page-loader {
   position: fixed;
@@ -4296,6 +4296,18 @@ html:not(.js) .reveal {
   transition:
     clip-path 0.25s ease,
     visibility 0s 0.25s;
+  bottom: auto;
+  height: 3px;
+  pointer-events: none;
+  background: transparent;
+}
+.page-loader .page-loader__track {
+  margin: 0;
+}
+.page-loader:before,
+.page-loader .page-loader__track:after,
+.page-loader .page-loader__track i:after {
+  display: none;
 }
 .is-loaded .page-loader {
   display: none;
@@ -4337,6 +4349,10 @@ html:not(.js) .reveal {
   transition-property: transform;
   transition-duration: 0.3s;
   transition-delay: 0s !important;
+}
+.js .hero-content > * {
+  opacity: 1;
+  transform: none;
 }
 
 /* Consistent text-link feedback, without covering the label. */

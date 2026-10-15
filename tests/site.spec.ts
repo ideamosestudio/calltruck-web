@@ -65,6 +65,34 @@ test('slider loads additional images only on demand', async ({ page }) => {
   );
 });
 
+test('touch devices keep hero autoplay paused and allow manual navigation', async ({
+  browser,
+}) => {
+  const context = await browser.newContext({
+    hasTouch: true,
+    viewport: { width: 390, height: 844 },
+    reducedMotion: 'no-preference',
+  });
+  const page = await context.newPage();
+  await page.goto(
+    site.url.replace(
+      'https://ideamosestudio.github.io',
+      'http://127.0.0.1:4322',
+    ),
+  );
+  await expect(page.locator('[data-slider-toggle]')).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
+  await expect(page.locator('.hero-slides > img')).toHaveCount(1);
+  await page.getByRole('button', { name: 'Ver imagen 2', exact: true }).click();
+  await expect(page.locator('[data-slide="1"]')).toHaveAttribute(
+    'aria-current',
+    'true',
+  );
+  await context.close();
+});
+
 test('contact anchor and native form validation', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('contacto/');

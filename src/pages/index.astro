@@ -452,7 +452,8 @@ const metrics = [
         '(prefers-reduced-motion: reduce)',
       ).matches;
       let active = 0;
-      let paused = reduceMotion;
+      // Avoid downloading a sequence of large photos on touch devices.
+      let paused = reduceMotion || matchMedia('(pointer: coarse)').matches;
       let timer;
       let visible = true;
       let slideRequest = 0;
@@ -502,7 +503,10 @@ const metrics = [
 
       const updateToggle = () => {
         if (!toggle) return;
-        toggle.textContent = paused ? '▶' : 'II';
+        const symbol = document.createElement('span');
+        symbol.setAttribute('aria-hidden', 'true');
+        symbol.textContent = paused ? '▶' : 'II';
+        toggle.replaceChildren(symbol);
         toggle.setAttribute(
           'aria-label',
           paused ? 'Reproducir slider' : 'Pausar slider',

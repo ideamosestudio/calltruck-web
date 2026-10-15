@@ -56,7 +56,7 @@ El acento definitivo es gris #A7ADB5. El selector de pruebas fue retirado y las 
 
 ## Habilitaciones y marcas
 
-El bloque de La empresa refleja las habilitaciones indicadas por el cliente. El cliente confirmó expresamente ISTA Certified Laboratory, diferenciándolo de la iniciativa aduanera ISTA. No se publican números de registro, vencimientos ni alcances no proporcionados.
+El bloque compartido al final de las páginas refleja las habilitaciones indicadas por el cliente. El cliente confirmó expresamente ISTA Certified Laboratory, diferenciándolo de la iniciativa aduanera ISTA. No se publican números de registro, vencimientos ni alcances no proporcionados.
 
 Los archivos originales de los logos se conservan en `public/images/credentials`:
 
@@ -69,3 +69,11 @@ Los archivos originales de los logos se conservan en `public/images/credentials`
 La presentación aplica escala de grises por CSS y recupera el color original al pasar el cursor. Los tamaños se compensan por marca, sin deformar las proporciones.
 
 Actualizar este bloque si el cliente informa cambios en sus habilitaciones. Los logos identifican las entidades; no sustituyen la documentación de Calltruck.
+
+## Optimización de octubre de 2026
+
+Las portadas se sirven en AVIF con variantes responsivas; el resto de las fotografías mantiene WebP. En dispositivos táctiles el slider comienza pausado para evitar descargar fotografías adicionales sin interacción. El indicador de carga no bloquea la lectura del contenido.
+
+Los logos de clientes son PNG transparentes optimizados y siempre grises, con rutas versionadas para evitar caché antigua. Se retiraron las versiones que ya no se utilizaban. Fuentes de los reemplazos: Cachamai (cachamai.com.ar), TML (tmlogistica.com.ar), Toshin (toshingroup.com), Violetta (violettacosmeticos.com) y Andreani (vector publicado por Red Hat en su caso de éxito). Locksley y LIT conservan los archivos aportados por el cliente.
+
+El contenido principal está en HTML estático, con metadatos, sitemap y JSON-LD de organización, servicios, páginas de empresa y contacto. llms.txt resume datos verificables y enlaza a las páginas; no garantiza indexación ni aparición en respuestas de IA.

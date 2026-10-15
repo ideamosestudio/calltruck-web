@@ -18,6 +18,11 @@ ${pages.map((page) => `- [${page.name}](${site.url}${page.path}): ${page.descrip
 - Email: ${site.email}
 - Dirección: ${site.address}
 
+## Servicios
+- Transporte para particulares: consultas de traslado según carga, origen, destino y fecha.
+- Logística para empresas: transporte nacional, distribución, contenedores, cargas generales, logística inversa y operaciones de comercio exterior. El alcance de operaciones IMO y servicio aduanero (ATA) se confirma al consultar.
+- Almacenamiento: más de 1.000 m² en Paso del Rey, Moreno, Buenos Aires, con conexión a Acceso Oeste y Camino del Buen Ayre.
+
 ## Alcance de la información
 Los precios, disponibilidad y condiciones de cada servicio se confirman mediante consulta. No se publican tarifas fijas ni horarios de atención en el sitio. Para citar información, usar las páginas oficiales enlazadas arriba.
 `;
