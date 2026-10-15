@@ -97,34 +97,24 @@ test('content and navigation remain available without JavaScript', async ({
   await context.close();
 });
 
-test('color preview persists, restores and closes with Escape', async ({
-  page,
-}) => {
-  await page.setViewportSize({ width: 390, height: 844 });
+test('gray accent replaces stored preview colors', async ({ page }) => {
+  await page.addInitScript(() =>
+    localStorage.setItem('calltruck-accent', 'blue'),
+  );
   await page.goto('./');
-  const tab = page.getByRole('button', {
-    name: 'Personalizar color del sitio',
-  });
-  await expect(page.locator('#color-customizer-panel')).not.toBeVisible();
-  await tab.click();
-  for (const color of ['yellow', 'gray', 'blue', 'red', 'orange']) {
-    await page.locator(`[data-accent-choice="${color}"]`).click();
-    await expect(page.locator('html')).toHaveAttribute('data-accent', color);
-    await expect(
-      page.locator(`[data-accent-choice="${color}"]`),
-    ).toHaveAttribute('aria-pressed', 'true');
-  }
-  await page.locator('[data-accent-choice="blue"]').click();
-  await page.keyboard.press('Escape');
-  await expect(tab).toBeFocused();
-  await expect(page.locator('#color-customizer-panel')).not.toBeVisible();
-  await page.goto('la-empresa/');
-  await expect(page.locator('html')).toHaveAttribute('data-accent', 'blue');
-  await tab.click();
-  await page
-    .getByRole('button', { name: 'Volver al naranja original' })
-    .click();
-  await expect(page.locator('html')).toHaveAttribute('data-accent', 'orange');
+  await expect(
+    page.getByRole('button', { name: 'Personalizar color del sitio' }),
+  ).toHaveCount(0);
+  expect(
+    await page.evaluate(() =>
+      getComputedStyle(document.documentElement)
+        .getPropertyValue('--accent')
+        .trim(),
+    ),
+  ).toBe('#a7adb5');
+  expect(
+    await page.evaluate(() => localStorage.getItem('calltruck-accent')),
+  ).toBeNull();
 });
 
 test('contact intro stays pinned while the form scrolls', async ({ page }) => {

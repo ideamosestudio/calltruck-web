@@ -4,7 +4,8 @@
   --paper: #ece9e1;
   --paper-2: #f7f4ec;
   --muted: #a9aaa4;
-  --accent: #ff5c00;
+  --accent: #a7adb5;
+  --accent-rgb: 167, 173, 181;
   --line: rgba(17, 19, 18, 0.16);
   --max: 1320px;
   --pad: clamp(1.25rem, 4vw, 4.5rem);
@@ -4392,29 +4393,4 @@ html:not(.js) .reveal {
   .footer-premium a .arrow-icon {
     transition: none !important;
   }
-}
-
-/* Preview palettes: the orange brand remains the default. */
-:root {
-  --accent-rgb: 255, 92, 0;
-}
-:root[data-accent='orange'] {
-  --accent: #ff5c00;
-  --accent-rgb: 255, 92, 0;
-}
-:root[data-accent='yellow'] {
-  --accent: #ffd600;
-  --accent-rgb: 255, 214, 0;
-}
-:root[data-accent='gray'] {
-  --accent: #a7adb5;
-  --accent-rgb: 167, 173, 181;
-}
-:root[data-accent='blue'] {
-  --accent: #387bff;
-  --accent-rgb: 56, 123, 255;
-}
-:root[data-accent='red'] {
-  --accent: #ff343b;
-  --accent-rgb: 255, 52, 59;
 }

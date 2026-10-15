@@ -1,6 +1,5 @@
 ---
 import SEO from '../components/SEO.astro';
-import ColorCustomizer from '../components/ColorCustomizer.astro';
 import interFont from '@fontsource/inter/files/inter-latin-400-normal.woff2?url';
 import headingFont from '@fontsource/barlow-condensed/files/barlow-condensed-latin-800-normal.woff2?url';
 import Header from '../components/Header.astro';
@@ -59,9 +58,7 @@ const shouldShowContactForm = showContactForm ?? true;
     <script is:inline>
       document.documentElement.classList.add('js');
       try {
-        const accent = localStorage.getItem('calltruck-accent');
-        if (['orange', 'yellow', 'gray', 'blue', 'red'].includes(accent))
-          document.documentElement.dataset.accent = accent;
+        localStorage.removeItem('calltruck-accent');
       } catch {
         /* Storage is optional. */
       }
@@ -114,7 +111,7 @@ const shouldShowContactForm = showContactForm ?? true;
       {shouldShowContactForm && <ContactForm />}
     </main>
     <Footer compact={compactFooter} />
-    <ColorCustomizer />
+
     <a
       class="floating-wa"
       href="https://wa.me/541137874158?text=Hola%2C%20quiero%20pedir%20un%20presupuesto"

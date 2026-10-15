@@ -50,9 +50,9 @@ El formulario depende de FormSubmit, con honeypot, CAPTCHA y límites de longitu
 
 No guardar secretos en el repositorio. Los `.env`, dependencias, artefactos y reportes locales están ignorados. Para una medición reproducible de rendimiento, usar Lighthouse sobre el mismo entorno y dispositivo, sin ejecutar otras pruebas en paralelo. Sus puntuaciones son de laboratorio, no métricas reales de visitantes.
 
-## Vista previa de color
+## Color destacado
 
-La pestaña del margen derecho permite probar cinco acentos. La selección se guarda solo en localStorage del navegador y puede restablecerse al naranja original. Los logos de marca conservan sus colores. El panel se cierra con Escape o al tocar fuera y permanece oculto al abrir el menú mobile.
+El acento definitivo es gris #A7ADB5. El selector de pruebas fue retirado y las preferencias anteriores del navegador se descartan. Los logos de marca conservan sus colores.
 
 ## Habilitaciones y marcas
 
