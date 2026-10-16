@@ -77,24 +77,28 @@ import SiteImage from './SiteImage.astro';
       <div class="legacy-copy reveal">
         <span class="eyebrow">Familia y legado</span>
         <h2 id="legacy-title">El legado de Luis.</h2>
-        <p>
-          Detrás de esta historia hay una persona que se animó a empezar de
-          cero, que con esfuerzo, sacrificio y trabajo fue construyendo mucho
-          más que una empresa.
-        </p>
-        <p>
-          Luis nos enseñó que las cosas importantes se consiguen con dedicación,
-          perseverancia y nunca dejando de luchar por lo que uno sueña.
-        </p>
-        <p>
-          Hoy, su esfuerzo sigue presente en cada paso que damos, y el legado
-          que construyó es el compromiso que tenemos de seguir haciendo crecer
-          aquello que un día comenzó con un solo camión y una gran ilusión.
-        </p>
-        <p>
-          Porque más allá de todo lo que podamos alcanzar, nunca vamos a olvidar
-          de dónde venimos ni a la persona que hizo posible que hoy estemos acá.
-        </p>
+        <div class="legacy-story">
+          <p>
+            Detrás de esta historia hay una persona que se animó a empezar de
+            cero, que con esfuerzo, sacrificio y trabajo fue construyendo mucho
+            más que una empresa.
+          </p>
+          <p>
+            Luis nos enseñó que las cosas importantes se consiguen con
+            dedicación, perseverancia y nunca dejando de luchar por lo que uno
+            sueña.
+          </p>
+          <p>
+            Hoy, su esfuerzo sigue presente en cada paso que damos, y el legado
+            que construyó es el compromiso que tenemos de seguir haciendo crecer
+            aquello que un día comenzó con un solo camión y una gran ilusión.
+          </p>
+          <p>
+            Porque más allá de todo lo que podamos alcanzar, nunca vamos a
+            olvidar de dónde venimos ni a la persona que hizo posible que hoy
+            estemos acá.
+          </p>
+        </div>
       </div>
       <div class="legacy-photos">
         <figure class="reveal">
@@ -109,7 +113,7 @@ import SiteImage from './SiteImage.astro';
           <SiteImage
             src="images/editorial/historia-camion-volcador.png"
             alt="Fotografía histórica: un hombre junto a un camión con la caja volcadora levantada"
-            sizes="(max-width: 980px) 100vw, 35vw"
+            sizes="(max-width: 980px) 100vw, 45vw"
           />
           <figcaption>El esfuerzo que nos trajo hasta acá.</figcaption>
         </figure>
@@ -222,9 +226,7 @@ import SiteImage from './SiteImage.astro';
   }
   .history-legacy {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(32px, 6vw, 88px);
-    align-items: start;
+    gap: 32px;
     margin-top: clamp(56px, 8vw, 112px);
     padding-top: clamp(40px, 6vw, 80px);
     border-top: 1px solid #c7c8bd;
@@ -234,7 +236,12 @@ import SiteImage from './SiteImage.astro';
     line-height: 1.05;
     margin-bottom: 28px;
   }
+  .legacy-story {
+    columns: 2;
+    column-gap: 56px;
+  }
   .legacy-copy p {
+    break-inside: avoid;
     color: #4c514a;
     line-height: 1.85;
     margin: 0 0 22px;
@@ -246,15 +253,14 @@ import SiteImage from './SiteImage.astro';
   }
   .legacy-photos {
     display: grid;
-    gap: 28px;
+    grid-template-columns: 1.192fr 1fr;
+    gap: 24px;
+    align-items: start;
   }
   .legacy-photos figure {
     margin: 0;
   }
-  .legacy-photos figure:last-child {
-    width: 78%;
-    justify-self: end;
-  }
+
   .legacy-photos :global(img) {
     display: block;
     width: 100%;
@@ -300,10 +306,14 @@ import SiteImage from './SiteImage.astro';
     line-height: 1.1;
   }
   @media (max-width: 980px) {
+    .legacy-story {
+      columns: 1;
+    }
     .history-legacy {
       grid-template-columns: 1fr;
     }
     .legacy-photos {
+      grid-template-columns: 1fr;
       max-width: 680px;
       margin-inline: auto;
     }
