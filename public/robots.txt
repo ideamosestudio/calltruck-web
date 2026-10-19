@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ideamosestudio.github.io/calltruck-web/sitemap-index.xml
+Sitemap: https://calltruck.com.ar/sitemap-index.xml

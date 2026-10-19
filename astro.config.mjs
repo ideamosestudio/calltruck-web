@@ -2,8 +2,8 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://ideamosestudio.github.io',
-  base: '/calltruck-web',
+  site: 'https://calltruck.com.ar',
+  base: '/',
   integrations: [sitemap()],
   trailingSlash: 'always',
 });

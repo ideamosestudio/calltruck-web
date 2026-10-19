@@ -134,7 +134,7 @@ test('content and navigation remain available without JavaScript', async ({
     viewport: { width: 390, height: 844 },
   });
   const page = await context.newPage();
-  await page.goto('http://127.0.0.1:4322/calltruck-web/');
+  await page.goto('http://127.0.0.1:4322/');
   await expect(page.locator('.page-loader')).not.toBeVisible();
   await expect(page.locator('h1')).toHaveCSS('opacity', '1');
   await expect(page.locator('[data-menu]')).toBeVisible();

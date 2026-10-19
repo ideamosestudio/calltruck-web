@@ -3,8 +3,8 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 
 const root = path.resolve('dist');
-const origin = 'https://ideamosestudio.github.io';
-const base = '/calltruck-web/';
+const origin = 'https://calltruck.com.ar';
+const base = '/';
 const walk = async (dir) =>
   (
     await Promise.all(

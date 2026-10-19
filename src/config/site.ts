@@ -1,6 +1,6 @@
 export const site = {
   name: 'Calltruck',
-  url: 'https://ideamosestudio.github.io/calltruck-web/',
+  url: 'https://calltruck.com.ar/',
   email: 'info@calltruck.com.ar',
   phone: '+54 11 3799-7864',
   whatsapp: '+54 11 3787-4158',
