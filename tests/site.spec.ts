@@ -67,19 +67,16 @@ test('slider loads additional images only on demand', async ({ page }) => {
 
 test('touch devices keep hero autoplay paused and allow manual navigation', async ({
   browser,
+  baseURL,
 }) => {
   const context = await browser.newContext({
+    baseURL,
     hasTouch: true,
     viewport: { width: 390, height: 844 },
     reducedMotion: 'no-preference',
   });
   const page = await context.newPage();
-  await page.goto(
-    site.url.replace(
-      'https://ideamosestudio.github.io',
-      'http://127.0.0.1:4322',
-    ),
-  );
+  await page.goto('./');
   await expect(page.locator('[data-slider-toggle]')).toHaveAttribute(
     'aria-pressed',
     'true',
