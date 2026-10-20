@@ -4379,8 +4379,7 @@ html:not(.js) .reveal {
 
 /* Defer offscreen editorial layouts while preserving searchable HTML. */
 @supports (content-visibility: auto) {
-  main > section:not(.hero):not(.contact-form),
-  .footer-premium {
+  main > section:not(.hero):not(.contact-form) {
     content-visibility: auto;
     contain-intrinsic-size: auto 900px;
   }
