@@ -4377,6 +4377,28 @@ html:not(.js) .reveal {
   transform: none;
 }
 
+/* Defer offscreen editorial layouts while preserving searchable HTML. */
+@supports (content-visibility: auto) {
+  .section--fleet,
+  .field-report,
+  .capacity-section,
+  main > .split {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 900px;
+  }
+}
+@media (max-width: 650px) {
+  body:before {
+    display: none;
+  }
+  .hero-slides,
+  .hero-grid,
+  .hero-backdrop img {
+    animation: none;
+    will-change: auto;
+  }
+}
+
 /* Consistent text-link feedback, without covering the label. */
 .footer-premium :is(.footer-nav-links a, .footer-socials a, .footer-email) {
   text-decoration-line: underline;
