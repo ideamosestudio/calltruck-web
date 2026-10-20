@@ -1,5 +1,6 @@
 ---
 import SEO from '../components/SEO.astro';
+import SmoothWheel from '../components/SmoothWheel.astro';
 import BackToTop from '../components/BackToTop.astro';
 import interFont from '@fontsource/inter/files/inter-latin-400-normal.woff2?url';
 import headingFont from '@fontsource/barlow-condensed/files/barlow-condensed-latin-800-normal.woff2?url';
@@ -90,6 +91,7 @@ const shouldShowContactForm = showContactForm ?? true;
     </main>
     <Footer compact={compactFooter} />
     <BackToTop />
+    <SmoothWheel />
 
     <a
       class="floating-wa"

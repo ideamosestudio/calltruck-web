@@ -4379,12 +4379,13 @@ html:not(.js) .reveal {
 
 /* Defer offscreen editorial layouts while preserving searchable HTML. */
 @supports (content-visibility: auto) {
-  .section--fleet,
-  .field-report,
-  .capacity-section,
-  main > .split {
+  main > section:not(.hero):not(.contact-form),
+  .footer-premium {
     content-visibility: auto;
     contain-intrinsic-size: auto 900px;
+  }
+  main > .client-logos {
+    contain-intrinsic-size: auto 156px;
   }
 }
 @media (max-width: 650px) {

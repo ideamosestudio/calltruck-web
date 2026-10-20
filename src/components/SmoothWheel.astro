@@ -1,0 +1,112 @@
+<script>
+  const desktop = matchMedia('(hover: hover) and (pointer: fine)');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  let frame = 0;
+  let target = scrollY;
+  let lastPosition = scrollY;
+  let lastTime = 0;
+  let direction = 0;
+
+  const stop = () => {
+    cancelAnimationFrame(frame);
+    frame = 0;
+    target = scrollY;
+    direction = 0;
+  };
+  const maximum = () =>
+    Math.max(0, document.documentElement.scrollHeight - innerHeight);
+  const nativeArea = (event: WheelEvent) => {
+    for (const element of event.composedPath()) {
+      if (!(element instanceof HTMLElement)) continue;
+      if (
+        element.matches(
+          'input, textarea, select, [contenteditable]:not([contenteditable="false"]), dialog, [role="dialog"]',
+        )
+      )
+        return true;
+      if (element === document.body || element === document.documentElement)
+        break;
+      if (
+        /auto|scroll|overlay/.test(getComputedStyle(element).overflowY) &&
+        element.scrollHeight > element.clientHeight + 1
+      )
+        return true;
+    }
+    return false;
+  };
+  const animate = (now: number) => {
+    // A native/programmatic scroll takes precedence over residual wheel motion.
+    if (Math.abs(scrollY - lastPosition) > 3) {
+      stop();
+      return;
+    }
+    target = Math.max(0, Math.min(maximum(), target));
+    const elapsed = Math.min(40, now - lastTime || 16);
+    lastTime = now;
+    const distance = target - scrollY;
+    const position =
+      Math.abs(distance) < 0.8
+        ? target
+        : scrollY + distance * (1 - Math.exp(-elapsed / 105));
+    scrollTo({ top: position, behavior: 'instant' });
+    lastPosition = scrollY;
+    if (Math.abs(target - scrollY) <= 1) {
+      frame = 0;
+      direction = 0;
+    } else frame = requestAnimationFrame(animate);
+  };
+  addEventListener(
+    'wheel',
+    (event: WheelEvent) => {
+      const discrete =
+        event.deltaMode !== 0 ||
+        (Math.abs(event.deltaY) >= 50 && Number.isInteger(event.deltaY));
+      if (
+        !desktop.matches ||
+        reduced.matches ||
+        !event.cancelable ||
+        event.ctrlKey ||
+        event.metaKey ||
+        event.shiftKey ||
+        event.altKey ||
+        Math.abs(event.deltaX) > Math.abs(event.deltaY) ||
+        !discrete ||
+        document.body.classList.contains('menu-open') ||
+        nativeArea(event)
+      ) {
+        stop();
+        return;
+      }
+      const unit =
+        event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1;
+      const delta = Math.max(-240, Math.min(240, event.deltaY * unit)) * 0.5;
+      if (!delta) return;
+      const nextDirection = Math.sign(delta);
+      if (!frame || nextDirection !== direction) target = scrollY;
+      target = Math.max(
+        0,
+        Math.min(
+          maximum(),
+          scrollY + Math.max(-500, Math.min(500, target + delta - scrollY)),
+        ),
+      );
+      if (Math.abs(target - scrollY) < 1) {
+        stop();
+        return;
+      }
+      event.preventDefault();
+      direction = nextDirection;
+      if (!frame) {
+        lastPosition = scrollY;
+        lastTime = performance.now();
+        frame = requestAnimationFrame(animate);
+      }
+    },
+    { passive: false },
+  );
+  for (const name of ['pointerdown', 'touchstart', 'keydown', 'click'])
+    addEventListener(name, stop, { passive: true });
+  document.addEventListener('visibilitychange', stop);
+  desktop.addEventListener('change', stop);
+  reduced.addEventListener('change', stop);
+</script>
