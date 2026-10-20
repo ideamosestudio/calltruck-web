@@ -17,7 +17,9 @@ const responsiveSizes =
   sizes ?? `(max-width: 980px) max(100vw, ${mobileCoverWidth}px), 66vw`;
 const widths = [
   ...new Set(
-    [240, 480, 800, 1200, 1600, maxWidth].filter((value) => value <= maxWidth),
+    [240, 360, 480, 800, 1200, 1600, maxWidth].filter(
+      (value) => value <= maxWidth,
+    ),
   ),
 ];
 const mobileHero = String(attributes.class ?? '').includes('hero-slide');
@@ -70,7 +72,7 @@ const mobileSources = mobileHero
     widths={widths}
     sizes={responsiveSizes}
     format={isHero ? 'avif' : 'webp'}
-    quality={isHero ? 70 : 86}
+    quality={isHero ? 70 : 78}
     loading="lazy"
     decoding="async"
     {...attributes}

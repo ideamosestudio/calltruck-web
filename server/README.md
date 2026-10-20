@@ -37,10 +37,8 @@ DMARC permanece en observación: no endurecerlo sin inventariar todos los
 emisores legítimos y revisar informes de autenticación.
 
 El firewall ModSecurity está habilitado en ambos dominios. Los destinatarios
-inexistentes se rechazan durante SMTP. El proveedor tiene deshabilitada la
-función de clasificación antispam de cPanel: se necesita habilitación de
-Nuthost para activar cuarentena de correo entrante. No habilitar borrado
-automático de mensajes sospechosos.
+inexistentes se rechazan durante SMTP. Los controles contra abuso del
+formulario no filtran el correo recibido directamente por la casilla.
 
 ## Validación local
 

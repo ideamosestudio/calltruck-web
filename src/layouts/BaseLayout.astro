@@ -2,7 +2,7 @@
 import SEO from '../components/SEO.astro';
 import SmoothWheel from '../components/SmoothWheel.astro';
 import BackToTop from '../components/BackToTop.astro';
-import interFont from '@fontsource/inter/files/inter-latin-400-normal.woff2?url';
+import interFont from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import headingFont from '@fontsource/barlow-condensed/files/barlow-condensed-latin-800-normal.woff2?url';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -13,9 +13,7 @@ import '@fontsource/barlow-condensed/latin-600.css';
 import '@fontsource/barlow-condensed/latin-700.css';
 import '@fontsource/barlow-condensed/latin-800.css';
 import '@fontsource/barlow-condensed/latin-900.css';
-import '@fontsource/inter/latin-400.css';
-import '@fontsource/inter/latin-500.css';
-import '@fontsource/inter/latin-600.css';
+import '../styles/fonts.css';
 import '../styles/global.css';
 import '../styles/interactions.css';
 const {
@@ -225,13 +223,22 @@ const shouldShowContactForm = showContactForm ?? true;
         }
       });
 
+      const backdrop = document.querySelector('.hero');
+      const desktopMotion = matchMedia('(hover: hover) and (pointer: fine)');
       const updateScroll = () => {
-        const available = document.documentElement.scrollHeight - innerHeight;
+        // At the top the progress is zero; avoid measuring the entire page
+        // before its first paint. Read geometry only when scrolling needs it.
+        const available =
+          scrollY > 0 ? document.documentElement.scrollHeight - innerHeight : 0;
         header?.classList.toggle('is-scrolled', scrollY > 24);
         if (progress)
           progress.style.transform = `scaleX(${available > 0 ? scrollY / available : 0})`;
-        if (!reduceMotion)
-          document.documentElement.style.setProperty(
+        if (
+          !reduceMotion &&
+          desktopMotion.matches &&
+          backdrop instanceof HTMLElement
+        )
+          backdrop.style.setProperty(
             '--scroll-y',
             `${Math.min(scrollY * 0.08, 72)}px`,
           );
