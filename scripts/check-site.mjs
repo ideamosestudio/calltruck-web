@@ -21,6 +21,10 @@ const titles = new Set();
 const checked = new Set();
 for (const file of pages) {
   const html = await readFile(file, 'utf8');
+  assert(
+    !/[←-⇿➔➜➝➞▶◀]/u.test(html),
+    `${file}: controls use vector icons, not text arrows`,
+  );
   const relative = path
     .relative(root, file)
     .replaceAll('\\', '/')

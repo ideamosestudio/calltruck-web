@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
@@ -17,20 +17,62 @@ const responsiveSizes =
   sizes ?? `(max-width: 980px) max(100vw, ${mobileCoverWidth}px), 66vw`;
 const widths = [
   ...new Set(
-    [480, 800, 1200, 1600, maxWidth].filter((value) => value <= maxWidth),
+    [240, 480, 800, 1200, 1600, maxWidth].filter((value) => value <= maxWidth),
   ),
 ];
+const mobileHero = String(attributes.class ?? '').includes('hero-slide');
+const mobileSources = mobileHero
+  ? await Promise.all(
+      [480, 800].map((width) =>
+        getImage({
+          src: image,
+          width,
+          height: Math.round(width * 1.4),
+          fit: 'cover',
+          position: 'center',
+          format: 'avif',
+          quality: 65,
+        }),
+      ),
+    )
+  : [];
 ---
 
-<Image
-  src={image}
-  alt={alt}
-  width={maxWidth}
-  widths={widths}
-  sizes={responsiveSizes}
-  format={isHero ? 'avif' : 'webp'}
-  quality={isHero ? 70 : 86}
-  loading="lazy"
-  decoding="async"
-  {...attributes}
-/>
+{mobileHero ? (
+  <picture class={attributes.class}>
+    <source
+      media="(max-width: 650px)"
+      type="image/avif"
+      srcset={mobileSources
+        .map((item, index) => `${item.src} ${[480, 800][index]}w`)
+        .join(', ')}
+      sizes="100vw"
+    />
+    <Image
+      src={image}
+      alt={alt}
+      width={maxWidth}
+      widths={widths}
+      sizes={responsiveSizes}
+      format="avif"
+      quality={70}
+      loading="lazy"
+      decoding="async"
+      {...attributes}
+      class={undefined}
+    />
+  </picture>
+) : (
+  <Image
+    src={image}
+    alt={alt}
+    width={maxWidth}
+    widths={widths}
+    sizes={responsiveSizes}
+    format={isHero ? 'avif' : 'webp'}
+    quality={isHero ? 70 : 86}
+    loading="lazy"
+    decoding="async"
+    {...attributes}
+  />
+)}

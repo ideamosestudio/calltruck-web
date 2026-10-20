@@ -52,14 +52,14 @@ for (const width of [320, 390, 1366]) {
 
 test('slider loads additional images only on demand', async ({ page }) => {
   await page.goto('./');
-  await expect(page.locator('.hero-slides > img')).toHaveCount(1);
+  await expect(page.locator('.hero-slides > picture')).toHaveCount(1);
   await page.getByRole('button', { name: 'Ver imagen 3', exact: true }).click();
   await expect(page.locator('[data-slide="2"]')).toHaveAttribute(
     'aria-current',
     'true',
   );
-  await expect(page.locator('.hero-slides > img')).toHaveCount(2);
-  await expect(page.locator('.hero-slide.is-active')).toHaveJSProperty(
+  await expect(page.locator('.hero-slides > picture')).toHaveCount(2);
+  await expect(page.locator('.hero-slide.is-active img')).toHaveJSProperty(
     'complete',
     true,
   );
@@ -81,7 +81,13 @@ test('touch devices keep hero autoplay paused and allow manual navigation', asyn
     'aria-pressed',
     'true',
   );
-  await expect(page.locator('.hero-slides > img')).toHaveCount(1);
+  await expect(page.locator('.hero-slides > picture')).toHaveCount(1);
+  const mobileImage = page.locator('.hero-slide.is-active img');
+  await expect(mobileImage).toHaveJSProperty('complete', true);
+  const selectedWidth = await mobileImage.evaluate(
+    (image: HTMLImageElement) => image.naturalWidth,
+  );
+  expect(selectedWidth).toBeLessThanOrEqual(800);
   await page.getByRole('button', { name: 'Ver imagen 2', exact: true }).click();
   await expect(page.locator('[data-slide="1"]')).toHaveAttribute(
     'aria-current',

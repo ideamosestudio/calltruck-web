@@ -37,6 +37,10 @@ jobs:
         run: pnpm format:check
       - name: Audit dependencies
         run: pnpm audit:security
+      - name: Validate PHP endpoint syntax
+        run: php -l server/contact.php
+      - name: Test form security without sending email
+        run: php scripts/test-contact.php
       - name: Build site
         run: pnpm build
       - name: Validate generated site
